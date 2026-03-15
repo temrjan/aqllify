@@ -1,37 +1,37 @@
 # Web framework
-fastapi==0.115.6
-uvicorn[standard]==0.34.0
+fastapi>=0.115
+uvicorn[standard]>=0.34
 
 # Database
-sqlalchemy[asyncio]==2.0.36
-asyncpg==0.30.0
-alembic==1.14.1
+sqlalchemy[asyncio]>=2.0
+asyncpg>=0.30
+alembic>=1.14
 
 # Telegram
-aiogram==3.15.0
+aiogram>=3.15
 
 # AI
-openai==1.58.1
+openai>=1.58
 
 # TTS
-gTTS==2.5.4
+gTTS>=2.5
 
 # Scheduler
-apscheduler==3.10.4
+apscheduler>=3.10
 
 # Config & validation
-pydantic==2.10.4
-pydantic-settings==2.7.1
+pydantic>=2.10
+pydantic-settings>=2.7
 
 # Content parsing
-markdown==3.7
-pyyaml==6.0.2
+markdown>=3.7
+pyyaml>=6.0
 
 # Logging
-structlog==24.4.0
+structlog>=24.4
 
 # Dev & Test
-pytest==8.3.4
-pytest-asyncio==0.24.0
-httpx==0.28.1
-ruff==0.8.6
+pytest>=8.3
+pytest-asyncio>=0.24
+httpx>=0.28
+ruff>=0.8
