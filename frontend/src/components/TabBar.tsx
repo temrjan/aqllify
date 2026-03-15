@@ -8,7 +8,7 @@ const TABS = [
 ] as const;
 
 function TabIcon({ icon, active }: { icon: string; active: boolean }) {
-  const color = active ? 'var(--accent)' : '#9CA3AF';
+  const color = active ? 'var(--accent)' : 'var(--tg-hint, #9CA3AF)';
 
   switch (icon) {
     case 'lesson':
