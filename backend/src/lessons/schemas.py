@@ -3,6 +3,7 @@ from pydantic import BaseModel
 
 class Phrase(BaseModel):
     uzbek: str
+    uzbek_cyrillic: str = ''
     russian: str
     audio_url: str | None = None
 

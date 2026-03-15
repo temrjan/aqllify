@@ -137,7 +137,13 @@ def _extract_phrases(body: str) -> list[Phrase]:
 
         if in_table and stripped.startswith('|'):
             cells = [c.strip() for c in stripped.split('|')[1:-1]]
-            if len(cells) >= 2:
+            if len(cells) >= 3:
+                uzbek = cells[0].strip()
+                uzbek_cyrillic = cells[1].strip()
+                russian = cells[2].strip()
+                if uzbek and russian:
+                    phrases.append(Phrase(uzbek=uzbek, uzbek_cyrillic=uzbek_cyrillic, russian=russian))
+            elif len(cells) >= 2:
                 uzbek = cells[0].strip()
                 russian = cells[1].strip()
                 if uzbek and russian:

@@ -5,6 +5,7 @@ import styles from './LessonPage.module.css';
 
 interface Phrase {
   uzbek: string;
+  uzbek_cyrillic: string;
   russian: string;
 }
 
@@ -66,6 +67,9 @@ export function LessonPage() {
           {lesson.phrases.map((phrase, i) => (
             <div key={i} className={styles.phraseCard}>
               <div className={styles.phraseUzbek}>{phrase.uzbek}</div>
+              {phrase.uzbek_cyrillic && (
+                <div className={styles.phraseCyrillic}>{phrase.uzbek_cyrillic}</div>
+              )}
               <div className={styles.phraseRussian}>{phrase.russian}</div>
             </div>
           ))}
