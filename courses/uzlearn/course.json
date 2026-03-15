@@ -1,0 +1,21 @@
+{
+  "id": "uzlearn",
+  "title": "O'zbek tili",
+  "description": "Узбекский язык с нуля для русскоязычных",
+  "interface_lang": "ru",
+  "target_lang": "uz",
+  "total_blocks": 4,
+  "total_lessons": 50,
+  "titles": [
+    {"name": "spark", "xp": 0},
+    {"name": "pulse", "xp": 500},
+    {"name": "wave", "xp": 1500},
+    {"name": "flash", "xp": 3000},
+    {"name": "storm", "xp": 6000},
+    {"name": "blaze", "xp": 10000},
+    {"name": "titan", "xp": 16000},
+    {"name": "phantom", "xp": 24000},
+    {"name": "nova", "xp": 35000},
+    {"name": "apex", "xp": 50000}
+  ]
+}

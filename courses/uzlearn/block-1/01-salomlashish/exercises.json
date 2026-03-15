@@ -1,0 +1,67 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Привет",
+      "answer_context": "Salom",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Здравствуйте (формальное)",
+      "answer_context": "Assalomu alaykum",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Xayrli kun",
+      "answer_context": "Добрый день",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'До свидания'?",
+      "options": ["Salom", "Rahmat", "Xayr", "Marhamat"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Xayrli ___! (Добрый вечер)",
+      "answer": "kech",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Здравствуйте",
+      "words": ["alaykum", "Assalomu"],
+      "answer": "Assalomu alaykum",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Как сказать 'Доброе утро'? (подсказка: tong = утро)",
+      "answer_context": "Xayrli tong",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Тебя приветствует сосед утром:",
+      "bot_says": "Assalomu alaykum! Yaxshimisiz?",
+      "answer_context": "Ответ на формальное приветствие: Vaalaykum assalom, yaxshi rahmat, или подобное",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи: Xayr",
+      "answer_context": "До свидания",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи: Добрый день",
+      "answer_context": "Xayrli kun",
+      "xp": 10
+    }
+  ]
+}

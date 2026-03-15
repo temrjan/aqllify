@@ -1,0 +1,41 @@
+---
+title: Salomlashish (Приветствия)
+block: 1
+lesson: 1
+new_phrases: 5
+spiral_from: []
+level: spark
+xp_reward: 50
+---
+
+## Фразы
+
+| Узбекский | Русский |
+|-----------|---------|
+| Salom | Привет |
+| Assalomu alaykum | Здравствуйте (формальное) |
+| Xayrli kun | Добрый день |
+| Xayrli kech | Добрый вечер |
+| Xayr | До свидания |
+
+## Грамматика (коротко)
+
+**Salom** — неформальное приветствие. Используй с друзьями, ровесниками.
+
+**Assalomu alaykum** — формальное. Используй со старшими, незнакомыми, в магазине. Ответ: **Vaalaykum assalom**.
+
+**Xayrli** = добрый/хороший. Комбинируй:
+- Xayrli **kun** = добрый **день** (kun = день)
+- Xayrli **kech** = добрый **вечер** (kech = вечер)
+- Xayrli **tong** = доброе **утро** (tong = утро)
+
+## Мини-диалог
+
+— Assalomu alaykum!
+— Vaalaykum assalom! Yaxshimisiz?
+— Yaxshi, rahmat. O'zingiz-chi?
+— Yaxshi. Rahmat!
+
+## Задание на дом
+
+Завтра утром скажи "Xayrli tong!" кому-нибудь из семьи.

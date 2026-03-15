@@ -23,6 +23,10 @@ apscheduler==3.10.4
 pydantic==2.10.4
 pydantic-settings==2.7.1
 
+# Content parsing
+markdown==3.7
+pyyaml==6.0.2
+
 # Logging
 structlog==24.4.0
 
