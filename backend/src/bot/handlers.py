@@ -2,8 +2,11 @@ import structlog
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
+from sqlalchemy import update
 
 from src.config import settings
+from src.database import async_session
+from src.progress.models import User
 
 logger = structlog.get_logger()
 
@@ -51,6 +54,15 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
     goal_text, goal_minutes = DAILY_GOALS[callback.data]
 
     logger.info('goal_set', telegram_id=callback.from_user.id, minutes=goal_minutes)
+
+    # Save goal to DB
+    async with async_session() as db:
+        await db.execute(
+            update(User)
+            .where(User.telegram_id == callback.from_user.id)
+            .values(daily_goal_minutes=goal_minutes)
+        )
+        await db.commit()
 
     # Mini App button
     webapp_url = f'{settings.frontend_url}'

@@ -166,24 +166,31 @@ async def create_cards_from_lesson(
                 continue
             if in_table and stripped.startswith('|'):
                 cells = [c.strip() for c in stripped.split('|')[1:-1]]
-                if len(cells) >= 2 and cells[0] and cells[1]:
-                    # Check if card already exists
-                    existing = await db.execute(
-                        select(SrsCard).where(
-                            SrsCard.user_id == user_id,
-                            SrsCard.word == cells[0],
-                        )
+                # 3-col table: uzbek | cyrillic | russian
+                # 2-col table: uzbek | russian
+                if len(cells) >= 3 and cells[0] and cells[2]:
+                    word, translation = cells[0], cells[2]
+                elif len(cells) >= 2 and cells[0] and cells[1]:
+                    word, translation = cells[0], cells[1]
+                else:
+                    continue
+                # Check if card already exists
+                existing = await db.execute(
+                    select(SrsCard).where(
+                        SrsCard.user_id == user_id,
+                        SrsCard.word == word,
                     )
-                    if not existing.scalar_one_or_none():
-                        card = SrsCard(
-                            user_id=user_id,
-                            word=cells[0],
-                            translation=cells[1],
-                            lesson_slug=lesson_slug,
-                            next_review=today,
-                        )
-                        db.add(card)
-                        cards_created += 1
+                )
+                if not existing.scalar_one_or_none():
+                    card = SrsCard(
+                        user_id=user_id,
+                        word=word,
+                        translation=translation,
+                        lesson_slug=lesson_slug,
+                        next_review=today,
+                    )
+                    db.add(card)
+                    cards_created += 1
             elif in_table and not stripped.startswith('|'):
                 in_table = False
 
@@ -260,17 +267,28 @@ async def add_xp(
     if promoted:
         stats.current_title = new_title
 
-    # Save lesson progress
+    # Save lesson progress (upsert — no duplicates)
     if lesson_slug:
-        lesson_progress = UserLessonProgress(
-            user_id=user_id,
-            lesson_slug=lesson_slug,
-            completed=True,
-            score=score,
-            xp_earned=xp,
-            completed_at=datetime.now(tz=timezone.utc),
+        existing_progress = await db.execute(
+            select(UserLessonProgress).where(
+                UserLessonProgress.user_id == user_id,
+                UserLessonProgress.lesson_slug == lesson_slug,
+            )
         )
-        db.add(lesson_progress)
+        progress = existing_progress.scalar_one_or_none()
+        if progress:
+            progress.score = max(progress.score or 0, score or 0)
+            progress.xp_earned = max(progress.xp_earned, xp)
+            progress.completed_at = datetime.now(tz=timezone.utc)
+        else:
+            db.add(UserLessonProgress(
+                user_id=user_id,
+                lesson_slug=lesson_slug,
+                completed=True,
+                score=score,
+                xp_earned=xp,
+                completed_at=datetime.now(tz=timezone.utc),
+            ))
 
     await db.commit()
 

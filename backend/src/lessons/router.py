@@ -1,10 +1,15 @@
 from fastapi import APIRouter, Depends, HTTPException
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.router import get_current_user
 from src.auth.schemas import TelegramUser
+from src.auth.service import get_or_create_user
+from src.database import get_db
 from src.lessons.models import CheckAnswerRequest, CheckAnswerResponse, CheckpointMessage
 from src.lessons.schemas import LessonContent, LessonListItem
 from src.lessons.service import get_lesson, list_lessons
+from src.progress.models import UserLessonProgress
 from src.services.llm import check_answer, checkpoint_dialog
 
 router = APIRouter(prefix='/lessons', tags=['lessons'])
@@ -13,13 +18,31 @@ router = APIRouter(prefix='/lessons', tags=['lessons'])
 @router.get('/{course}')
 async def get_lessons_list(
     course: str,
-    _user: TelegramUser = Depends(get_current_user),
+    tg_user: TelegramUser = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
 ) -> list[LessonListItem]:
-    """List all lessons for a course."""
+    """List all lessons for a course, with user completion status."""
     try:
-        return list_lessons(course)
+        lessons = list_lessons(course)
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail=f'Course {course} not found')
+
+    user = await get_or_create_user(db, tg_user)
+    result = await db.execute(
+        select(UserLessonProgress).where(
+            UserLessonProgress.user_id == user['id'],
+            UserLessonProgress.completed.is_(True),
+        )
+    )
+    completed = {p.lesson_slug: p for p in result.scalars().all()}
+
+    for lesson in lessons:
+        progress = completed.get(lesson.slug)
+        if progress:
+            lesson.completed = True
+            lesson.score = progress.score
+
+    return lessons
 
 
 @router.get('/{course}/{block_slug}/{lesson_slug}')

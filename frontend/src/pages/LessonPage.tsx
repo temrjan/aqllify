@@ -324,7 +324,28 @@ export function LessonPage() {
     );
   }
 
-  // Phase 3: Done
+  // Phase 3: Done — save progress
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  useEffect(() => {
+    if (step !== 'done' || saved || saving || !block || !lessonSlug) return;
+    setSaving(true);
+    api.post('/progress/complete-lesson', {
+      lesson_slug: `${block}/${lessonSlug}`,
+      xp: totalXp + lesson.meta.xp_reward,
+      score: lesson.exercises.length > 0 ? totalXp / (lesson.exercises.length * 10) : 1,
+    })
+      .then(() => {
+        WebApp.HapticFeedback.notificationOccurred('success');
+      })
+      .catch(() => {})
+      .finally(() => {
+        setSaving(false);
+        setSaved(true);
+      });
+  }, [step, saved, saving, block, lessonSlug, totalXp, lesson]);
+
   return (
     <div className={styles.page}>
       <div className={styles.doneScreen}>
@@ -334,8 +355,8 @@ export function LessonPage() {
         {lesson.homework && (
           <p className={styles.doneHomework}>{lesson.homework.text}</p>
         )}
-        <button className={styles.primaryBtn} onClick={() => navigate('/')}>
-          На главную
+        <button className={styles.primaryBtn} onClick={() => navigate('/')} disabled={saving}>
+          {saving ? 'Сохранение...' : 'На главную'}
         </button>
       </div>
     </div>
