@@ -16,6 +16,8 @@ interface Exercise {
   answer: string | null;
   options: string[] | null;
   correct: number | null;
+  context: string | null;
+  bot_says: string | null;
   xp: number;
 }
 
@@ -173,7 +175,15 @@ export function LessonPage() {
         </header>
 
         <section className={styles.exerciseArea}>
-          <p className={styles.exercisePrompt}>{ex.prompt}</p>
+          {ex.type === 'dialog_reply' && ex.context ? (
+            <>
+              <p className={styles.exerciseContext}>{ex.context}</p>
+              {ex.bot_says && <p className={styles.exerciseBotSays}>— {ex.bot_says}</p>}
+              <p className={styles.exercisePrompt}>Ответь:</p>
+            </>
+          ) : (
+            <p className={styles.exercisePrompt}>{ex.prompt}</p>
+          )}
 
           {ex.type === 'choice' && ex.options ? (
             <div className={styles.choiceGrid}>
