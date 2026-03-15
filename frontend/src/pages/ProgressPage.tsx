@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import WebApp from '@twa-dev/sdk';
 import { api } from '@/shared/api';
 import styles from './ProgressPage.module.css';
 
@@ -29,6 +30,7 @@ const TITLE_LABELS: Record<string, string> = {
 export function ProgressPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
+  const user = WebApp.initDataUnsafe.user;
 
   useEffect(() => {
     api.get('/progress/stats')
@@ -52,13 +54,29 @@ export function ProgressPage() {
   return (
     <div className={styles.page}>
       <header className={styles.header}>
+        {user && (
+          <div className={styles.userInfo}>
+            {user.photo_url ? (
+              <img
+                className={styles.userAvatar}
+                src={user.photo_url}
+                alt={user.first_name}
+              />
+            ) : (
+              <div className={styles.userAvatarFallback}>
+                {user.first_name.charAt(0).toUpperCase()}
+              </div>
+            )}
+            <span className={styles.userName}>{user.first_name}</span>
+          </div>
+        )}
         <h1 className={styles.title}>Мой прогресс</h1>
       </header>
 
       {/* Title card */}
       <section className={styles.titleCard}>
         <span className={styles.titleEmoji}>
-          {stats.current_title === 'apex' ? '&#11088;' : '&#9889;'}
+          {stats.current_title === 'apex' ? '\u2B50' : '\u26A1'}
         </span>
         <div className={styles.titleName}>
           {TITLE_LABELS[stats.current_title] ?? stats.current_title}
@@ -84,7 +102,7 @@ export function ProgressPage() {
             {stats.streak_days > 0 ? `${stats.streak_days}` : '0'}
           </div>
           <div className={styles.statLabel}>
-            {stats.streak_days > 0 ? 'дней подряд &#128293;' : 'дней подряд'}
+            {stats.streak_days > 0 ? 'дней подряд \uD83D\uDD25' : 'дней подряд'}
           </div>
         </div>
 
@@ -100,7 +118,7 @@ export function ProgressPage() {
 
         <div className={styles.statCard}>
           <div className={styles.statValue}>
-            {stats.streak_freeze_available ? '&#10003;' : '&#10007;'}
+            {stats.streak_freeze_available ? '\u2713' : '\u2717'}
           </div>
           <div className={styles.statLabel}>streak freeze</div>
         </div>

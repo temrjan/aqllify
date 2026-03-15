@@ -48,7 +48,13 @@ export function HomePage() {
     return lesson.title.toLowerCase().includes('checkpoint');
   };
 
-  const handleLessonClick = (lesson: LessonListItem) => {
+  const isLessonUnlocked = (index: number): boolean => {
+    if (index === 0) return true;
+    return lessons[index - 1]?.completed === true;
+  };
+
+  const handleLessonClick = (lesson: LessonListItem, globalIndex: number) => {
+    if (!isLessonUnlocked(globalIndex)) return;
     // slug format: "block-1/01-salomlashish" → split into block and lessonSlug
     const parts = lesson.slug.split('/');
     if (parts.length === 2) {
@@ -68,26 +74,45 @@ export function HomePage() {
           <h2 className={styles.blockTitle}>Блок {blockNum}</h2>
 
           <div className={styles.lessonList}>
-            {blockLessons.map((lesson) => (
-              <button
-                key={lesson.slug}
-                className={`${styles.lessonCard} ${isCheckpoint(lesson) ? styles.checkpointCard : ''}`}
-                onClick={() => handleLessonClick(lesson)}
-              >
-                <div className={isCheckpoint(lesson) ? styles.checkpointNumber : styles.lessonNumber}>
-                  {isCheckpoint(lesson) ? '\u2605' : lesson.lesson}
-                </div>
-                <div className={styles.lessonInfo}>
-                  <span className={styles.lessonTitle}>{lesson.title}</span>
+            {blockLessons.map((lesson) => {
+              const globalIndex = lessons.indexOf(lesson);
+              const unlocked = isLessonUnlocked(globalIndex);
+
+              return (
+                <button
+                  key={lesson.slug}
+                  className={[
+                    styles.lessonCard,
+                    isCheckpoint(lesson) ? styles.checkpointCard : '',
+                    !unlocked ? styles.lockedCard : '',
+                  ].join(' ')}
+                  onClick={unlocked ? () => handleLessonClick(lesson, globalIndex) : undefined}
+                >
+                  <div className={
+                    !unlocked
+                      ? styles.lockedNumber
+                      : isCheckpoint(lesson)
+                        ? styles.checkpointNumber
+                        : styles.lessonNumber
+                  }>
+                    {!unlocked
+                      ? '\uD83D\uDD12'
+                      : isCheckpoint(lesson)
+                        ? '\u2605'
+                        : lesson.lesson}
+                  </div>
+                  <div className={styles.lessonInfo}>
+                    <span className={styles.lessonTitle}>{lesson.title}</span>
+                    {lesson.completed && (
+                      <span className={styles.lessonScore}>{lesson.score} XP</span>
+                    )}
+                  </div>
                   {lesson.completed && (
-                    <span className={styles.lessonScore}>{lesson.score} XP</span>
+                    <span className={styles.completedBadge}>{'\u2713'}</span>
                   )}
-                </div>
-                {lesson.completed && (
-                  <span className={styles.completedBadge}>&#10003;</span>
-                )}
-              </button>
-            ))}
+                </button>
+              );
+            })}
           </div>
         </section>
       ))}

@@ -17,6 +17,39 @@
   padding: 16px;
 }
 
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.userAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.userAvatarFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--accent, #4CAF50);
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.userName {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--tg-text);
+}
+
 .title {
   font-size: 22px;
   font-weight: 700;

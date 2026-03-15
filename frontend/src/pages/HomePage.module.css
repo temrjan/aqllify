@@ -113,6 +113,30 @@
   flex-shrink: 0;
 }
 
+/* Locked lesson card */
+.lockedCard {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.lockedCard:active {
+  transform: none;
+}
+
+.lockedNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--tg-hint, #999);
+  color: var(--tg-bg, #fff);
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
 /* Checkpoint lesson card */
 .checkpointCard {
   border-color: var(--accent);
