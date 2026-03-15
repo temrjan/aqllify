@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import WebApp from '@twa-dev/sdk';
 import { api } from '@/shared/api';
 import styles from './LessonPage.module.css';
@@ -32,6 +33,9 @@ interface Lesson {
 }
 
 export function LessonPage() {
+  const { block, lessonSlug } = useParams<{ block: string; lessonSlug: string }>();
+  const navigate = useNavigate();
+
   const [lesson, setLesson] = useState<Lesson | null>(null);
   const [step, setStep] = useState<'phrases' | 'exercises' | 'done'>('phrases');
   const [exerciseIndex, setExerciseIndex] = useState(0);
@@ -44,11 +48,15 @@ export function LessonPage() {
   const [availableWords, setAvailableWords] = useState<string[]>([]);
 
   useEffect(() => {
-    api.get('/lessons/uzlearn/block-1/01-salomlashish')
+    if (!block || !lessonSlug) {
+      setLoading(false);
+      return;
+    }
+    api.get(`/lessons/uzlearn/${block}/${lessonSlug}`)
       .then((res) => setLesson(res.data))
       .catch(() => setLesson(null))
       .finally(() => setLoading(false));
-  }, []);
+  }, [block, lessonSlug]);
 
   if (loading) {
     return <div className={styles.page}><div className={styles.loading}>Загрузка...</div></div>;
@@ -326,7 +334,7 @@ export function LessonPage() {
         {lesson.homework && (
           <p className={styles.doneHomework}>{lesson.homework.text}</p>
         )}
-        <button className={styles.primaryBtn} onClick={() => window.location.reload()}>
+        <button className={styles.primaryBtn} onClick={() => navigate('/')}>
           На главную
         </button>
       </div>
