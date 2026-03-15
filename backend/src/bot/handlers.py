@@ -35,7 +35,7 @@ async def cmd_start(message: Message) -> None:
 
     await message.answer(
         f'🇺🇿 <b>Salom, {user.first_name}!</b>\n\n'
-        f'Я — <b>Aqllify</b>, твой AI-тьютор узбекского языка.\n'
+        f'Я — <b>Aqllify</b>, твой помощник в изучении узбекского языка.\n'
         f'5 минут в день — и через месяц заговоришь.\n\n'
         f'Выбери цель на день:',
         reply_markup=keyboard,
