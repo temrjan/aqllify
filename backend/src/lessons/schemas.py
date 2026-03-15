@@ -31,11 +31,25 @@ class LessonMeta(BaseModel):
     xp_reward: int = 50
 
 
+class GrammarTip(BaseModel):
+    text: str
+
+
+class MiniDialog(BaseModel):
+    lines: list[str]
+
+
+class Homework(BaseModel):
+    text: str
+
+
 class LessonContent(BaseModel):
     meta: LessonMeta
     slug: str
-    body_html: str       # rendered markdown
     phrases: list[Phrase]
+    grammar: list[GrammarTip]
+    dialog: MiniDialog | None = None
+    homework: Homework | None = None
     exercises: list[Exercise]
 
 

@@ -1,10 +1,19 @@
 import json
+import re
 from pathlib import Path
 
-import markdown
 import yaml
 
-from src.lessons.schemas import Exercise, LessonContent, LessonListItem, LessonMeta, Phrase
+from src.lessons.schemas import (
+    Exercise,
+    GrammarTip,
+    Homework,
+    LessonContent,
+    LessonListItem,
+    LessonMeta,
+    MiniDialog,
+    Phrase,
+)
 
 COURSES_DIR = Path(__file__).parent.parent.parent.parent / 'courses'
 
@@ -58,15 +67,14 @@ def get_lesson(course: str, slug: str) -> LessonContent:
     lesson_md = lesson_dir / 'lesson.md'
     exercises_json = lesson_dir / 'exercises.json'
 
-    # Parse frontmatter + body
     meta = _parse_frontmatter(lesson_md)
     body = _parse_body(lesson_md)
-    body_html = markdown.markdown(body, extensions=['tables'])
 
-    # Parse phrases from markdown table
     phrases = _extract_phrases(body)
+    grammar = _extract_grammar(body)
+    dialog = _extract_dialog(body)
+    homework = _extract_homework(body)
 
-    # Load exercises
     exercises: list[Exercise] = []
     if exercises_json.exists():
         data = json.loads(exercises_json.read_text(encoding='utf-8'))
@@ -75,14 +83,15 @@ def get_lesson(course: str, slug: str) -> LessonContent:
     return LessonContent(
         meta=meta,
         slug=slug,
-        body_html=body_html,
         phrases=phrases,
+        grammar=grammar,
+        dialog=dialog,
+        homework=homework,
         exercises=exercises,
     )
 
 
 def _parse_frontmatter(md_path: Path) -> LessonMeta:
-    """Extract YAML frontmatter from markdown file."""
     text = md_path.read_text(encoding='utf-8')
     if not text.startswith('---'):
         raise ValueError(f'No frontmatter in {md_path}')
@@ -96,14 +105,23 @@ def _parse_frontmatter(md_path: Path) -> LessonMeta:
 
 
 def _parse_body(md_path: Path) -> str:
-    """Extract body (after frontmatter) from markdown file."""
     text = md_path.read_text(encoding='utf-8')
     parts = text.split('---', 2)
     return parts[2].strip() if len(parts) >= 3 else text
 
 
+def _clean_md(text: str) -> str:
+    """Remove markdown formatting, return plain text."""
+    text = re.sub(r'\*\*(.+?)\*\*', r'\1', text)   # **bold** → bold
+    text = re.sub(r'\*(.+?)\*', r'\1', text)         # *italic* → italic
+    text = re.sub(r'^#+\s+', '', text, flags=re.MULTILINE)  # ## heading → heading
+    text = re.sub(r'^- ', '', text, flags=re.MULTILINE)     # - item → item
+    text = re.sub(r'`(.+?)`', r'\1', text)           # `code` → code
+    return text.strip()
+
+
 def _extract_phrases(body: str) -> list[Phrase]:
-    """Extract phrases from markdown table (| Узбекский | Русский | format)."""
+    """Extract phrases from markdown table."""
     phrases: list[Phrase] = []
     in_table = False
 
@@ -128,3 +146,59 @@ def _extract_phrases(body: str) -> list[Phrase]:
             in_table = False
 
     return phrases
+
+
+def _extract_section(body: str, header: str) -> str | None:
+    """Extract text between a ## header and the next ## header."""
+    pattern = rf'##\s+{re.escape(header)}.*?\n(.*?)(?=\n##\s|\Z)'
+    match = re.search(pattern, body, re.DOTALL)
+    if not match:
+        return None
+    return match.group(1).strip()
+
+
+def _extract_grammar(body: str) -> list[GrammarTip]:
+    """Extract grammar section as clean text paragraphs."""
+    section = _extract_section(body, 'Грамматика')
+    if not section:
+        return []
+
+    tips: list[GrammarTip] = []
+    current: list[str] = []
+
+    for line in section.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            if current:
+                tips.append(GrammarTip(text=_clean_md('\n'.join(current))))
+                current = []
+        else:
+            current.append(stripped)
+
+    if current:
+        tips.append(GrammarTip(text=_clean_md('\n'.join(current))))
+
+    return tips
+
+
+def _extract_dialog(body: str) -> MiniDialog | None:
+    """Extract dialog section as list of lines."""
+    section = _extract_section(body, 'Мини-диалог')
+    if not section:
+        return None
+
+    lines = [
+        _clean_md(line.strip())
+        for line in section.split('\n')
+        if line.strip() and line.strip().startswith('—')
+    ]
+
+    return MiniDialog(lines=lines) if lines else None
+
+
+def _extract_homework(body: str) -> Homework | None:
+    """Extract homework section as plain text."""
+    section = _extract_section(body, 'Задание на дом')
+    if not section:
+        return None
+    return Homework(text=_clean_md(section))
