@@ -41,6 +41,19 @@ services:
       db:
         condition: service_healthy
 
+  frontend:
+    build: ./frontend
+    container_name: aqllify-frontend
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 32M
+    networks:
+      - proxy
+
   db:
     image: postgres:17-alpine
     container_name: aqllify-db

@@ -1,0 +1,282 @@
+.page {
+  min-height: 100vh;
+  background: var(--tg-bg, #ffffff);
+  padding-bottom: 80px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: var(--tg-hint);
+  font-size: 16px;
+}
+
+/* Header */
+.header {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.lessonNumber {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tg-text);
+  margin-top: 4px;
+}
+
+/* Progress */
+.progressBar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.xpCounter {
+  display: block;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+/* Sections */
+.section {
+  padding: 16px;
+}
+
+.sectionTitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--tg-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+/* Phrase cards */
+.phraseCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 8px;
+}
+
+.phraseUzbek {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--tg-text);
+}
+
+.phraseRussian {
+  font-size: 14px;
+  color: var(--tg-hint);
+  margin-top: 4px;
+}
+
+/* Grammar */
+.grammarText {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--tg-text);
+  margin-bottom: 12px;
+}
+
+/* Dialog */
+.dialogLine {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--tg-text);
+  padding-left: 8px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 8px;
+}
+
+/* Exercise area */
+.exerciseArea {
+  padding: 24px 16px;
+}
+
+.exercisePrompt {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--tg-text);
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Text input */
+.inputArea {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.answerInput {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  outline: none;
+}
+
+.answerInput:focus {
+  border-color: var(--accent);
+}
+
+.answerInput:disabled {
+  opacity: 0.6;
+}
+
+.submitBtn {
+  padding: 14px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.submitBtn:disabled {
+  opacity: 0.4;
+}
+
+/* Choice buttons */
+.choiceGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.choiceBtn {
+  padding: 14px 12px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--tg-bg);
+  color: var(--tg-text);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+}
+
+.choiceBtn:active {
+  transform: scale(0.97);
+}
+
+.choiceCorrect {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.choiceWrong {
+  border-color: var(--danger);
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Feedback */
+.feedback {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.feedbackCorrect {
+  background: var(--accent-light);
+  color: #166534;
+}
+
+.feedbackWrong {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991B1B;
+}
+
+/* Footer */
+.footer {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: var(--tg-bg);
+  border-top: 1px solid var(--border);
+}
+
+.primaryBtn {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.primaryBtn:active {
+  transform: scale(0.98);
+}
+
+/* Done screen */
+.doneScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 24px;
+  text-align: center;
+}
+
+.doneIcon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.doneTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.doneXp {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 8px;
+}
+
+.doneHomework {
+  font-size: 14px;
+  color: var(--tg-hint);
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+}

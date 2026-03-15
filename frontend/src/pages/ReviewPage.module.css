@@ -1,0 +1,157 @@
+.page {
+  min-height: 100vh;
+  background: var(--tg-bg);
+  padding-bottom: 80px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: var(--tg-hint);
+}
+
+/* Empty state */
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+  padding: 24px;
+}
+
+.emptyIcon { font-size: 56px; margin-bottom: 16px; }
+.emptyTitle { font-size: 20px; font-weight: 700; color: var(--tg-text); }
+.emptyText { font-size: 14px; color: var(--tg-hint); margin-top: 8px; }
+
+/* Header */
+.header {
+  padding: 16px;
+}
+
+.counter {
+  font-size: 14px;
+  color: var(--tg-hint);
+  font-weight: 500;
+}
+
+.progressBar {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Card */
+.cardArea {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  min-height: 50vh;
+}
+
+.card {
+  width: 100%;
+  max-width: 340px;
+  min-height: 200px;
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.cardFlipped {
+  border-color: var(--accent);
+}
+
+.cardFront {
+  text-align: center;
+}
+
+.cardWord {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.cardHint {
+  font-size: 13px;
+  color: var(--tg-hint);
+  margin-top: 12px;
+}
+
+.cardBack {
+  text-align: center;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+
+.cardTranslation {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+/* Rate buttons */
+.rateButtons {
+  position: fixed;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--tg-bg);
+  border-top: 1px solid var(--border);
+}
+
+.rateBtnHard,
+.rateBtnOk,
+.rateBtnEasy {
+  flex: 1;
+  padding: 14px 8px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.rateBtnHard {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+.rateBtnOk {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+
+.rateBtnEasy {
+  background: var(--accent-light);
+  color: var(--accent);
+}

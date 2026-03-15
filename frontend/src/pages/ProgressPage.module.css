@@ -1,0 +1,103 @@
+.page {
+  min-height: 100vh;
+  background: var(--tg-bg);
+  padding-bottom: 80px;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  color: var(--tg-hint);
+  font-size: 16px;
+}
+
+.header {
+  padding: 16px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+/* Title card */
+.titleCard {
+  margin: 0 16px;
+  padding: 24px;
+  background: linear-gradient(135deg, var(--accent), #2E7D32);
+  border-radius: 16px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.titleEmoji {
+  font-size: 40px;
+}
+
+.titleName {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 8px;
+}
+
+.xpTotal {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.xpBarWrap {
+  margin-top: 16px;
+}
+
+.xpBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.xpFill {
+  height: 100%;
+  background: #ffffff;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.xpNext {
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Stats grid */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 16px;
+}
+
+.statCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  text-align: center;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--tg-text);
+}
+
+.statLabel {
+  font-size: 12px;
+  color: var(--tg-hint);
+  margin-top: 4px;
+}
