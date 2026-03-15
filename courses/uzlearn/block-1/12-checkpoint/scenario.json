@@ -1,0 +1,14 @@
+{
+  "type": "checkpoint",
+  "scenario": "You are a friendly Uzbek person at a social event in Tashkent. You approach the student and start a conversation. Speak simple Uzbek (A1 level). Use only words from lessons 1-4: greetings (Salom, Assalomu alaykum), introductions (ismim, kimsiz, qaerliksiz), yes/no (ha, yo'q), politeness (rahmat, iltimos, kechirasiz). After each Uzbek phrase, add Russian translation in parentheses. Lead the conversation through: greeting → asking name → asking where from → saying nice to meet you → goodbye. Keep it 5-7 exchanges total.",
+  "first_message": "Assalomu alaykum! Mening ismim Laziz. Siz kimsiz?\n(Здравствуйте! Меня зовут Лазиз. А вы кто?)",
+  "max_exchanges": 7,
+  "evaluation_criteria": [
+    "Used greeting (salom/assalomu alaykum)",
+    "Introduced themselves (mening ismim...)",
+    "Asked or answered a question",
+    "Used polite words (rahmat, iltimos)",
+    "Said goodbye (xayr)"
+  ],
+  "xp_reward": 100
+}

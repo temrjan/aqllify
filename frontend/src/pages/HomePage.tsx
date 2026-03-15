@@ -44,11 +44,16 @@ export function HomePage() {
     blocks.set(lesson.block, blockLessons);
   }
 
+  const isCheckpoint = (lesson: LessonListItem): boolean => {
+    return lesson.title.toLowerCase().includes('checkpoint');
+  };
+
   const handleLessonClick = (lesson: LessonListItem) => {
     // slug format: "block-1/01-salomlashish" → split into block and lessonSlug
     const parts = lesson.slug.split('/');
     if (parts.length === 2) {
-      navigate(`/lesson/${parts[0]}/${parts[1]}`);
+      const prefix = isCheckpoint(lesson) ? '/checkpoint' : '/lesson';
+      navigate(`${prefix}/${parts[0]}/${parts[1]}`);
     }
   };
 
@@ -66,10 +71,12 @@ export function HomePage() {
             {blockLessons.map((lesson) => (
               <button
                 key={lesson.slug}
-                className={styles.lessonCard}
+                className={`${styles.lessonCard} ${isCheckpoint(lesson) ? styles.checkpointCard : ''}`}
                 onClick={() => handleLessonClick(lesson)}
               >
-                <div className={styles.lessonNumber}>{lesson.lesson}</div>
+                <div className={isCheckpoint(lesson) ? styles.checkpointNumber : styles.lessonNumber}>
+                  {isCheckpoint(lesson) ? '\u2605' : lesson.lesson}
+                </div>
                 <div className={styles.lessonInfo}>
                   <span className={styles.lessonTitle}>{lesson.title}</span>
                   {lesson.completed && (

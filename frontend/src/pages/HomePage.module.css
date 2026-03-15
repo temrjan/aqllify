@@ -112,3 +112,24 @@
   font-weight: 700;
   flex-shrink: 0;
 }
+
+/* Checkpoint lesson card */
+.checkpointCard {
+  border-color: var(--accent);
+  border-width: 2px;
+  background: var(--accent-light);
+}
+
+.checkpointNumber {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
