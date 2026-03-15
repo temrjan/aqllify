@@ -8,8 +8,11 @@ on:
 
 jobs:
   check:
-    name: Lint + Format + Tests
+    name: Backend — Lint + Tests
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
       - uses: actions/checkout@v4
@@ -19,7 +22,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt -r requirements-test.txt 2>/dev/null || pip install -r requirements.txt
+        run: pip install -r requirements.txt
 
       - name: Lint
         run: ruff check . || true
@@ -45,7 +48,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd /opt/${{ github.event.repository.name }}
+            cd /opt/aqllify
             git pull origin main
             docker compose build
             docker compose up -d
