@@ -10,7 +10,7 @@ interface ChatMessage {
 }
 
 const SCENARIO_PROMPT =
-  'You are a friendly Uzbek person named Laziz at a social event in Tashkent. ' +
+  'You are a friendly Uzbek person named Aylin at a social event in Tashkent. ' +
   'You approach the student and start a conversation. Speak simple Uzbek (A1 level). ' +
   'Use only words from lessons 1-4: greetings, introductions, yes/no, politeness. ' +
   'After each Uzbek phrase, add Russian translation in parentheses. ' +
@@ -18,7 +18,7 @@ const SCENARIO_PROMPT =
   'Keep it 5-7 exchanges total.';
 
 const FIRST_AI_MESSAGE =
-  "Assalomu alaykum! Mening ismim Laziz. Siz kimsiz?\n(Здравствуйте! Меня зовут Лазиз. А вы кто?)";
+  "Assalomu alaykum! Mening ismim Aylin. Siz kimsiz?\n(Здравствуйте! Меня зовут Айлин. А вы кто?)";
 
 const MAX_EXCHANGES = 7;
 const XP_REWARD = 30;
@@ -141,13 +141,13 @@ export function CheckpointPage() {
           <span className={styles.introIcon}>&#128172;</span>
           <h1 className={styles.introTitle}>Checkpoint: Диалог</h1>
           <p className={styles.introSubtitle}>
-            Поговорите с Лазизом на узбекском языке. Используйте фразы из уроков 1-4.
+            Поговорите с Айлином на узбекском языке. Используйте фразы из уроков 1-4.
           </p>
 
           <div className={styles.introScenario}>
             <div className={styles.scenarioLabel}>Сценарий</div>
             <p className={styles.scenarioText}>
-              Вы на мероприятии в Ташкенте. К вам подходит Лазиз и начинает разговор.
+              Вы на мероприятии в Ташкенте. К вам подходит Айлин и начинает разговор.
               Поздоровайтесь, представьтесь, расскажите откуда вы, и попрощайтесь.
             </p>
           </div>
@@ -168,7 +168,7 @@ export function CheckpointPage() {
           <span className={styles.doneIcon}>&#127881;</span>
           <h2 className={styles.doneTitle}>Диалог завершён!</h2>
           <p className={styles.doneSubtitle}>
-            Вы провели {userMessageCount} обменов реплик с Лазизом.
+            Вы провели {userMessageCount} обменов реплик с Айлином.
           </p>
           <p className={styles.doneXp}>+{XP_REWARD} XP</p>
           <button
@@ -189,7 +189,7 @@ export function CheckpointPage() {
       <div className={styles.chatHeader}>
         <div className={styles.chatAvatar}>L</div>
         <div>
-          <div className={styles.chatName}>Laziz</div>
+          <div className={styles.chatName}>Aylin</div>
           <div className={styles.chatHint}>Checkpoint Dialog</div>
         </div>
         <span className={styles.exchangeCounter}>
