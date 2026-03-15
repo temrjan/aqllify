@@ -18,6 +18,7 @@ interface Exercise {
   correct: number | null;
   context: string | null;
   bot_says: string | null;
+  words: string[] | null;
   xp: number;
 }
 
@@ -39,6 +40,8 @@ export function LessonPage() {
   const [correct, setCorrect] = useState<boolean | null>(null);
   const [totalXp, setTotalXp] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [selectedWords, setSelectedWords] = useState<string[]>([]);
+  const [availableWords, setAvailableWords] = useState<string[]>([]);
 
   useEffect(() => {
     api.get('/lessons/uzlearn/block-1/01-salomlashish')
@@ -112,6 +115,11 @@ export function LessonPage() {
       return null;
     }
 
+    // Init build_sentence words on first render
+    if (ex.type === 'build_sentence' && ex.words && availableWords.length === 0 && selectedWords.length === 0) {
+      setAvailableWords([...ex.words].sort(() => Math.random() - 0.5));
+    }
+
     const handleSubmit = async () => {
       if (!answer.trim()) return;
 
@@ -141,11 +149,41 @@ export function LessonPage() {
       setAnswer('');
       setFeedback(null);
       setCorrect(null);
+      setSelectedWords([]);
+      setAvailableWords([]);
 
       if (exerciseIndex + 1 < lesson.exercises.length) {
+        const nextEx = lesson.exercises[exerciseIndex + 1];
+        if (nextEx?.type === 'build_sentence' && nextEx.words) {
+          setAvailableWords([...nextEx.words].sort(() => Math.random() - 0.5));
+        }
         setExerciseIndex((prev) => prev + 1);
       } else {
         setStep('done');
+      }
+    };
+
+    const handleWordSelect = (word: string, idx: number) => {
+      setSelectedWords((prev) => [...prev, word]);
+      setAvailableWords((prev) => prev.filter((_, i) => i !== idx));
+    };
+
+    const handleWordRemove = (word: string, idx: number) => {
+      setAvailableWords((prev) => [...prev, word]);
+      setSelectedWords((prev) => prev.filter((_, i) => i !== idx));
+    };
+
+    const handleBuildCheck = () => {
+      const built = selectedWords.join(' ');
+      const isCorrect = built.toLowerCase() === (ex.answer ?? '').toLowerCase();
+      setCorrect(isCorrect);
+      setFeedback(isCorrect ? 'Правильно!' : `Правильный ответ: ${ex.answer}`);
+
+      if (isCorrect) {
+        setTotalXp((prev) => prev + ex.xp);
+        WebApp.HapticFeedback.notificationOccurred('success');
+      } else {
+        WebApp.HapticFeedback.notificationOccurred('error');
       }
     };
 
@@ -199,6 +237,43 @@ export function LessonPage() {
                   {opt}
                 </button>
               ))}
+            </div>
+          ) : ex.type === 'build_sentence' && ex.words ? (
+            <div className={styles.buildArea}>
+              <div className={styles.buildResult}>
+                {selectedWords.length > 0 ? selectedWords.map((w, i) => (
+                  <button
+                    key={i}
+                    className={styles.buildWordSelected}
+                    onClick={() => !feedback && handleWordRemove(w, i)}
+                    disabled={feedback !== null}
+                  >
+                    {w}
+                  </button>
+                )) : (
+                  <span className={styles.buildPlaceholder}>Нажми на слова ниже</span>
+                )}
+              </div>
+              <div className={styles.buildWords}>
+                {availableWords.map((w, i) => (
+                  <button
+                    key={i}
+                    className={styles.buildWord}
+                    onClick={() => handleWordSelect(w, i)}
+                    disabled={feedback !== null}
+                  >
+                    {w}
+                  </button>
+                ))}
+              </div>
+              {!feedback && selectedWords.length > 0 && (
+                <button
+                  className={styles.submitBtn}
+                  onClick={handleBuildCheck}
+                >
+                  Проверить
+                </button>
+              )}
             </div>
           ) : (
             <div className={styles.inputArea}>

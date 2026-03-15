@@ -189,6 +189,74 @@
   opacity: 0.4;
 }
 
+/* Build sentence */
+.buildArea {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.buildResult {
+  min-height: 52px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  align-items: center;
+}
+
+.buildPlaceholder {
+  color: var(--tg-hint);
+  font-size: 14px;
+}
+
+.buildWords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.buildWord {
+  padding: 10px 18px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  color: var(--tg-text);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.buildWord:active {
+  transform: scale(0.95);
+}
+
+.buildWord:disabled {
+  opacity: 0.4;
+}
+
+.buildWordSelected {
+  padding: 8px 14px;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius-sm);
+  background: var(--accent-light);
+  color: var(--tg-text);
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.buildWordSelected:active {
+  transform: scale(0.95);
+}
+
+.buildWordSelected:disabled {
+  cursor: default;
+}
+
 /* Choice buttons */
 .choiceGrid {
   display: grid;
