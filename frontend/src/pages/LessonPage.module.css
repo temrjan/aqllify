@@ -209,12 +209,12 @@
 
 .feedbackCorrect {
   background: var(--accent-light);
-  color: #166534;
+  color: #22C55E;
 }
 
 .feedbackWrong {
-  background: rgba(239, 68, 68, 0.1);
-  color: #991B1B;
+  background: rgba(239, 68, 68, 0.15);
+  color: #F87171;
 }
 
 /* Footer */
