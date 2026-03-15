@@ -1,6 +1,7 @@
 FROM python:3.12-slim
 
 WORKDIR /app
+ENV PYTHONPATH=/app
 
 RUN useradd -r -s /bin/false appuser
 
