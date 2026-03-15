@@ -29,7 +29,11 @@ app = FastAPI(
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.frontend_url],
+    allow_origins=[
+        settings.frontend_url,
+        'https://aqllify.com',
+        'https://app.aqllify.com',
+    ],
     allow_credentials=True,
     allow_methods=['*'],
     allow_headers=['*'],
