@@ -1,4 +1,4 @@
-# Tutor Agent — AI-обучающий бот в Telegram
+# Aqllify — AI-обучающий бот в Telegram
 
 > Один движок — любой курс. Telegram бот с AI-проверкой, spaced repetition и геймификацией.
 

@@ -1,4 +1,4 @@
-# Tutor Agent
+# Aqllify
 
 **Codex:** `~/Codex/standards/` — стандарты разработки
 **Agentic loop:** `temrjan/devops-agent` — aiogram 3 + Anthropic
