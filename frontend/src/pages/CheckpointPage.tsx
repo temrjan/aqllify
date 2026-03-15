@@ -10,7 +10,7 @@ interface ChatMessage {
 }
 
 const SCENARIO_PROMPT =
-  'You are a friendly Uzbek person named Aylin at a social event in Tashkent. ' +
+  'You are a friendly Uzbek girl named Aylin at a social event in Tashkent. ' +
   'You approach the student and start a conversation. Speak simple Uzbek (A1 level). ' +
   'Use only words from lessons 1-4: greetings, introductions, yes/no, politeness. ' +
   'After each Uzbek phrase, add Russian translation in parentheses. ' +
