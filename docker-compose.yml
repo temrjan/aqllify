@@ -1,0 +1,73 @@
+services:
+  backend:
+    build: ./backend
+    container_name: aqllify-backend
+    restart: unless-stopped
+    env_file: .env
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    networks:
+      - internal
+      - proxy
+    depends_on:
+      db:
+        condition: service_healthy
+
+  bot:
+    build: ./backend
+    container_name: aqllify-bot
+    restart: unless-stopped
+    env_file: .env
+    command: ["python", "-m", "src.bot"]
+    security_opt:
+      - no-new-privileges:true
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    networks:
+      - internal
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres:17-alpine
+    container_name: aqllify-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: tutor
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-tutor_password}
+      POSTGRES_DB: tutor_db
+    volumes:
+      - aqllify-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tutor -d tutor_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    networks:
+      - internal
+
+volumes:
+  aqllify-db-data:
+
+networks:
+  internal:
+    driver: bridge
+  proxy:
+    external: true
