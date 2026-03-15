@@ -16,6 +16,8 @@ services:
       resources:
         limits:
           memory: 256M
+    volumes:
+      - ./courses:/courses:ro
     networks:
       - internal
       - proxy
