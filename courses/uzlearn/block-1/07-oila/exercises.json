@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мама",
+      "answer_context": "Ona",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мой папа",
+      "answer_context": "Mening otam",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Aka",
+      "answer_context": "Старший брат",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как будет 'Младшая сестра' по-узбекски?",
+      "options": ["Opa", "Ona", "Singil", "Buvi"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mening ___m = моя мама",
+      "answer": "ona",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери: Ваш папа",
+      "words": ["otangiz", "Sizning"],
+      "answer": "Sizning otangiz",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Кто такой 'Bobo'?",
+      "options": ["Бабушка", "Дедушка", "Старший брат", "Младший брат"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Новый знакомый спрашивает о твоей семье:",
+      "bot_says": "Oilang katta-mi? Aka-ukang bor-mi?",
+      "answer_context": "Ha, mening akam/ukam/singlim bor — нужно рассказать о братьях/сёстрах, используя слова из урока",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Mening ikkita akam bor",
+      "answer_context": "У меня два старших брата / У меня есть два старших брата",
+      "xp": 15
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Sizning ___ngiz = ваша мама",
+      "answer": "ona",
+      "xp": 10
+    }
+  ]
+}

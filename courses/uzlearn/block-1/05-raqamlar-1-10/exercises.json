@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Три",
+      "answer_context": "Uch",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Пять",
+      "answer_context": "Besh",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ikki",
+      "answer_context": "Два",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как будет 'Четыре' по-узбекски?",
+      "options": ["Uch", "Besh", "To'rt", "Olti"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Iltimos, ___ta choy bering. (Пожалуйста, дайте два чая)",
+      "answer": "ikki",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Пожалуйста, три лепёшки дайте",
+      "words": ["non", "uchta", "bering", "Iltimos,"],
+      "answer": "Iltimos, uchta non bering",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Какое число идёт после Yetti (7)?",
+      "options": ["Olti", "To'qqiz", "Sakkiz", "O'n"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в чайхане, хочешь заказать пять чашек чая:",
+      "bot_says": "Nechta choy kerak?",
+      "answer_context": "Beshta choy, iltimos / Beshta, iltimos — нужно назвать число 5 с суффиксом -ta",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: O'n",
+      "answer_context": "Десять",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bir, ikki, ___, to'rt, besh. (Какое число пропущено?)",
+      "answer": "uch",
+      "xp": 10
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Красный",
+      "answer_context": "Qizil",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ko'k",
+      "answer_context": "Синий",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Белый' по-узбекски?",
+      "options": ["Qora", "Qizil", "Oq", "Yashil"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ olma (красное яблоко)",
+      "answer": "Qizil",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: чёрный чай",
+      "words": ["choy", "Qora"],
+      "answer": "Qora choy",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Какой цвет?",
+      "answer_context": "Qanday rang?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yashil daraxt",
+      "answer_context": "Зелёное дерево",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "В магазине продавец спрашивает какой цвет ты хочешь:",
+      "bot_says": "Qanday rang kerak? Qizil, ko'k, oq bormi?",
+      "answer_context": "Назови нужный цвет: Menga (rang) kerak или (rang) bering",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что значит 'Sariq'?",
+      "options": ["Зелёный", "Розовый", "Жёлтый", "Коричневый"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: белая машина",
+      "words": ["mashina", "Oq"],
+      "answer": "Oq mashina",
+      "xp": 15
+    }
+  ]
+}

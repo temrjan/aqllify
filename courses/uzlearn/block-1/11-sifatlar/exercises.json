@@ -1,0 +1,69 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Большой",
+      "answer_context": "Katta",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Kichik",
+      "answer_context": "Маленький",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Дорогой' по-узбекски?",
+      "options": ["Arzon", "Yaxshi", "Qimmat", "Katta"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu ___! (Это дёшево!)",
+      "answer": "arzon",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: большой дом",
+      "words": ["uy", "Katta"],
+      "answer": "Katta uy",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Новая машина",
+      "answer_context": "Yangi mashina",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Issiq choy",
+      "answer_context": "Горячий чай",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине, вещь стоит дорого:",
+      "bot_says": "Bu yangi telefon. Qimmat — ellik ming so'm!",
+      "answer_context": "Попроси что-то дешевле: Arzonroq bormi? или Bu qimmat, arzon kerak",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Какое слово противоположно 'Sovuq' (Холодный)?",
+      "options": ["Yomon", "Issiq", "Eski", "Kichik"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: старая книга",
+      "words": ["kitob", "Eski"],
+      "answer": "Eski kitob",
+      "xp": 10
+    }
+  ]
+}

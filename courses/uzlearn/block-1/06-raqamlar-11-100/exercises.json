@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Двадцать",
+      "answer_context": "Yigirma",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ellik",
+      "answer_context": "Пятьдесят",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как будет число 100 по-узбекски?",
+      "options": ["Ellik", "O'ttiz", "Yuz", "To'qson"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu ___ so'm? (Сколько это стоит?)",
+      "answer": "necha",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери: Сколько это стоит в сумах?",
+      "words": ["so'm?", "necha", "Bu"],
+      "answer": "Bu necha so'm?",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: 15 (пятнадцать)",
+      "answer_context": "O'n besh",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 30 по-узбекски?",
+      "options": ["Yigirma", "Qirq", "O'ttiz", "Sakson"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на базаре, хочешь узнать цену дыни:",
+      "bot_says": "Qovun kerakmi?",
+      "answer_context": "Ha, bu necha so'm? — нужно спросить цену, используя necha so'm",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qirq ikki",
+      "answer_context": "Сорок два",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Yigirma ___ (25). Какое число пропущено?",
+      "answer": "besh",
+      "xp": 15
+    }
+  ]
+}

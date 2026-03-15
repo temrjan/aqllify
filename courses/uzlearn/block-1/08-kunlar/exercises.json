@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Понедельник",
+      "answer_context": "Dushanba",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Среда",
+      "answer_context": "Chorshanba",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Juma",
+      "answer_context": "Пятница",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Какой день идёт после Seshanba?",
+      "options": ["Dushanba", "Chorshanba", "Payshanba", "Juma"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bugun nima ___? (Какой сегодня день?)",
+      "answer": "kun",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Сегодня — четверг",
+      "words": ["Payshanba", "Bugun", "—"],
+      "answer": "Bugun — Payshanba",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ertaga — Shanba",
+      "answer_context": "Завтра — суббота",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Коллега спрашивает тебя о планах на неделю:",
+      "bot_says": "Salom! Bugun nima kun?",
+      "answer_context": "Назови сегодняшний день по-узбекски: Bugun — (день недели)",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Вчера' по-узбекски?",
+      "options": ["Ertaga", "Bugun", "Kecha", "Juma"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Завтра — пятница",
+      "answer_context": "Ertaga — Juma",
+      "xp": 15
+    }
+  ]
+}

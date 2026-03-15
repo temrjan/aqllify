@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Да",
+      "answer_context": "Ha",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Нет",
+      "answer_context": "Yo'q",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Tushundim",
+      "answer_context": "Понял / Понятно",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Правильно'?",
+      "options": ["Yo'q", "Noto'g'ri", "To'g'ri", "Tushundim"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Siz talaba___? (Вы студент? — вопросительный суффикс)",
+      "answer": "misiz",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Тебя спрашивают, ты из Ташкента:",
+      "bot_says": "Siz Toshkentdanmisiz?",
+      "answer_context": "Ответь Ha или Yo'q и уточни город: Ha, men Toshkentdan / Yo'q, men [город]dan",
+      "xp": 15
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Нет, неправильно",
+      "words": ["noto'g'ri", "Yo'q,"],
+      "answer": "Yo'q, noto'g'ri",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Noto'g'ri",
+      "answer_context": "Неправильно",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu to'g'ri___? (Это правильно? — вопрос)",
+      "answer": "mi",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Учитель объяснил тебе правило и спрашивает, понял ли ты:",
+      "bot_says": "Tushundingizmi?",
+      "answer_context": "Ha, tushundim — подтвердить, что понял",
+      "xp": 15
+    }
+  ]
+}

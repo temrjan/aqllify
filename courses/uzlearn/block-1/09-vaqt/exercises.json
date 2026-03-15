@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Который час?",
+      "answer_context": "Soat necha?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Soat besh",
+      "answer_context": "Пять часов",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Soat besh ___. (Пять тридцать / половина шестого)",
+      "answer": "yarim",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Вечером' по-узбекски?",
+      "options": ["Ertalab", "Tushda", "Kechqurun", "Bugun"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Семь часов утром",
+      "words": ["ertalab", "yetti", "Soat"],
+      "answer": "Soat yetti ertalab",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Три часа днём",
+      "answer_context": "Soat uch tushda",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ertalab soat sakkiz",
+      "answer_context": "Утром восемь часов",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг предлагает встретиться и спрашивает время:",
+      "bot_says": "Uchrashaylik! Soat nechada?",
+      "answer_context": "Назови время встречи по-узбекски, например: Soat olti kechqurun (6 часов вечером)",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что значит 'Tushda'?",
+      "options": ["Утром", "Днём", "Вечером", "Ночью"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Soat ___? (Который час?)",
+      "answer": "necha",
+      "xp": 10
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Спасибо",
+      "answer_context": "Rahmat",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Извините",
+      "answer_context": "Kechirasiz",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Hech gap emas",
+      "answer_context": "Не за что",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Какое слово используется, когда ты угощаешь или приглашаешь?",
+      "options": ["Iltimos", "Rahmat", "Marhamat", "Kechirasiz"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___, yordam bering. (Пожалуйста, помогите — просьба)",
+      "answer": "Iltimos",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Пожалуйста, садитесь",
+      "words": ["o'tiring", "Marhamat,"],
+      "answer": "Marhamat, o'tiring",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине. Продавец подаёт тебе покупку и говорит:",
+      "bot_says": "Marhamat!",
+      "answer_context": "Поблагодари: Rahmat!",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Iltimos",
+      "answer_context": "Пожалуйста (просьба)",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что ответить на 'Rahmat'?",
+      "options": ["Salom", "Hech gap emas", "Xayr", "Yo'q"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты хочешь привлечь внимание прохожего, чтобы спросить дорогу:",
+      "bot_says": "(Прохожий идёт мимо)",
+      "answer_context": "Обратись вежливо: Kechirasiz! — и задай вопрос",
+      "xp": 15
+    }
+  ]
+}

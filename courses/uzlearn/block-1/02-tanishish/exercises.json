@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Меня зовут...",
+      "answer_context": "Mening ismim...",
+      "xp": 10
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Рад познакомиться",
+      "answer_context": "Tanishganimdan xursandman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Siz kimsiz?",
+      "answer_context": "Вы кто?",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как спросить 'Вы откуда?'",
+      "options": ["Siz kimsiz?", "Siz qaerliksiz?", "Mening ismim", "Salom"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mening ___ Alisher. (Меня зовут Алишер)",
+      "answer": "ismim",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я из Ташкента",
+      "words": ["Toshkentdan", "Men"],
+      "answer": "Men Toshkentdan",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Men Samarqand___. (Я из Самарканда)",
+      "answer": "dan",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты встречаешь нового человека. Он говорит:",
+      "bot_says": "Assalomu alaykum! Mening ismim Bobur. Siz kimsiz?",
+      "answer_context": "Представься: Mening ismim [имя]. Tanishganimdan xursandman!",
+      "xp": 15
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Men Toshkentdan",
+      "answer_context": "Я из Ташкента",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Tanishganimdan xursandman'?",
+      "options": ["До свидания", "Рад познакомиться", "Как дела?", "Доброе утро"],
+      "correct": 1,
+      "xp": 10
+    }
+  ]
+}
