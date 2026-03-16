@@ -3,7 +3,10 @@ import html
 import structlog
 from aiogram import Router, F
 from aiogram.filters import CommandStart
-from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
+from aiogram.types import (
+    Message, InlineKeyboardMarkup, InlineKeyboardButton,
+    CallbackQuery, WebAppInfo, ReplyKeyboardMarkup, KeyboardButton,
+)
 from sqlalchemy import func, select, update
 
 from src.config import settings
@@ -87,10 +90,20 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
         reply_markup=keyboard,
     )
 
+    # Set persistent reply keyboard
+    reply_kb = ReplyKeyboardMarkup(
+        keyboard=[
+            [KeyboardButton(text='📖 Урок'), KeyboardButton(text='🧠 Повторить')],
+            [KeyboardButton(text='📊 Прогресс'), KeyboardButton(text='💬 Обратная связь')],
+        ],
+        resize_keyboard=True,
+    )
+    await callback.message.answer('Используй кнопки ниже:', reply_markup=reply_kb)
+
     await callback.answer()
 
 
-@router.message(F.text == '/stats')
+@router.message(F.text.in_({'/stats', '📊 Прогресс'}))
 async def cmd_stats(message: Message) -> None:
     """Show stats: admin sees platform stats, others see Mini App."""
     user = message.from_user
@@ -157,7 +170,7 @@ async def cmd_stats(message: Message) -> None:
     )
 
 
-@router.message(F.text == '/lesson')
+@router.message(F.text.in_({'/lesson', '📖 Урок'}))
 async def cmd_lesson(message: Message) -> None:
     """Open current lesson in Mini App."""
     webapp_url = f'{settings.frontend_url}'
@@ -174,7 +187,7 @@ async def cmd_lesson(message: Message) -> None:
     )
 
 
-@router.message(F.text == '/review')
+@router.message(F.text.in_({'/review', '🧠 Повторить'}))
 async def cmd_review(message: Message) -> None:
     """Open SRS review in Mini App."""
     webapp_url = f'{settings.frontend_url}/review'
@@ -189,3 +202,39 @@ async def cmd_review(message: Message) -> None:
         'Время повторить слова!',
         reply_markup=keyboard,
     )
+
+
+@router.message(F.text.in_({'💬 Обратная связь', '/feedback'}))
+async def cmd_feedback(message: Message) -> None:
+    """Prompt user to send feedback, forward to admin."""
+    await message.answer(
+        '💬 <b>Обратная связь</b>\n\n'
+        'Напиши свой отзыв, предложение или баг — '
+        'следующее сообщение будет отправлено разработчику.',
+    )
+
+
+@router.message(F.reply_to_message)
+async def forward_feedback(message: Message) -> None:
+    """Forward replied messages to admin (for feedback flow)."""
+    pass  # Skip replies to avoid confusion
+
+
+@router.message(~F.text.startswith('/'))
+async def catch_feedback(message: Message) -> None:
+    """Forward any text message to admin as feedback."""
+    user = message.from_user
+    if not user or user.id == ADMIN_ID:
+        return
+
+    # Forward to admin
+    try:
+        await message.bot.send_message(
+            ADMIN_ID,
+            f'💬 <b>Feedback от {html.escape(user.first_name)}</b> '
+            f'(@{user.username or "no_username"}, id:{user.id}):\n\n'
+            f'{html.escape(message.text or "")}',
+        )
+        await message.answer('Спасибо за отзыв! Мы обязательно прочитаем.')
+    except Exception:
+        await message.answer('Спасибо за отзыв!')
