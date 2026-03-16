@@ -93,12 +93,11 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
     # Set persistent reply keyboard
     reply_kb = ReplyKeyboardMarkup(
         keyboard=[
-            [KeyboardButton(text='📖 Урок'), KeyboardButton(text='🧠 Повторить')],
-            [KeyboardButton(text='📊 Прогресс'), KeyboardButton(text='💬 Обратная связь')],
+            [KeyboardButton(text='💬 Обратная связь')],
         ],
         resize_keyboard=True,
     )
-    await callback.message.answer('Используй кнопки ниже:', reply_markup=reply_kb)
+    await callback.message.answer('Нажми кнопку "Учить" слева от поля ввода, чтобы открыть уроки!', reply_markup=reply_kb)
 
     await callback.answer()
 

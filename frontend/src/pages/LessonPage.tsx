@@ -90,13 +90,15 @@ export function LessonPage() {
   useEffect(() => {
     if (step !== 'done' || saved || saving || !block || !lessonSlug || !lesson) return;
     setSaving(true);
+    const xpTotal = totalXp + (lesson.meta?.xp_reward ?? 50);
+    const exerciseCount = lesson.exercises?.length ?? 1;
     api.post('/progress/complete-lesson', {
       lesson_slug: `${block}/${lessonSlug}`,
-      xp: totalXp + lesson.meta.xp_reward,
-      score: lesson.exercises.length > 0 ? totalXp / (lesson.exercises.length * 10) : 1,
+      xp: xpTotal,
+      score: exerciseCount > 0 ? totalXp / (exerciseCount * 10) : 1,
     })
       .then(() => {
-        WebApp.HapticFeedback.notificationOccurred('success');
+        try { WebApp.HapticFeedback.notificationOccurred('success'); } catch {}
       })
       .catch(() => {})
       .finally(() => {
