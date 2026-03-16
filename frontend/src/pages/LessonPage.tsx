@@ -86,16 +86,16 @@ export function LessonPage() {
     }
   }, [step, exerciseIndex, lesson]);
 
-  // Save progress when done
-  useEffect(() => {
-    if (step !== 'done' || saved || saving || !block || !lessonSlug || !lesson) return;
+  // Save progress — called directly from handleNext, not useEffect
+  const saveProgress = useCallback((xpEarned: number) => {
+    if (saved || saving || !block || !lessonSlug || !lesson) return;
     setSaving(true);
-    const xpTotal = totalXp + (lesson.meta?.xp_reward ?? 50);
+    const xpTotal = xpEarned + (lesson.meta?.xp_reward ?? 50);
     const exerciseCount = lesson.exercises?.length ?? 1;
     api.post('/progress/complete-lesson', {
       lesson_slug: `${block}/${lessonSlug}`,
       xp: xpTotal,
-      score: exerciseCount > 0 ? totalXp / (exerciseCount * 10) : 1,
+      score: exerciseCount > 0 ? xpEarned / (exerciseCount * 10) : 1,
     })
       .then(() => {
         try { WebApp.HapticFeedback.notificationOccurred('success'); } catch {}
@@ -105,7 +105,7 @@ export function LessonPage() {
         setSaving(false);
         setSaved(true);
       });
-  }, [step, saved, saving, block, lessonSlug, totalXp, lesson]);
+  }, [saved, saving, block, lessonSlug, lesson]);
 
   // ═══ Handlers (stable references) ═══
 
@@ -235,6 +235,7 @@ export function LessonPage() {
       if (exerciseIndex + 1 < lesson.exercises.length) {
         setExerciseIndex((prev) => prev + 1);
       } else {
+        saveProgress(totalXp);
         setStep('done');
       }
     };
