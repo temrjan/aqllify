@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import WebApp from '@twa-dev/sdk';
 import { api } from '@/shared/api';
@@ -32,6 +32,11 @@ interface Lesson {
   exercises: Exercise[];
 }
 
+interface Mistake {
+  prompt: string;
+  corrected: string;
+}
+
 export function LessonPage() {
   const { block, lessonSlug } = useParams<{ block: string; lessonSlug: string }>();
   const navigate = useNavigate();
@@ -48,7 +53,11 @@ export function LessonPage() {
   const [availableWords, setAvailableWords] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [mistakes, setMistakes] = useState<Mistake[]>([]);
 
+  // ═══ ALL useEffects at the top, before any returns ═══
+
+  // Load lesson
   useEffect(() => {
     if (!block || !lessonSlug) {
       setLoading(false);
@@ -76,6 +85,43 @@ export function LessonPage() {
       setSelectedWords([]);
     }
   }, [step, exerciseIndex, lesson]);
+
+  // Save progress when done
+  useEffect(() => {
+    if (step !== 'done' || saved || saving || !block || !lessonSlug || !lesson) return;
+    setSaving(true);
+    api.post('/progress/complete-lesson', {
+      lesson_slug: `${block}/${lessonSlug}`,
+      xp: totalXp + lesson.meta.xp_reward,
+      score: lesson.exercises.length > 0 ? totalXp / (lesson.exercises.length * 10) : 1,
+    })
+      .then(() => {
+        WebApp.HapticFeedback.notificationOccurred('success');
+      })
+      .catch(() => {})
+      .finally(() => {
+        setSaving(false);
+        setSaved(true);
+      });
+  }, [step, saved, saving, block, lessonSlug, totalXp, lesson]);
+
+  // ═══ Handlers (stable references) ═══
+
+  const handleRetry = useCallback(() => {
+    setStep('exercises');
+    setExerciseIndex(0);
+    setAnswer('');
+    setFeedback(null);
+    setCorrect(null);
+    setTotalXp(0);
+    setSelectedWords([]);
+    setAvailableWords([]);
+    setMistakes([]);
+    setSaved(false);
+    setSaving(false);
+  }, []);
+
+  // ═══ Render ═══
 
   if (loading) {
     return <div className={styles.page}><div className={styles.loading}>Загрузка...</div></div>;
@@ -160,12 +206,17 @@ export function LessonPage() {
           WebApp.HapticFeedback.notificationOccurred('success');
         } else {
           WebApp.HapticFeedback.notificationOccurred('error');
+          const promptText = ex.type === 'dialog_reply' ? (ex.bot_says ?? ex.prompt) : ex.prompt;
+          setMistakes((prev) => [...prev, {
+            prompt: promptText,
+            corrected: res.data.corrected ?? res.data.feedback ?? '',
+          }]);
         }
       } catch {
         setFeedback('Ошибка проверки. Попробуй ещё раз.');
       }
 
-      // Close keyboard and scroll to see Завершить/Следующее button
+      // Close keyboard and scroll to see button
       if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
       }
@@ -207,10 +258,11 @@ export function LessonPage() {
         WebApp.HapticFeedback.notificationOccurred('success');
       } else {
         WebApp.HapticFeedback.notificationOccurred('error');
+        setMistakes((prev) => [...prev, { prompt: ex.prompt, corrected: ex.answer ?? '' }]);
       }
     };
 
-    const handleChoiceSelect = async (optionIndex: number) => {
+    const handleChoiceSelect = (optionIndex: number) => {
       const isCorrect = optionIndex === ex.correct;
       setCorrect(isCorrect);
       setFeedback(isCorrect ? 'Правильно!' : `Правильный ответ: ${ex.options?.[ex.correct ?? 0]}`);
@@ -220,6 +272,10 @@ export function LessonPage() {
         WebApp.HapticFeedback.notificationOccurred('success');
       } else {
         WebApp.HapticFeedback.notificationOccurred('error');
+        setMistakes((prev) => [...prev, {
+          prompt: ex.prompt,
+          corrected: ex.options?.[ex.correct ?? 0] ?? '',
+        }]);
       }
     };
 
@@ -239,7 +295,7 @@ export function LessonPage() {
           {ex.type === 'dialog_reply' && ex.context ? (
             <>
               <p className={styles.exerciseContext}>{ex.context}</p>
-              {ex.bot_says && <p className={styles.exerciseBotSays}>— {ex.bot_says}</p>}
+              {ex.bot_says && <p className={styles.exerciseBotSays}>{'\u2014'} {ex.bot_says}</p>}
               <p className={styles.exercisePrompt}>Ответь:</p>
             </>
           ) : (
@@ -290,10 +346,7 @@ export function LessonPage() {
                 ))}
               </div>
               {!feedback && selectedWords.length > 0 && (
-                <button
-                  className={styles.submitBtn}
-                  onClick={handleBuildCheck}
-                >
+                <button className={styles.submitBtn} onClick={handleBuildCheck}>
                   Проверить
                 </button>
               )}
@@ -339,37 +392,46 @@ export function LessonPage() {
     );
   }
 
-  // Phase 3: Done — save progress
-  useEffect(() => {
-    if (step !== 'done' || saved || saving || !block || !lessonSlug) return;
-    setSaving(true);
-    api.post('/progress/complete-lesson', {
-      lesson_slug: `${block}/${lessonSlug}`,
-      xp: totalXp + lesson.meta.xp_reward,
-      score: lesson.exercises.length > 0 ? totalXp / (lesson.exercises.length * 10) : 1,
-    })
-      .then(() => {
-        WebApp.HapticFeedback.notificationOccurred('success');
-      })
-      .catch(() => {})
-      .finally(() => {
-        setSaving(false);
-        setSaved(true);
-      });
-  }, [step, saved, saving, block, lessonSlug, totalXp, lesson]);
+  // Phase 3: Done
+  const correctCount = lesson.exercises.length - mistakes.length;
+  const scorePercent = Math.round((correctCount / lesson.exercises.length) * 100);
 
   return (
     <div className={styles.page}>
       <div className={styles.doneScreen}>
-        <span className={styles.doneIcon}>{'\uD83C\uDF89'}</span>
-        <h2 className={styles.doneTitle}>Урок пройден!</h2>
+        <span className={styles.doneIcon}>{mistakes.length === 0 ? '\uD83C\uDF89' : '\uD83D\uDCAA'}</span>
+        <h2 className={styles.doneTitle}>
+          {mistakes.length === 0 ? 'Отлично! Без ошибок!' : 'Урок пройден!'}
+        </h2>
         <p className={styles.doneXp}>+{totalXp + lesson.meta.xp_reward} XP</p>
+        <p className={styles.doneScore}>{correctCount}/{lesson.exercises.length} правильно ({scorePercent}%)</p>
+
+        {mistakes.length > 0 && (
+          <div className={styles.mistakesSection}>
+            <h3 className={styles.mistakesTitle}>Работа над ошибками:</h3>
+            {mistakes.map((m, i) => (
+              <div key={i} className={styles.mistakeCard}>
+                <div className={styles.mistakePrompt}>{m.prompt}</div>
+                <div className={styles.mistakeCorrected}>{m.corrected}</div>
+              </div>
+            ))}
+          </div>
+        )}
+
         {lesson.homework && (
           <p className={styles.doneHomework}>{lesson.homework.text}</p>
         )}
-        <button className={styles.primaryBtn} onClick={() => navigate('/')} disabled={saving}>
-          {saving ? 'Сохранение...' : 'На главную'}
-        </button>
+
+        <div className={styles.doneButtons}>
+          {mistakes.length > 0 && (
+            <button className={styles.retryBtn} onClick={handleRetry}>
+              Попробовать ещё раз
+            </button>
+          )}
+          <button className={styles.primaryBtn} onClick={() => navigate('/')} disabled={saving}>
+            {saving ? 'Сохранение...' : 'На главную'}
+          </button>
+        </div>
       </div>
     </div>
   );

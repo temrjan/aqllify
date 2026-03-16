@@ -364,6 +364,71 @@
   margin-top: 8px;
 }
 
+.doneScore {
+  font-size: 14px;
+  color: var(--tg-hint);
+  margin-top: 4px;
+}
+
+.mistakesSection {
+  width: 100%;
+  margin-top: 20px;
+  text-align: left;
+}
+
+.mistakesTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--tg-hint);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.mistakeCard {
+  background: var(--bg-card);
+  border-left: 3px solid var(--danger);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  margin-bottom: 6px;
+}
+
+.mistakePrompt {
+  font-size: 13px;
+  color: var(--tg-hint);
+}
+
+.mistakeCorrected {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--tg-text);
+  margin-top: 2px;
+}
+
+.doneButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.retryBtn {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--accent);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.retryBtn:active {
+  transform: scale(0.98);
+}
+
 .doneHomework {
   font-size: 14px;
   color: var(--tg-hint);
