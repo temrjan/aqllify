@@ -164,6 +164,12 @@ export function LessonPage() {
       } catch {
         setFeedback('Ошибка проверки. Попробуй ещё раз.');
       }
+
+      // Close keyboard and scroll to see Завершить/Следующее button
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+      setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 100);
     };
 
     const handleNext = () => {
