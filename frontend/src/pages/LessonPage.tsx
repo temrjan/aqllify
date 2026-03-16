@@ -46,6 +46,8 @@ export function LessonPage() {
   const [loading, setLoading] = useState(true);
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
   const [availableWords, setAvailableWords] = useState<string[]>([]);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (!block || !lessonSlug) {
@@ -325,9 +327,6 @@ export function LessonPage() {
   }
 
   // Phase 3: Done — save progress
-  const [saving, setSaving] = useState(false);
-  const [saved, setSaved] = useState(false);
-
   useEffect(() => {
     if (step !== 'done' || saved || saving || !block || !lessonSlug) return;
     setSaving(true);
@@ -349,7 +348,7 @@ export function LessonPage() {
   return (
     <div className={styles.page}>
       <div className={styles.doneScreen}>
-        <span className={styles.doneIcon}>&#127881;</span>
+        <span className={styles.doneIcon}>{'\uD83C\uDF89'}</span>
         <h2 className={styles.doneTitle}>Урок пройден!</h2>
         <p className={styles.doneXp}>+{totalXp + lesson.meta.xp_reward} XP</p>
         {lesson.homework && (
