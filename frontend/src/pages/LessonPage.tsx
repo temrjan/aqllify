@@ -60,6 +60,23 @@ export function LessonPage() {
       .finally(() => setLoading(false));
   }, [block, lessonSlug]);
 
+  // Transition to done when exercises are exhausted
+  useEffect(() => {
+    if (step === 'exercises' && lesson && exerciseIndex >= lesson.exercises.length) {
+      setStep('done');
+    }
+  }, [step, exerciseIndex, lesson]);
+
+  // Init build_sentence words when exercise changes
+  useEffect(() => {
+    if (step !== 'exercises' || !lesson) return;
+    const ex = lesson.exercises[exerciseIndex];
+    if (ex?.type === 'build_sentence' && ex.words) {
+      setAvailableWords([...ex.words].sort(() => Math.random() - 0.5));
+      setSelectedWords([]);
+    }
+  }, [step, exerciseIndex, lesson]);
+
   if (loading) {
     return <div className={styles.page}><div className={styles.loading}>Загрузка...</div></div>;
   }
@@ -121,13 +138,7 @@ export function LessonPage() {
   if (step === 'exercises') {
     const ex = lesson.exercises[exerciseIndex];
     if (!ex) {
-      setStep('done');
-      return null;
-    }
-
-    // Init build_sentence words on first render
-    if (ex.type === 'build_sentence' && ex.words && availableWords.length === 0 && selectedWords.length === 0) {
-      setAvailableWords([...ex.words].sort(() => Math.random() - 0.5));
+      return <div className={styles.page}><div className={styles.loading}>Загрузка...</div></div>;
     }
 
     const handleSubmit = async () => {
@@ -163,10 +174,6 @@ export function LessonPage() {
       setAvailableWords([]);
 
       if (exerciseIndex + 1 < lesson.exercises.length) {
-        const nextEx = lesson.exercises[exerciseIndex + 1];
-        if (nextEx?.type === 'build_sentence' && nextEx.words) {
-          setAvailableWords([...nextEx.words].sort(() => Math.random() - 0.5));
-        }
         setExerciseIndex((prev) => prev + 1);
       } else {
         setStep('done');
