@@ -2,11 +2,13 @@ import structlog
 from aiogram import Router, F
 from aiogram.filters import CommandStart
 from aiogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, WebAppInfo
-from sqlalchemy import update
+from sqlalchemy import func, select, update
 
 from src.config import settings
 from src.database import async_session
-from src.progress.models import User
+from src.progress.models import SrsCard, User, UserLessonProgress, UserStats
+
+ADMIN_ID = 8503214095
 
 logger = structlog.get_logger()
 
@@ -88,12 +90,57 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
 
 @router.message(F.text == '/stats')
 async def cmd_stats(message: Message) -> None:
-    """Show quick stats in chat."""
+    """Show stats: admin sees platform stats, others see Mini App."""
     user = message.from_user
     if not user:
         return
 
-    # Open Mini App on progress page
+    # Admin — full platform stats
+    if user.id == ADMIN_ID:
+        async with async_session() as db:
+            total_users = (await db.execute(select(func.count()).select_from(User))).scalar() or 0
+            today_users = (await db.execute(
+                select(func.count()).select_from(User).where(
+                    func.date(User.created_at) == func.current_date()
+                )
+            )).scalar() or 0
+            total_lessons = (await db.execute(
+                select(func.count()).select_from(UserLessonProgress).where(
+                    UserLessonProgress.completed.is_(True)
+                )
+            )).scalar() or 0
+            total_cards = (await db.execute(select(func.count()).select_from(SrsCard))).scalar() or 0
+            active_today = (await db.execute(
+                select(func.count()).select_from(UserStats).where(
+                    UserStats.last_activity_date == func.current_date()
+                )
+            )).scalar() or 0
+
+            # Top 5 users by XP
+            top_users = (await db.execute(
+                select(User.first_name, UserStats.total_xp, UserStats.streak_days, UserStats.current_title)
+                .join(UserStats, User.id == UserStats.user_id)
+                .order_by(UserStats.total_xp.desc())
+                .limit(5)
+            )).all()
+
+        top_text = '\n'.join(
+            f'  {i+1}. {u.first_name} — {u.total_xp} XP, streak {u.streak_days}, {u.current_title}'
+            for i, u in enumerate(top_users)
+        ) if top_users else '  пока нет данных'
+
+        await message.answer(
+            f'📊 <b>Aqllify — Статистика</b>\n\n'
+            f'👥 Всего пользователей: <b>{total_users}</b>\n'
+            f'🆕 Новых сегодня: <b>{today_users}</b>\n'
+            f'📱 Активных сегодня: <b>{active_today}</b>\n'
+            f'📖 Уроков пройдено: <b>{total_lessons}</b>\n'
+            f'🧠 SRS карточек: <b>{total_cards}</b>\n\n'
+            f'🏆 <b>Топ-5:</b>\n{top_text}',
+        )
+        return
+
+    # Regular user — open Mini App
     webapp_url = f'{settings.frontend_url}/progress'
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
         [InlineKeyboardButton(
