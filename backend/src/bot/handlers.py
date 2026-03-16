@@ -1,3 +1,5 @@
+import html
+
 import structlog
 from aiogram import Router, F
 from aiogram.filters import CommandStart
@@ -39,7 +41,7 @@ async def cmd_start(message: Message) -> None:
     ])
 
     await message.answer(
-        f'🇺🇿 <b>Salom, {user.first_name}!</b>\n\n'
+        f'🇺🇿 <b>Salom, {html.escape(user.first_name)}!</b>\n\n'
         f'Я — <b>Aqllify</b>, твой помощник в изучении узбекского языка.\n'
         f'5 минут в день — и через месяц заговоришь.\n\n'
         f'Выбери цель на день:',
@@ -125,7 +127,7 @@ async def cmd_stats(message: Message) -> None:
             )).all()
 
         top_text = '\n'.join(
-            f'  {i+1}. {u.first_name} — {u.total_xp} XP, streak {u.streak_days}, {u.current_title}'
+            f'  {i+1}. {html.escape(u.first_name)} — {u.total_xp} XP, streak {u.streak_days}, {u.current_title}'
             for i, u in enumerate(top_users)
         ) if top_users else '  пока нет данных'
 
