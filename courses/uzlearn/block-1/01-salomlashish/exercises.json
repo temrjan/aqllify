@@ -46,9 +46,9 @@
     },
     {
       "type": "dialog_reply",
-      "context": "Тебя приветствует сосед утром:",
+      "context": "Тебя приветствует сосед утром (подсказка: ответ на Assalomu alaykum — Vaalaykum assalom):",
       "bot_says": "Assalomu alaykum! Yaxshimisiz?",
-      "answer_context": "Ответ на формальное приветствие: Vaalaykum assalom, yaxshi rahmat, или подобное",
+      "answer_context": "Любое приветствие в ответ: Vaalaykum assalom, Salom, Xayrli tong, или просто приветствие на узбекском. Принимай любой уместный ответ.",
       "xp": 15
     },
     {
