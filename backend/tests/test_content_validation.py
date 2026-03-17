@@ -26,6 +26,8 @@ def get_all_lessons():
 
 
 ALL_LESSONS = get_all_lessons()
+# Checkpoint lessons have no phrases/exercises/grammar — they use AI dialog
+REGULAR_LESSONS = [(s, lesson) for s, lesson in ALL_LESSONS if "checkpoint" not in s]
 
 
 class TestAllLessonsStructure:
@@ -41,13 +43,13 @@ class TestAllLessonsStructure:
         assert lesson.meta.xp_reward > 0, f"{slug}: no xp_reward"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_has_phrases(self, slug, lesson):
         assert len(lesson.phrases) >= 3, f"{slug}: less than 3 phrases"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_phrases_have_cyrillic(self, slug, lesson):
         for i, phrase in enumerate(lesson.phrases):
@@ -56,13 +58,13 @@ class TestAllLessonsStructure:
             assert phrase.uzbek_cyrillic, f"{slug}: phrase {i} missing uzbek_cyrillic"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_has_exercises(self, slug, lesson):
         assert len(lesson.exercises) >= 5, f"{slug}: less than 5 exercises"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_exercise_types_valid(self, slug, lesson):
         for i, ex in enumerate(lesson.exercises):
@@ -71,7 +73,7 @@ class TestAllLessonsStructure:
             )
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_exercises_have_content(self, slug, lesson):
         for i, ex in enumerate(lesson.exercises):
@@ -113,7 +115,7 @@ class TestAllLessonsStructure:
                 )
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_has_grammar(self, slug, lesson):
         assert len(lesson.grammar) >= 1, f"{slug}: no grammar tips"
@@ -122,7 +124,7 @@ class TestAllLessonsStructure:
             assert "##" not in tip.text, f"{slug}: heading in grammar"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_xp_positive(self, slug, lesson):
         for i, ex in enumerate(lesson.exercises):
@@ -133,14 +135,14 @@ class TestExerciseTypeMix:
     """Lessons should have a mix of exercise types, not all the same."""
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_at_least_2_types(self, slug, lesson):
         types = {ex.type for ex in lesson.exercises}
         assert len(types) >= 2, f"{slug}: only 1 exercise type ({types}), need variety"
 
     @pytest.mark.parametrize(
-        "slug,lesson", ALL_LESSONS, ids=[s for s, _ in ALL_LESSONS]
+        "slug,lesson", REGULAR_LESSONS, ids=[s for s, _ in REGULAR_LESSONS]
     )
     def test_not_all_choice(self, slug, lesson):
         choice_count = sum(1 for ex in lesson.exercises if ex.type == "choice")

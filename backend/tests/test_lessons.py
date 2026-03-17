@@ -22,7 +22,7 @@ class TestLessonLoading:
 
     def test_lesson_has_phrases(self) -> None:
         lesson = get_lesson("uzlearn", "block-1/01-salomlashish")
-        assert len(lesson.phrases) == 5
+        assert len(lesson.phrases) == 6
         assert lesson.phrases[0].uzbek == "Salom"
         assert lesson.phrases[0].russian == "Привет"
 
