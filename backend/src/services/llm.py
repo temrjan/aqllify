@@ -51,43 +51,48 @@ async def check_answer(
         response = await client.chat.completions.create(
             model=settings.llm_model,
             messages=[
-                {'role': 'system', 'content': SYSTEM_PROMPT_CHECK},
-                {'role': 'user', 'content': (
-                    f'Exercise type: {exercise_type}\n'
-                    f'Question: {prompt}\n'
-                    f'Expected answer: {answer_context}\n'
-                    f'Student wrote: {user_answer}\n\n'
-                    f'Is this correct? Respond with JSON only.'
-                )},
+                {"role": "system", "content": SYSTEM_PROMPT_CHECK},
+                {
+                    "role": "user",
+                    "content": (
+                        f"Exercise type: {exercise_type}\n"
+                        f"Question: {prompt}\n"
+                        f"Expected answer: {answer_context}\n"
+                        f"Student wrote: {user_answer}\n\n"
+                        f"Is this correct? Respond with JSON only."
+                    ),
+                },
             ],
             temperature=0.1,
             max_tokens=200,
         )
 
-        content = response.choices[0].message.content or '{}'
+        content = response.choices[0].message.content or "{}"
         # Strip markdown code block if present
         content = content.strip()
-        if content.startswith('```'):
-            content = content.split('\n', 1)[1].rsplit('```', 1)[0]
+        if content.startswith("```"):
+            content = content.split("\n", 1)[1].rsplit("```", 1)[0]
 
         result = json.loads(content)
 
         return {
-            'correct': result.get('correct', False),
-            'score': result.get('score', 0.0),
-            'feedback': result.get('feedback', ''),
-            'corrected': result.get('corrected'),
+            "correct": result.get("correct", False),
+            "score": result.get("score", 0.0),
+            "feedback": result.get("feedback", ""),
+            "corrected": result.get("corrected"),
         }
 
     except Exception as e:
-        logger.error('llm_check_failed', error=str(e))
+        logger.error("llm_check_failed", error=str(e))
         # Fallback: simple string comparison
         is_correct = user_answer.strip().lower() == answer_context.strip().lower()
         return {
-            'correct': is_correct,
-            'score': 1.0 if is_correct else 0.0,
-            'feedback': 'Правильно!' if is_correct else f'Правильный ответ: {answer_context}',
-            'corrected': None if is_correct else answer_context,
+            "correct": is_correct,
+            "score": 1.0 if is_correct else 0.0,
+            "feedback": "Правильно!"
+            if is_correct
+            else f"Правильный ответ: {answer_context}",
+            "corrected": None if is_correct else answer_context,
         }
 
 
@@ -98,9 +103,12 @@ async def checkpoint_dialog(
 ) -> str:
     """AI conversation for checkpoint role-play."""
     messages = [
-        {'role': 'system', 'content': SYSTEM_PROMPT_DIALOG + f'\n\nScenario: {scenario}'},
+        {
+            "role": "system",
+            "content": SYSTEM_PROMPT_DIALOG + f"\n\nScenario: {scenario}",
+        },
         *history,
-        {'role': 'user', 'content': user_message},
+        {"role": "user", "content": user_message},
     ]
 
     try:
@@ -110,8 +118,8 @@ async def checkpoint_dialog(
             temperature=0.7,
             max_tokens=150,
         )
-        return response.choices[0].message.content or ''
+        return response.choices[0].message.content or ""
 
     except Exception as e:
-        logger.error('llm_dialog_failed', error=str(e))
-        return 'Kechirasiz, xatolik yuz berdi. (Извините, произошла ошибка.)'
+        logger.error("llm_dialog_failed", error=str(e))
+        return "Kechirasiz, xatolik yuz berdi. (Извините, произошла ошибка.)"

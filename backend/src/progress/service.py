@@ -7,7 +7,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from src.progress.models import SrsCard, UserLessonProgress, UserStats
 from src.progress.schemas import ReviewCard, ReviewResult
 
-COURSES_DIR = Path(__file__).parent.parent.parent.parent / 'courses'
+COURSES_DIR = Path(__file__).parent.parent.parent.parent / "courses"
 
 # SM-2 algorithm constants
 MIN_EASE = 1.3
@@ -15,22 +15,23 @@ INITIAL_EASE = 2.5
 
 # Title thresholds (must match course.json)
 TITLES = [
-    ('spark', 0),
-    ('pulse', 500),
-    ('wave', 1500),
-    ('flash', 3000),
-    ('storm', 6000),
-    ('blaze', 10000),
-    ('titan', 16000),
-    ('phantom', 24000),
-    ('nova', 35000),
-    ('apex', 50000),
+    ("spark", 0),
+    ("pulse", 500),
+    ("wave", 1500),
+    ("flash", 3000),
+    ("storm", 6000),
+    ("blaze", 10000),
+    ("titan", 16000),
+    ("phantom", 24000),
+    ("nova", 35000),
+    ("apex", 50000),
 ]
 
 
 # ═══════════════════════════════════════════════════════════════
 # SM-2 Spaced Repetition
 # ═══════════════════════════════════════════════════════════════
+
 
 def sm2_calculate(
     quality: int,
@@ -102,7 +103,7 @@ async def review_card(
     )
     card = result.scalar_one_or_none()
     if not card:
-        raise ValueError('Card not found')
+        raise ValueError("Card not found")
 
     correct = quality >= 3
 
@@ -117,7 +118,9 @@ async def review_card(
     # Update card
     card.ease_factor = new_ease
     card.interval_days = new_interval
-    card.next_review = date.today() + __import__('datetime').timedelta(days=new_interval)
+    card.next_review = date.today() + __import__("datetime").timedelta(
+        days=new_interval
+    )
 
     if correct:
         card.correct_count += 1
@@ -145,25 +148,25 @@ async def create_cards_from_lesson(
 ) -> int:
     """Create SRS cards for all phrases in a lesson. Returns count created."""
     # Load lesson phrases from lesson.md
-    lesson_path = COURSES_DIR / course / lesson_slug / 'lesson.md'
+    lesson_path = COURSES_DIR / course / lesson_slug / "lesson.md"
 
     cards_created = 0
     today = date.today()
 
     # Extract phrases from lesson.md table
     if lesson_path.exists():
-        text = lesson_path.read_text(encoding='utf-8')
+        text = lesson_path.read_text(encoding="utf-8")
         in_table = False
 
-        for line in text.split('\n'):
+        for line in text.split("\n"):
             stripped = line.strip()
-            if stripped.startswith('|') and 'Узбекский' in stripped:
+            if stripped.startswith("|") and "Узбекский" in stripped:
                 in_table = True
                 continue
-            if in_table and stripped.startswith('|---'):
+            if in_table and stripped.startswith("|---"):
                 continue
-            if in_table and stripped.startswith('|'):
-                cells = [c.strip() for c in stripped.split('|')[1:-1]]
+            if in_table and stripped.startswith("|"):
+                cells = [c.strip() for c in stripped.split("|")[1:-1]]
                 # 3-col table: uzbek | cyrillic | russian
                 # 2-col table: uzbek | russian
                 if len(cells) >= 3 and cells[0] and cells[2]:
@@ -189,7 +192,7 @@ async def create_cards_from_lesson(
                     )
                     db.add(card)
                     cards_created += 1
-            elif in_table and not stripped.startswith('|'):
+            elif in_table and not stripped.startswith("|"):
                 in_table = False
 
     await db.commit()
@@ -200,9 +203,10 @@ async def create_cards_from_lesson(
 # XP + Streak + Titles
 # ═══════════════════════════════════════════════════════════════
 
+
 def get_title_for_xp(xp: int) -> str:
     """Get title based on total XP."""
-    title = 'spark'
+    title = "spark"
     for name, threshold in TITLES:
         if xp >= threshold:
             title = name
@@ -225,12 +229,10 @@ async def add_xp(
     score: float | None = None,
 ) -> dict:
     """Add XP, update streak, check title promotion."""
-    result = await db.execute(
-        select(UserStats).where(UserStats.user_id == user_id)
-    )
+    result = await db.execute(select(UserStats).where(UserStats.user_id == user_id))
     stats = result.scalar_one_or_none()
     if not stats:
-        raise ValueError('User stats not found')
+        raise ValueError("User stats not found")
 
     old_title = stats.current_title
     today = date.today()
@@ -241,9 +243,11 @@ async def add_xp(
     # Update streak
     if stats.last_activity_date == today:
         pass  # Already active today
-    elif stats.last_activity_date == today - __import__('datetime').timedelta(days=1):
+    elif stats.last_activity_date == today - __import__("datetime").timedelta(days=1):
         stats.streak_days += 1
-        stats.streak_freeze_available = True  # Reset freeze weekly? Simplified: always available
+        stats.streak_freeze_available = (
+            True  # Reset freeze weekly? Simplified: always available
+        )
     elif stats.last_activity_date is None:
         stats.streak_days = 1
     else:
@@ -279,39 +283,39 @@ async def add_xp(
             progress.xp_earned = max(progress.xp_earned, xp)
             progress.completed_at = datetime.now(tz=timezone.utc)
         else:
-            db.add(UserLessonProgress(
-                user_id=user_id,
-                lesson_slug=lesson_slug,
-                completed=True,
-                score=score,
-                xp_earned=xp,
-                completed_at=datetime.now(tz=timezone.utc),
-            ))
+            db.add(
+                UserLessonProgress(
+                    user_id=user_id,
+                    lesson_slug=lesson_slug,
+                    completed=True,
+                    score=score,
+                    xp_earned=xp,
+                    completed_at=datetime.now(tz=timezone.utc),
+                )
+            )
 
     await db.commit()
 
     next_title, xp_to_next = get_next_title_info(stats.total_xp)
 
     return {
-        'total_xp': stats.total_xp,
-        'xp_earned': xp + 20,  # lesson + streak bonus
-        'streak_days': stats.streak_days,
-        'current_title': stats.current_title,
-        'promoted': promoted,
-        'old_title': old_title if promoted else None,
-        'next_title': next_title,
-        'xp_to_next': xp_to_next,
+        "total_xp": stats.total_xp,
+        "xp_earned": xp + 20,  # lesson + streak bonus
+        "streak_days": stats.streak_days,
+        "current_title": stats.current_title,
+        "promoted": promoted,
+        "old_title": old_title if promoted else None,
+        "next_title": next_title,
+        "xp_to_next": xp_to_next,
     }
 
 
 async def get_user_stats(db: AsyncSession, user_id: int) -> dict:
     """Get full user statistics."""
-    result = await db.execute(
-        select(UserStats).where(UserStats.user_id == user_id)
-    )
+    result = await db.execute(select(UserStats).where(UserStats.user_id == user_id))
     stats = result.scalar_one_or_none()
     if not stats:
-        raise ValueError('User stats not found')
+        raise ValueError("User stats not found")
 
     # Count words and lessons
     words_count = await db.execute(
@@ -327,12 +331,12 @@ async def get_user_stats(db: AsyncSession, user_id: int) -> dict:
     next_title, xp_to_next = get_next_title_info(stats.total_xp)
 
     return {
-        'total_xp': stats.total_xp,
-        'current_title': stats.current_title,
-        'next_title': next_title,
-        'xp_to_next': xp_to_next,
-        'streak_days': stats.streak_days,
-        'streak_freeze_available': stats.streak_freeze_available,
-        'words_learned': words_count.scalar() or 0,
-        'lessons_completed': lessons_count.scalar() or 0,
+        "total_xp": stats.total_xp,
+        "current_title": stats.current_title,
+        "next_title": next_title,
+        "xp_to_next": xp_to_next,
+        "streak_days": stats.streak_days,
+        "streak_freeze_available": stats.streak_freeze_available,
+        "words_learned": words_count.scalar() or 0,
+        "lessons_completed": lessons_count.scalar() or 0,
     }

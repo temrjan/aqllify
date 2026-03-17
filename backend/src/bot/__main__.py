@@ -27,15 +27,15 @@ async def main() -> None:
     setup_scheduler(scheduler, bot)
     scheduler.start()
 
-    logger.info('aqllify_bot_starting')
+    logger.info("aqllify_bot_starting")
 
     try:
         await dp.start_polling(bot)
     finally:
         scheduler.shutdown()
         await bot.session.close()
-        logger.info('aqllify_bot_stopped')
+        logger.info("aqllify_bot_stopped")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

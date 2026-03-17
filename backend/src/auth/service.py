@@ -18,21 +18,21 @@ def validate_init_data(
     """Validate Telegram Mini App initData and extract user."""
     parsed = parse_qs(init_data)
 
-    received_hash = parsed.get('hash', [None])[0]
+    received_hash = parsed.get("hash", [None])[0]
     if not received_hash:
-        raise ValueError('Missing hash')
+        raise ValueError("Missing hash")
 
     # Build data check string (sorted, without hash)
     data_check_arr = []
     for key, values in sorted(parsed.items()):
-        if key != 'hash':
-            data_check_arr.append(f'{key}={values[0]}')
+        if key != "hash":
+            data_check_arr.append(f"{key}={values[0]}")
 
-    data_check_string = '\n'.join(data_check_arr)
+    data_check_string = "\n".join(data_check_arr)
 
     # Create secret key
     secret_key = hmac.new(
-        b'WebAppData',
+        b"WebAppData",
         settings.bot_token.encode(),
         hashlib.sha256,
     ).digest()
@@ -46,19 +46,19 @@ def validate_init_data(
 
     # Compare (timing-safe)
     if not hmac.compare_digest(calculated_hash, received_hash):
-        raise ValueError('Invalid hash')
+        raise ValueError("Invalid hash")
 
     # Check auth_date
-    auth_date = int(parsed.get('auth_date', ['0'])[0])
+    auth_date = int(parsed.get("auth_date", ["0"])[0])
     current_time = int(datetime.now(tz=timezone.utc).timestamp())
 
     if current_time - auth_date > max_age_seconds:
-        raise ValueError('Init data expired')
+        raise ValueError("Init data expired")
 
     # Parse user
-    user_str = parsed.get('user', [None])[0]
+    user_str = parsed.get("user", [None])[0]
     if not user_str:
-        raise ValueError('User data missing')
+        raise ValueError("User data missing")
 
     user_data = json.loads(unquote(user_str))
     return TelegramUser(**user_data)
@@ -71,9 +71,7 @@ async def get_or_create_user(
     """Get existing user or create new one. Returns user dict."""
     from src.progress.models import User, UserStats
 
-    result = await db.execute(
-        select(User).where(User.telegram_id == tg_user.id)
-    )
+    result = await db.execute(select(User).where(User.telegram_id == tg_user.id))
     user = result.scalar_one_or_none()
 
     if not user:
@@ -90,7 +88,7 @@ async def get_or_create_user(
         await db.refresh(user)
 
     return {
-        'id': user.id,
-        'telegram_id': user.telegram_id,
-        'first_name': user.first_name,
+        "id": user.id,
+        "telegram_id": user.telegram_id,
+        "first_name": user.first_name,
     }

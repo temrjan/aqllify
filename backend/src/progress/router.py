@@ -14,30 +14,30 @@ from src.progress.service import (
     review_card,
 )
 
-router = APIRouter(prefix='/progress', tags=['progress'])
+router = APIRouter(prefix="/progress", tags=["progress"])
 
 
-@router.get('/stats')
+@router.get("/stats")
 async def stats(
     tg_user: TelegramUser = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> dict:
     """Get user stats: XP, title, streak, words, lessons."""
     user = await get_or_create_user(db, tg_user)
-    return await get_user_stats(db, user['id'])
+    return await get_user_stats(db, user["id"])
 
 
-@router.get('/review')
+@router.get("/review")
 async def get_review_cards(
     tg_user: TelegramUser = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> list[ReviewCard]:
     """Get SRS cards due for review today."""
     user = await get_or_create_user(db, tg_user)
-    return await get_due_cards(db, user['id'])
+    return await get_due_cards(db, user["id"])
 
 
-@router.post('/review')
+@router.post("/review")
 async def submit_review(
     answer: ReviewAnswer,
     tg_user: TelegramUser = Depends(get_current_user),
@@ -46,21 +46,21 @@ async def submit_review(
     """Submit a review answer, update SRS intervals."""
     user = await get_or_create_user(db, tg_user)
     try:
-        result = await review_card(db, user['id'], answer.card_id, answer.quality)
+        result = await review_card(db, user["id"], answer.card_id, answer.quality)
     except ValueError as e:
         raise HTTPException(status_code=404, detail=str(e))
 
     # Add XP if correct
     if result.xp_earned > 0:
-        await add_xp(db, user['id'], result.xp_earned)
+        await add_xp(db, user["id"], result.xp_earned)
 
     return result
 
 
-@router.post('/complete-lesson')
+@router.post("/complete-lesson")
 async def complete_lesson(
     req: AddXpRequest,
-    course: str = 'uzlearn',
+    course: str = "uzlearn",
     tg_user: TelegramUser = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> dict:
@@ -68,12 +68,14 @@ async def complete_lesson(
     user = await get_or_create_user(db, tg_user)
 
     # Create SRS cards from lesson phrases
-    cards_created = await create_cards_from_lesson(db, user['id'], course, req.lesson_slug)
+    cards_created = await create_cards_from_lesson(
+        db, user["id"], course, req.lesson_slug
+    )
 
     # Add XP + update streak
-    result = await add_xp(db, user['id'], req.xp, req.lesson_slug, req.score)
+    result = await add_xp(db, user["id"], req.xp, req.lesson_slug, req.score)
 
     return {
         **result,
-        'cards_created': cards_created,
+        "cards_created": cards_created,
     }

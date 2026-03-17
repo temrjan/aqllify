@@ -3,14 +3,14 @@ from pydantic import BaseModel
 
 class Phrase(BaseModel):
     uzbek: str
-    uzbek_cyrillic: str = ''
+    uzbek_cyrillic: str = ""
     russian: str
     audio_url: str | None = None
 
 
 class Exercise(BaseModel):
-    type: str            # open_translate, reverse_translate, fill_blank, build_sentence, choice, dialog_reply, spiral, listen_write
-    prompt: str = ''
+    type: str  # open_translate, reverse_translate, fill_blank, build_sentence, choice, dialog_reply, spiral, listen_write
+    prompt: str = ""
     answer_context: str | None = None
     answer: str | None = None
     words: list[str] | None = None
@@ -28,7 +28,7 @@ class LessonMeta(BaseModel):
     lesson: int
     new_phrases: int
     spiral_from: list[int] = []
-    level: str = 'spark'
+    level: str = "spark"
     xp_reward: int = 50
 
 

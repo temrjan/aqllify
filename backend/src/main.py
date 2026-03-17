@@ -15,14 +15,14 @@ logger = structlog.get_logger()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
-    logger.info('aqllify_starting', env=settings.app_env)
+    logger.info("aqllify_starting", env=settings.app_env)
     yield
-    logger.info('aqllify_shutdown')
+    logger.info("aqllify_shutdown")
 
 
 app = FastAPI(
-    title='Aqllify API',
-    version='0.1.0',
+    title="Aqllify API",
+    version="0.1.0",
     lifespan=lifespan,
 )
 
@@ -31,21 +31,21 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         settings.frontend_url,
-        'https://aqllify.com',
-        'https://app.aqllify.com',
+        "https://aqllify.com",
+        "https://app.aqllify.com",
     ],
     allow_credentials=True,
-    allow_methods=['*'],
-    allow_headers=['*'],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
 # Routers
-app.include_router(auth_router, prefix='/api/v1')
-app.include_router(lessons_router, prefix='/api/v1')
-app.include_router(progress_router, prefix='/api/v1')
+app.include_router(auth_router, prefix="/api/v1")
+app.include_router(lessons_router, prefix="/api/v1")
+app.include_router(progress_router, prefix="/api/v1")
 
 
-@app.get('/health')
+@app.get("/health")
 async def health() -> dict[str, str]:
-    return {'status': 'ok', 'app': settings.app_name}
+    return {"status": "ok", "app": settings.app_name}
