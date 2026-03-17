@@ -1,6 +1,6 @@
 from datetime import date
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ReviewCard(BaseModel):
@@ -12,7 +12,9 @@ class ReviewCard(BaseModel):
 
 class ReviewAnswer(BaseModel):
     card_id: int
-    quality: int  # 0-5 (SM-2 scale: 0=forgot, 3=correct with effort, 5=easy)
+    quality: int = Field(
+        ge=0, le=5
+    )  # SM-2 scale: 0=forgot, 3=correct with effort, 5=easy
 
 
 class ReviewResult(BaseModel):
@@ -35,6 +37,6 @@ class UserStatsResponse(BaseModel):
 
 
 class AddXpRequest(BaseModel):
-    lesson_slug: str
-    xp: int
-    score: float | None = None  # 0-1
+    lesson_slug: str = Field(max_length=100)
+    xp: int = Field(ge=0, le=500)
+    score: float | None = Field(default=None, ge=0, le=1.0)

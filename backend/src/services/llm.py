@@ -102,12 +102,17 @@ async def checkpoint_dialog(
     history: list[dict],
 ) -> str:
     """AI conversation for checkpoint role-play."""
+    safe_history = [
+        {"role": m["role"], "content": m["content"]}
+        for m in history
+        if m.get("role") in ("user", "assistant") and m.get("content")
+    ]
     messages = [
         {
             "role": "system",
             "content": SYSTEM_PROMPT_DIALOG + f"\n\nScenario: {scenario}",
         },
-        *history,
+        *safe_history,
         {"role": "user", "content": user_message},
     ]
 
