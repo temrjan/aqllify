@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.auth.schemas import TelegramUser, UserResponse
+from src.auth.schemas import TelegramUser
 from src.auth.service import validate_init_data, get_or_create_user
 from src.database import get_db
 

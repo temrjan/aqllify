@@ -1,11 +1,10 @@
-import json
 from datetime import date, datetime, timezone
 from pathlib import Path
 
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from src.progress.models import SrsCard, User, UserLessonProgress, UserStats
+from src.progress.models import SrsCard, UserLessonProgress, UserStats
 from src.progress.schemas import ReviewCard, ReviewResult
 
 COURSES_DIR = Path(__file__).parent.parent.parent.parent / 'courses'
@@ -145,8 +144,7 @@ async def create_cards_from_lesson(
     lesson_slug: str,
 ) -> int:
     """Create SRS cards for all phrases in a lesson. Returns count created."""
-    # Load lesson phrases from exercises.json
-    exercises_path = COURSES_DIR / course / lesson_slug / 'exercises.json'
+    # Load lesson phrases from lesson.md
     lesson_path = COURSES_DIR / course / lesson_slug / 'lesson.md'
 
     cards_created = 0
