@@ -1,3 +1,6 @@
+import time
+from collections import defaultdict
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,6 +20,20 @@ from src.progress.models import UserLessonProgress
 from src.services.llm import check_answer, checkpoint_dialog
 
 router = APIRouter(prefix="/lessons", tags=["lessons"])
+
+# In-memory rate limiter for LLM endpoints (per user, sliding window)
+_llm_requests: dict[int, list[float]] = defaultdict(list)
+MAX_LLM_PER_MINUTE = 20
+
+
+def _check_rate_limit(user_id: int) -> None:
+    """Raise 429 if user exceeds LLM rate limit."""
+    now = time.time()
+    window = _llm_requests[user_id]
+    _llm_requests[user_id] = [t for t in window if now - t < 60]
+    if len(_llm_requests[user_id]) >= MAX_LLM_PER_MINUTE:
+        raise HTTPException(status_code=429, detail="Too many requests")
+    _llm_requests[user_id].append(now)
 
 
 @router.get("/{course}")
@@ -67,9 +84,10 @@ async def get_lesson_content(
 @router.post("/check-answer")
 async def check_student_answer(
     req: CheckAnswerRequest,
-    _user: TelegramUser = Depends(get_current_user),
+    tg_user: TelegramUser = Depends(get_current_user),
 ) -> CheckAnswerResponse:
     """Check student answer using LLM."""
+    _check_rate_limit(tg_user.id)
     result = await check_answer(
         exercise_type=req.exercise_type,
         prompt=req.prompt,
@@ -82,12 +100,13 @@ async def check_student_answer(
 @router.post("/checkpoint-dialog")
 async def checkpoint_chat(
     req: CheckpointMessage,
-    _user: TelegramUser = Depends(get_current_user),
+    tg_user: TelegramUser = Depends(get_current_user),
 ) -> dict:
     """AI conversation for checkpoint role-play."""
+    _check_rate_limit(tg_user.id)
     reply = await checkpoint_dialog(
         scenario=req.scenario,
         user_message=req.message,
-        history=req.history,
+        history=[m.model_dump() for m in req.history],
     )
     return {"reply": reply}
