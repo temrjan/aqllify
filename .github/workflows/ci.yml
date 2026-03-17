@@ -80,4 +80,4 @@ jobs:
             docker compose exec -T backend alembic upgrade head
             sleep 5
             docker compose ps
-            curl -sf http://localhost:8000/health || exit 1
+            docker compose exec -T backend python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
