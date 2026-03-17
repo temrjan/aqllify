@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я хочу перевести деньги",
+      "answer_context": "Pul o'tkazmoqchiman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Valyuta ayirboshlash",
+      "answer_context": "Обмен валюты",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Hisob ___ necha? (Какой номер счёта?)",
+      "answer": "raqamingiz",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Bankomat'?",
+      "options": ["Банк", "Банкомат", "Обмен валюты", "Кредитная карта"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я сниму деньги с банкомата",
+      "words": ["olaman", "pul", "Bankomatdan"],
+      "answer": "Bankomatdan pul olaman",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в банке. Сотрудник спрашивает, что тебе нужно. Ты хочешь обменять валюту.",
+      "bot_says": "Assalomu alaykum! Sizga nima kerak?",
+      "answer_context": "Скажи, что хочешь обменять валюту: Valyuta ayirboshlamoqchiman.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Кредитная карта",
+      "answer_context": "Kredit karta",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bankomatdan pul olaman",
+      "answer_context": "Я сниму деньги с банкомата",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Pul ___. (Денежный перевод)",
+      "answer": "o'tkazish",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Пятьсот тысяч сум",
+      "words": ["ming", "yuz", "so'm", "Besh"],
+      "answer": "Besh yuz ming so'm",
+      "xp": 10
+    }
+  ]
+}

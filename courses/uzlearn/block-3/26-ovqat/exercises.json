@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мясо",
+      "answer_context": "Go'sht",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Sabzavot",
+      "answer_context": "Овощи",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Onam palov ___. (Мама готовит плов)",
+      "answer": "pishiradi",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Meva'?",
+      "options": ["Мясо", "Хлеб", "Фрукт", "Овощи"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте три лепёшки",
+      "words": ["non", "Uchta", "bering"],
+      "answer": "Uchta non bering",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на кухне с другом, обсуждаете что готовить.",
+      "bot_says": "Bugun nima pishiramiz?",
+      "answer_context": "Предложи приготовить плов: Palov pishiramiz!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я готовлю",
+      "answer_context": "Pishiraman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Non mazali",
+      "answer_context": "Хлеб вкусный",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ shirin. (Фрукты сладкие)",
+      "answer": "Meva",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Мясо и овощи нужны",
+      "words": ["kerak", "sabzavot", "Go'sht", "va"],
+      "answer": "Go'sht va sabzavot kerak",
+      "xp": 15
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я хочу отправить посылку",
+      "answer_context": "Jo'natma jo'natmoqchiman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yetkazib berish bormi?",
+      "answer_context": "Есть доставка?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ jo'natmoqchiman. (Я хочу отправить письмо)",
+      "answer": "Xat",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Manzil'?",
+      "options": ["Посылка", "Письмо", "Адрес", "Доставка"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Напишите адрес, пожалуйста",
+      "words": ["iltimos", "yozing,", "Manzilni"],
+      "answer": "Manzilni yozing, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на почте. Сотрудник спрашивает, что тебе нужно. Ты хочешь отправить письмо.",
+      "bot_says": "Assalomu alaykum! Sizga nima kerak?",
+      "answer_context": "Скажи, что хочешь отправить письмо: Xat jo'natmoqchiman.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сколько стоит доставка?",
+      "answer_context": "Yetkazib berish qancha turadi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Uch kunda yetkazamiz",
+      "answer_context": "Доставим за три дня",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Necha ___ yetkazib berasiz? (За сколько дней доставите?)",
+      "answer": "kunda",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Заплачу наличными",
+      "words": ["to'layman", "pul", "bilan", "Naqd"],
+      "answer": "Naqd pul bilan to'layman",
+      "xp": 15
+    }
+  ]
+}

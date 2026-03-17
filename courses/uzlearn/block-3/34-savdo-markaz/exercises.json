@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Где примерочная?",
+      "answer_context": "Kiyinish xonasi qayerda?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Chegirma bormi?",
+      "answer_context": "Есть скидка?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Kiyim do'koni ikkinchi ___. (Магазин одежды на втором этаже)",
+      "answer": "qavatda",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'O'lcham'?",
+      "options": ["Скидка", "Этаж", "Размер", "Примерочная"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Двадцать процентов скидка",
+      "words": ["chegirma", "foiz", "Yigirma"],
+      "answer": "Yigirma foiz chegirma",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине одежды. Хочешь узнать, есть ли скидка и можно ли примерить.",
+      "bot_says": "Bu ko'ylak yoqdimi?",
+      "answer_context": "Спроси про скидку и примерочную: Ha, yoqdi. Chegirma bormi? Kiyinish xonasi qayerda?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Какой ваш размер?",
+      "answer_context": "O'lchamingiz necha?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Uchinchi qavatda",
+      "answer_context": "На третьем этаже",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Savdo ___ga boramiz. (Мы пойдём в торговый центр)",
+      "answer": "markaz",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Заплачу картой",
+      "words": ["to'layman", "bilan", "Karta"],
+      "answer": "Karta bilan to'layman",
+      "xp": 15
+    }
+  ]
+}

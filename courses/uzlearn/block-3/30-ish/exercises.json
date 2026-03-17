@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я работаю",
+      "answer_context": "Ishlayman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Dam olish kuni",
+      "answer_context": "Выходной день",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Siz qaerda ___? (Где вы работаете?)",
+      "answer": "ishlaysiz",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Hamkasb'?",
+      "options": ["Начальник", "Коллега", "Учитель", "Друг"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я работаю в офисе",
+      "words": ["ishlayman", "ofisda", "Men"],
+      "answer": "Men ofisda ishlayman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Новый знакомый спрашивает о твоей работе.",
+      "bot_says": "Siz kim bo'lib ishlaysiz?",
+      "answer_context": "Скажи свою профессию: Men dasturchiman. (Я программист.)",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Рабочее время",
+      "answer_context": "Ish vaqti",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Mening hamkasbim",
+      "answer_context": "Мой коллега",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Shanba va yakshanba ___ olish kunlari. (Суббота и воскресенье — выходные дни)",
+      "answer": "dam",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: С девяти до пяти",
+      "words": ["beshgacha", "to'qqizdan", "Soat"],
+      "answer": "Soat to'qqizdan beshgacha",
+      "xp": 15
+    }
+  ]
+}

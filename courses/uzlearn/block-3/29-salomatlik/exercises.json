@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Врач",
+      "answer_context": "Shifokor",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Kasalxona",
+      "answer_context": "Больница",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Boshim ___. (У меня болит голова)",
+      "answer": "og'riydi",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Sog'ayib keting'?",
+      "options": ["Извините", "Выздоравливайте", "Спасибо", "До свидания"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я принимаю лекарство",
+      "words": ["ichaman", "Dori"],
+      "answer": "Dori ichaman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты пришёл к врачу. Он спрашивает что случилось.",
+      "bot_says": "Nima bo'ldi? Qayeringiz og'riydi?",
+      "answer_context": "Скажи что болит голова: Boshim og'riydi.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я болен",
+      "answer_context": "Men kasalman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Dori iching va dam oling",
+      "answer_context": "Принимайте лекарство и отдыхайте",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ bor. (У меня есть температура)",
+      "answer": "Isitmam",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте лекарство, пожалуйста",
+      "words": ["iltimos", "bering,", "Dori"],
+      "answer": "Dori bering, iltimos",
+      "xp": 15
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мне нравится футбол",
+      "answer_context": "Futbol yoqtiraman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Musiqa tinglayman",
+      "answer_context": "Я слушаю музыку",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Kitob ___. (Я читаю книги)",
+      "answer": "o'qiyman",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Мне не нравится' на узбекском?",
+      "options": ["Yoqtiraman", "Yoqtirmayman", "Yoqtirdim", "Yoqtirasiz"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я занимаюсь спортом",
+      "words": ["shug'ullanaman", "bilan", "Sport"],
+      "answer": "Sport bilan shug'ullanaman",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Новый знакомый спрашивает, что тебе нравится делать. Ты любишь читать книги.",
+      "bot_says": "Nima qilishni yoqtirasiz?",
+      "answer_context": "Скажи о своём хобби: Kitob o'qishni yoqtiraman.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мне не нравится футбол",
+      "answer_context": "Futbol yoqtirmayman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Sport bilan shug'ullanaman",
+      "answer_context": "Я занимаюсь спортом",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Musiqa ___. (Я слушаю музыку)",
+      "answer": "tinglayman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг спрашивает, нравится ли тебе спорт. Тебе нравится.",
+      "bot_says": "Sport yoqtirasizmi?",
+      "answer_context": "Подтверди: Ha, sport yoqtiraman!",
+      "xp": 15
+    }
+  ]
+}

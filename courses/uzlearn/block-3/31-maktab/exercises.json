@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я иду в школу",
+      "answer_context": "Maktabga boraman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Uy vazifasini qildim",
+      "answer_context": "Я сделал домашнее задание",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Dars soat ___? (Во сколько урок?)",
+      "answer": "nechada",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'O'qituvchi'?",
+      "options": ["Ученик", "Учитель", "Оценка", "Урок"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Сегодня понедельник, иду в школу",
+      "words": ["Dushanba.", "boraman.", "Bugun", "Maktabga"],
+      "answer": "Bugun Dushanba. Maktabga boraman.",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты ученик. Мама спрашивает, сделал ли ты домашнее задание. Ты сделал.",
+      "bot_says": "Uy vazifasini qildingmi?",
+      "answer_context": "Подтверди: Ha, qildim.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Урок в восемь часов утром",
+      "answer_context": "Dars soat sakkizda, ertalab",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Beshlik baho",
+      "answer_context": "Отличная оценка / пятёрка",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Maktab___ boraman. (Я иду в школу)",
+      "answer": "ga",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Хорошую оценку хочу получить",
+      "words": ["olmoqchiman!", "baho", "Yaxshi"],
+      "answer": "Yaxshi baho olmoqchiman!",
+      "xp": 10
+    }
+  ]
+}

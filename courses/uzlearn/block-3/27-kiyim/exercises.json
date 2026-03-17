@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Рубашка",
+      "answer_context": "Ko'ylak",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Oyoq kiyim",
+      "answer_context": "Обувь",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Qizil ___ bormi? (Красная рубашка есть?)",
+      "answer": "ko'ylak",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Shim'?",
+      "options": ["Рубашка", "Платье", "Брюки", "Обувь"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Чёрные брюки",
+      "words": ["shim", "Qora"],
+      "answer": "Qora shim",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине одежды. Продавец спрашивает что тебе нужно.",
+      "bot_says": "Assalomu alaykum! Nima kerak?",
+      "answer_context": "Спроси есть ли белое платье: Oq ko'ynak bormi?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Примерю",
+      "answer_context": "Kiyib ko'raman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bu ko'ylak necha so'm?",
+      "answer_context": "Сколько стоит эта рубашка?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ bormi? (Поменьше есть?)",
+      "answer": "Kichikroq",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я примерю эту рубашку",
+      "words": ["ko'ylakni", "ko'raman", "Bu", "kiyib"],
+      "answer": "Bu ko'ylakni kiyib ko'raman",
+      "xp": 15
+    }
+  ]
+}

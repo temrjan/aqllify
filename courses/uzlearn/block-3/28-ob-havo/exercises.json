@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сегодня жарко",
+      "answer_context": "Bugun issiq",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yomg'ir yog'yapti",
+      "answer_context": "Идёт дождь",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bugun ob-havo ___? (Какая сегодня погода?)",
+      "answer": "qanday",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Quyosh'?",
+      "options": ["Ветер", "Дождь", "Солнце", "Снег"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Зимой холодно",
+      "words": ["sovuq", "Qishda"],
+      "answer": "Qishda sovuq",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты смотришь в окно утром. Друг спрашивает о погоде.",
+      "bot_says": "Bugun ob-havo qanday?",
+      "answer_context": "Скажи что сегодня солнечно и жарко: Bugun issiq, quyosh chiqdi.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Ветер",
+      "answer_context": "Shamol",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Ertalab sovuq",
+      "answer_context": "Утром холодно",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Yozda ___. (Летом жарко)",
+      "answer": "issiq",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Завтра будет дождь",
+      "words": ["yog'adi", "yomg'ir", "Ertaga"],
+      "answer": "Ertaga yomg'ir yog'adi",
+      "xp": 15
+    }
+  ]
+}

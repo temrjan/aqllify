@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мы пойдём в парк",
+      "answer_context": "Parkga boramiz",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Hafta oxiri dam olamiz",
+      "answer_context": "В выходные мы отдохнём",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Hafta ___ nima qilamiz? (Что будем делать в выходные?)",
+      "answer": "oxiri",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Sayil qilamiz'?",
+      "options": ["Мы отдохнём", "Мы погуляем", "Мы пойдём", "Мы почитаем"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: В субботу пойдём в парк",
+      "words": ["boramiz", "parkga", "Shanbada"],
+      "answer": "Shanbada parkga boramiz",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг предлагает планы на выходные. Ты хочешь погулять в парке в 10 утра.",
+      "bot_says": "Hafta oxiri nima qilamiz?",
+      "answer_context": "Предложи план: Parkga boramiz. Soat o'nda, ertalab.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: У меня есть план на выходные",
+      "answer_context": "Hafta oxiriga rejam bor",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Shanbada parkga boramiz",
+      "answer_context": "В субботу пойдём в парк",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Dam ___. (Мы отдохнём)",
+      "answer": "olamiz",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: В воскресенье отдохнём",
+      "words": ["olamiz", "dam", "Yakshanbada"],
+      "answer": "Yakshanbada dam olamiz",
+      "xp": 10
+    }
+  ]
+}

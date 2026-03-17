@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Кухня",
+      "answer_context": "Oshxona",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yotoqxona",
+      "answer_context": "Спальня",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mening ___ katta. (Мой дом большой)",
+      "answer": "uyim",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как переводится 'Hammom'?",
+      "options": ["Кухня", "Спальня", "Ванная", "Балкон"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: В моём доме три комнаты",
+      "words": ["xona", "uyimda", "uch", "Mening", "bor"],
+      "answer": "Mening uyimda uch xona bor",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг спрашивает про твой дом.",
+      "bot_says": "Sizning uyingiz katta-mi?",
+      "answer_context": "Ответь да, большой: Ha, katta.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Маленькая кухня",
+      "answer_context": "Kichik oshxona",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Mening onam oshxonada",
+      "answer_context": "Моя мама на кухне",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Katta ___ bor. (Есть большой балкон)",
+      "answer": "balkon",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Большая спальня",
+      "words": ["yotoqxona", "Katta"],
+      "answer": "Katta yotoqxona",
+      "xp": 10
+    }
+  ]
+}
