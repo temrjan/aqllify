@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Гость",
+      "answer_context": "Mehmon",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Dasturxon tayyor",
+      "answer_context": "Стол накрыт",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Sizni uyga ___ qilaman. (Я вас приглашаю домой)",
+      "answer": "taklif",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Qoling'?",
+      "options": ["Уходите", "Оставайтесь", "Садитесь", "Ешьте"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Проходите, пожалуйста",
+      "words": ["marhamat", "Keling,"],
+      "answer": "Keling, marhamat",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "К тебе пришёл гость. Он стоит у двери и ждёт приглашения.",
+      "bot_says": "Assalomu alaykum!",
+      "answer_context": "Поприветствуй и пригласи войти: Vaalaykum assalom! Keling, marhamat!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Приглашаю домой",
+      "answer_context": "Uyga taklif qilaman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qoling, choy iching!",
+      "answer_context": "Оставайтесь, попейте чаю!",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ tayyor. Marhamat, o'tiring! (Стол накрыт)",
+      "answer": "Dasturxon",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Мама приготовила плов",
+      "words": ["pishirgan", "Onam", "palov"],
+      "answer": "Onam palov pishirgan",
+      "xp": 15
+    }
+  ]
+}

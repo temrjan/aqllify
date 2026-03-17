@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Праздник",
+      "answer_context": "Bayram",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Baxt tilayman",
+      "answer_context": "Желаю счастья",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Navro'z ___! (С Наврузом!)",
+      "answer": "muborak",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Tabriklayman'?",
+      "options": ["Желаю", "Поздравляю", "Приглашаю", "Благодарю"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Поздравляю вас с праздником",
+      "words": ["tabriklayman", "bayram", "Sizni", "bilan"],
+      "answer": "Sizni bayram bilan tabriklayman",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Сосед поздравляет тебя с Наврузом.",
+      "bot_says": "Navro'z muborak! Baxt tilayman!",
+      "answer_context": "Поблагодари и поздравь в ответ: Rahmat! Sizni ham tabriklayman!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Желаю здоровья",
+      "answer_context": "Sog'lik tilayman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bayram kuni doim yaxshi",
+      "answer_context": "В день праздника всегда хорошо",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Oilangizga ___ tilayman! (Желаю счастья вашей семье!)",
+      "answer": "baxt",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Мама приготовила суманак",
+      "words": ["pishirgan", "sumalak", "Onam"],
+      "answer": "Onam sumalak pishirgan",
+      "xp": 10
+    }
+  ]
+}

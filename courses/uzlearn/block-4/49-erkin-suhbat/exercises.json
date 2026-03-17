@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Давайте поговорим",
+      "answer_context": "Gaplashaylik",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Fikringiz qanday?",
+      "answer_context": "Что вы думаете? / Каково ваше мнение?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Ha, ___! Yaxshi reja. (Я согласен)",
+      "answer": "roziman",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как переводится 'Ko'rishguncha'?",
+      "options": ["Здравствуйте", "Спасибо", "До встречи", "Пожалуйста"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Очень интересно",
+      "words": ["qiziq!", "Juda"],
+      "answer": "Juda qiziq!",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты встретил знакомого на улице. Хочешь поболтать.",
+      "bot_says": "Salom! Yaxshimisiz?",
+      "answer_context": "Поприветствуй и предложи поговорить: Yaxshi, rahmat! Gaplashaylik biroz.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я не согласен",
+      "answer_context": "Rozi emasman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bu mavzu juda qiziq",
+      "answer_context": "Эта тема очень интересная",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Yaxshi, ___! Ertaga ko'rishamiz. (До встречи)",
+      "answer": "ko'rishguncha",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг предлагает пойти в парк в выходные. Тебе идея нравится.",
+      "bot_says": "Hafta oxiri parkga boramizmi? Fikringiz qanday?",
+      "answer_context": "Согласись: Roziman! Juda yaxshi reja. Boraylik!",
+      "xp": 15
+    }
+  ]
+}

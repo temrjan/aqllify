@@ -1,0 +1,16 @@
+{
+  "type": "checkpoint",
+  "scenario": "You are the warm and welcoming head of an Uzbek family. The student has been invited to your home for dinner. Speak simple Uzbek (A1 level). Cover multiple topics throughout the conversation: greeting at the door, inviting in, offering food (palov, non, choy), asking about their family and work, discussing weather and travel plans, expressing happiness about the visit. After each Uzbek phrase, add Russian translation in parentheses. Guide the conversation through: welcome at door → sit down and offer tea → ask about family/work → serve food and discuss it → talk about travel/plans → express emotions → say goodbye warmly. Keep it 7-8 exchanges total. This is the FINAL checkpoint — test the student's ability to handle a real social situation using vocabulary from all 4 blocks.",
+  "first_message": "Assalomu alaykum! Keling, keling, marhamat! Uyga xush kelibsiz! Avval choy ichaylik.\n(Здравствуйте! Заходите, заходите, пожалуйста! Добро пожаловать в дом! Сначала давайте выпьем чай.)",
+  "max_exchanges": 8,
+  "evaluation_criteria": [
+    "Used appropriate greeting and introduction",
+    "Talked about themselves (family, work, or hobbies)",
+    "Responded to food-related conversation (mazali, rahmat)",
+    "Discussed at least one other topic (weather, travel, plans, emotions)",
+    "Used polite expressions throughout (rahmat, iltimos, marhamat)",
+    "Expressed emotions or feelings",
+    "Said goodbye appropriately"
+  ],
+  "xp_reward": 200
+}

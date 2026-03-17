@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Путешествие",
+      "answer_context": "Sayohat",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Chipta qancha?",
+      "answer_context": "Сколько стоит билет?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ qolmoqchiman. (Хочу остановиться в гостинице)",
+      "answer": "Mehmonxonada",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Какой город известен площадью Регистан?",
+      "options": ["Toshkent", "Buxoro", "Samarqand", "Xiva"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Хочу поехать в Самарканд",
+      "words": ["bormoqchiman", "Samarqandga"],
+      "answer": "Samarqandga bormoqchiman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на вокзале покупаешь билет.",
+      "bot_says": "Qayerga chipta kerak?",
+      "answer_context": "Скажи куда и попроси билет: Samarqandga bir chipta bering.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Хочу купить два билета",
+      "answer_context": "Ikki chipta olmoqchiman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Buxoroda ko'p tarixiy joylar bor",
+      "answer_context": "В Бухаре много исторических мест",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Samarqanddan ___ poyezdda boraman. (Из Самарканда в Бухару еду на поезде)",
+      "answer": "Buxoroga",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Узбекистан красивая страна",
+      "words": ["mamlakat", "go'zal", "O'zbekiston"],
+      "answer": "O'zbekiston go'zal mamlakat",
+      "xp": 15
+    }
+  ]
+}

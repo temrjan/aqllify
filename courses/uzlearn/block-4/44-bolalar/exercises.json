@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Ребёнок",
+      "answer_context": "Bola",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bolalar maydonchada o'ynaydi",
+      "answer_context": "Дети играют на площадке",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bolalar bilan ___ boramiz. (Мы пойдём в парк с детьми)",
+      "answer": "parkga",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Muzqaymoq'?",
+      "options": ["Пирожное", "Мороженое", "Молоко", "Конфета"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дети играют в парке",
+      "words": ["o'ynaydi", "parkda", "Bolalar"],
+      "answer": "Bolalar parkda o'ynaydi",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты с детьми в парке. Ребёнок просит мороженое.",
+      "bot_says": "Ota, muzqaymoq olamizmi?",
+      "answer_context": "Согласись: Ha, albatta! Muzqaymoq olamiz.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Мы играем на площадке",
+      "answer_context": "Maydonchada o'ynaymiz",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bolalar muzqaymoqni yoqtiradi",
+      "answer_context": "Дети любят мороженое",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bolalar ___ o'ynaydi. (Дети играют на площадке)",
+      "answer": "maydonchada",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Мы едим мороженое",
+      "words": ["yeymiz", "Muzqaymoq"],
+      "answer": "Muzqaymoq yeymiz",
+      "xp": 10
+    }
+  ]
+}

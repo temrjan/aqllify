@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я хочу",
+      "answer_context": "Xohlayman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Hammasi yaxshi bo'ladi",
+      "answer_context": "Всё будет хорошо",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Kelasi oyda ___. (Я планирую на следующий месяц)",
+      "answer": "rejalashtiraman",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Orzu qilaman'?",
+      "options": ["Я работаю", "Я планирую", "Я мечтаю", "Я стараюсь"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я постараюсь",
+      "words": ["qilaman", "Harakat"],
+      "answer": "Harakat qilaman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг спрашивает о твоих планах на будущее. Ты хочешь путешествовать.",
+      "bot_says": "Kelajakda nima qilmoqchisiz?",
+      "answer_context": "Расскажи о мечте: Sayohat qilishni orzu qilaman.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Всё получится",
+      "answer_context": "Hammasi bo'ladi",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Harakat qilib ko'raman",
+      "answer_context": "Попробую / Постараюсь",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Sayohat qilishni ___ qilaman. (Я мечтаю путешествовать)",
+      "answer": "orzu",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я хочу учиться",
+      "words": ["o'qimoqchiman", "Men"],
+      "answer": "Men o'qimoqchiman",
+      "xp": 15
+    }
+  ]
+}

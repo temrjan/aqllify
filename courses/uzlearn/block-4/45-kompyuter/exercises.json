@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Компьютер не работает",
+      "answer_context": "Kompyuter ishlamayapti",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Wi-Fi paroli nima?",
+      "answer_context": "Какой пароль от Wi-Fi?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Telefon ___ emas. (Телефон не на зарядке)",
+      "answer": "zaryadda",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Ishlamayapti'?",
+      "options": ["Работает", "Не работает", "Включается", "Выключается"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Интернет медленный",
+      "words": ["sekin", "Internet"],
+      "answer": "Internet sekin",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в кафе и хочешь подключиться к Wi-Fi.",
+      "bot_says": "Xush kelibsiz! Buyuring.",
+      "answer_context": "Спроси пароль от Wi-Fi: Rahmat! Wi-Fi paroli nima?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Есть зарядка?",
+      "answer_context": "Zaryadka bormi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Telefonim zaryadda",
+      "answer_context": "Мой телефон на зарядке",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Kompyuter ___. (Компьютер не работает)",
+      "answer": "ishlamayapti",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг жалуется на проблемы с техникой.",
+      "bot_says": "Internet ishlamayapti. Nima qilay?",
+      "answer_context": "Посоветуй проверить: Kompyuterni tekshiring. Wi-Fi parolini tekshiring.",
+      "xp": 15
+    }
+  ]
+}

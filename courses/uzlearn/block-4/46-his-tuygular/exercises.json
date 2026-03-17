@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я рад",
+      "answer_context": "Xursandman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Oilamni sog'indim",
+      "answer_context": "Я скучаю по семье",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bugun juda ___. Ko'p ishladim. (Я очень устал)",
+      "answer": "charchadim",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Xafaman'?",
+      "options": ["Я рад", "Я расстроен", "Я устал", "Я волнуюсь"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я очень волнуюсь",
+      "words": ["hayajonlanaman", "Juda"],
+      "answer": "Juda hayajonlanaman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг спрашивает о твоём настроении. Ты устал после работы.",
+      "bot_says": "Qanday kayfiyat?",
+      "answer_context": "Скажи что устал: Charchadim, bugun ko'p ishladim.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я скучаю по вам",
+      "answer_context": "Sizni sog'indim",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Juda hayajonlanaman",
+      "answer_context": "Я очень волнуюсь",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Tanishganimdan ___! (Рад познакомиться)",
+      "answer": "xursandman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты давно не видел маму. Разговариваешь с ней по телефону.",
+      "bot_says": "Salom, bolam! Qanday ahvoling?",
+      "answer_context": "Скажи что скучаешь: Yaxshi, ona. Sizni juda sog'indim!",
+      "xp": 15
+    }
+  ]
+}

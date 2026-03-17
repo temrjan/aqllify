@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: С днём рождения",
+      "answer_context": "Tug'ilgan kun muborak",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Baxtli bo'ling!",
+      "answer_context": "Будьте счастливы!",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu sizga ___. (Это вам подарок)",
+      "answer": "sovg'a",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'To'y'?",
+      "options": ["День рождения", "Свадьба", "Праздник", "Подарок"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Мои лучшие пожелания",
+      "words": ["tilaklarim", "yaxshi", "Eng"],
+      "answer": "Eng yaxshi tilaklarim",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Друг дарит тебе подарок на день рождения.",
+      "bot_says": "Tug'ilgan kun muborak! Mana, sizga sovg'a.",
+      "answer_context": "Поблагодари: Katta rahmat! Juda xursandman!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Будьте здоровы",
+      "answer_context": "Sog'lom bo'ling",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Sovg'angiz uchun rahmat",
+      "answer_context": "Спасибо за ваш подарок",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Doim ___ bo'ling! (Будьте всегда счастливы!)",
+      "answer": "baxtli",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Приглашаю на свадьбу",
+      "words": ["qilaman", "taklif", "To'yga"],
+      "answer": "To'yga taklif qilaman",
+      "xp": 15
+    }
+  ]
+}

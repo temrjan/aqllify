@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Моя машина сломалась",
+      "answer_context": "Mashinam buzildi",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Benzin quyish kerak",
+      "answer_context": "Нужно заправить бензин",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mashinani ___ kerak. (Нужно помыть машину)",
+      "answer": "yuvish",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Ta'mirxona'?",
+      "options": ["Заправка", "Автомойка", "Мастерская", "Парковка"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Почините, пожалуйста",
+      "words": ["iltimos", "qiling,", "Ta'mir"],
+      "answer": "Ta'mir qiling, iltimos",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Твоя машина сломалась на дороге. Ты звонишь в автосервис.",
+      "bot_says": "Allo! Ta'mirxona. Sizga nima kerak?",
+      "answer_context": "Объясни проблему: Mashinam buzildi. Yordam kerak!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сколько стоит ремонт?",
+      "answer_context": "Ta'mir qancha turadi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Gildirak teshildi",
+      "answer_context": "Колесо проколото",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Dvigatel ___. (Двигатель не работает)",
+      "answer": "ishlamayapti",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Нужно заправить бензин",
+      "words": ["kerak", "quyish", "Benzin"],
+      "answer": "Benzin quyish kerak",
+      "xp": 15
+    }
+  ]
+}

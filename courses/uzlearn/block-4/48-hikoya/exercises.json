@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я родился в Ташкенте",
+      "answer_context": "Men Toshkentda tug'ilganman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Tajribam bor",
+      "answer_context": "У меня есть опыт",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Samarqandda ___. (Я вырос в Самарканде)",
+      "answer": "o'sganman",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Maqsadim'?",
+      "options": ["Моя мечта", "Моя цель", "Мой опыт", "Моя работа"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я учился в университете",
+      "words": ["o'qiganman", "Universitetda"],
+      "answer": "Universitetda o'qiganman",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "На собеседовании тебя просят рассказать о себе. Ты из Бухары.",
+      "bot_says": "O'zingiz haqingizda gapirib bering.",
+      "answer_context": "Начни с места рождения: Men Buxoroda tug'ilganman.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: У меня есть опыт работы",
+      "answer_context": "Ish tajribam bor",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Katta oilada o'sganman",
+      "answer_context": "Я вырос в большой семье",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Mening ___ dasturchi bo'lish. (Моя цель — стать программистом)",
+      "answer": "maqsadim",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я родился в Бухаре",
+      "words": ["tug'ilganman", "Buxoroda", "Men"],
+      "answer": "Men Buxoroda tug'ilganman",
+      "xp": 15
+    }
+  ]
+}

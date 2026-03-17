@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сосед",
+      "answer_context": "Qo'shni",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yordam so'rayman",
+      "answer_context": "Прошу помощи",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ so'rayman, shovqin qildik. (Прошу прощения, мы шумели)",
+      "answer": "Uzr",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Shovqin'?",
+      "options": ["Помощь", "Улица", "Шум", "Сосед"],
+      "correct": 2,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Не шумите, пожалуйста",
+      "words": ["iltimos", "qilmang,", "Shovqin"],
+      "answer": "Shovqin qilmang, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты встретил соседа на улице. Он тебя приветствует.",
+      "bot_says": "Salom, qo'shni! Yaxshimisiz?",
+      "answer_context": "Поприветствуй и спроси в ответ: Salom! Yaxshi, rahmat. O'zingiz-chi?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: На улице",
+      "answer_context": "Ko'chada",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qo'shnilar yordam berishadi",
+      "answer_context": "Соседи помогают",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bolalar ___ o'ynayapti. (Дети играют на улице)",
+      "answer": "ko'chada",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Извините, что побеспокоил",
+      "words": ["qildim", "bezovta", "Uzr,"],
+      "answer": "Uzr, bezovta qildim",
+      "xp": 10
+    }
+  ]
+}
