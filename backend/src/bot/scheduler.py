@@ -4,7 +4,7 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from sqlalchemy import select
 
-from src.config import settings
+from src.bot.handlers import webapp_url
 from src.database import async_session
 from src.progress.models import User, UserStats
 
@@ -61,14 +61,13 @@ async def get_active_users() -> list[tuple[int, int, str]]:
 async def send_morning_lesson(bot: Bot) -> None:
     """Morning push: new lesson available."""
     users = await get_active_users()
-    webapp_url = settings.frontend_url
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="📖 Начать урок",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url()),
                 )
             ],
         ]
@@ -93,14 +92,13 @@ async def send_morning_lesson(bot: Bot) -> None:
 async def send_afternoon_review(bot: Bot) -> None:
     """Afternoon push: SRS review cards."""
     users = await get_active_users()
-    webapp_url = f"{settings.frontend_url}/review"
 
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="🧠 Повторить",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url("/review")),
                 )
             ],
         ]
@@ -124,7 +122,6 @@ async def send_afternoon_review(bot: Bot) -> None:
 async def send_evening_reminder(bot: Bot) -> None:
     """Evening push: streak reminder if no activity today."""
     users = await get_active_users()
-    webapp_url = settings.frontend_url
 
     from datetime import date
 
@@ -148,7 +145,7 @@ async def send_evening_reminder(bot: Bot) -> None:
                     [
                         InlineKeyboardButton(
                             text="📖 Пройти урок",
-                            web_app=WebAppInfo(url=webapp_url),
+                            web_app=WebAppInfo(url=webapp_url()),
                         )
                     ],
                 ]

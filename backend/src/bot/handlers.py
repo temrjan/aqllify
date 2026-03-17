@@ -1,4 +1,5 @@
 import html
+import time
 
 import structlog
 from aiogram import Router, F
@@ -19,6 +20,12 @@ from src.database import async_session
 from src.progress.models import SrsCard, User, UserLessonProgress, UserStats
 
 ADMIN_ID = 8503214095
+
+
+def webapp_url(path: str = "") -> str:
+    """Build Mini App URL with cache-busting parameter."""
+    return f"{settings.frontend_url}{path}?v={int(time.time())}"
+
 
 logger = structlog.get_logger()
 
@@ -79,13 +86,12 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
         await db.commit()
 
     # Mini App button
-    webapp_url = f"{settings.frontend_url}"
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="📖 Начать первый урок",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url()),
                 )
             ],
         ]
@@ -190,13 +196,12 @@ async def cmd_stats(message: Message) -> None:
         return
 
     # Regular user — open Mini App
-    webapp_url = f"{settings.frontend_url}/progress"
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="📊 Мой прогресс",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url("/progress")),
                 )
             ],
         ]
@@ -211,13 +216,12 @@ async def cmd_stats(message: Message) -> None:
 @router.message(F.text.in_({"/lesson", "📖 Урок"}))
 async def cmd_lesson(message: Message) -> None:
     """Open current lesson in Mini App."""
-    webapp_url = f"{settings.frontend_url}"
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="📖 Открыть урок",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url()),
                 )
             ],
         ]
@@ -232,13 +236,12 @@ async def cmd_lesson(message: Message) -> None:
 @router.message(F.text.in_({"/review", "🧠 Повторить"}))
 async def cmd_review(message: Message) -> None:
     """Open SRS review in Mini App."""
-    webapp_url = f"{settings.frontend_url}/review"
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 InlineKeyboardButton(
                     text="🧠 Повторить слова",
-                    web_app=WebAppInfo(url=webapp_url),
+                    web_app=WebAppInfo(url=webapp_url("/review")),
                 )
             ],
         ]
