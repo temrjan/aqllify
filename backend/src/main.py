@@ -24,6 +24,9 @@ app = FastAPI(
     title="Aqllify API",
     version="0.1.0",
     lifespan=lifespan,
+    docs_url="/docs" if settings.is_development else None,
+    redoc_url="/redoc" if settings.is_development else None,
+    openapi_url="/openapi.json" if settings.is_development else None,
 )
 
 # CORS
@@ -35,8 +38,8 @@ app.add_middleware(
         "https://app.aqllify.com",
     ],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST"],
+    allow_headers=["Content-Type", "X-Telegram-InitData"],
 )
 
 

@@ -19,7 +19,7 @@ from src.config import settings
 from src.database import async_session
 from src.progress.models import SrsCard, User, UserLessonProgress, UserStats
 
-ADMIN_ID = 8503214095
+ADMIN_IDS = settings.admin_ids
 
 
 def webapp_url(path: str = "") -> str:
@@ -130,7 +130,7 @@ async def cmd_stats(message: Message) -> None:
         return
 
     # Admin — full platform stats
-    if user.id == ADMIN_ID:
+    if user.id in ADMIN_IDS:
         async with async_session() as db:
             total_users = (
                 await db.execute(select(func.count()).select_from(User))
@@ -273,17 +273,18 @@ async def forward_feedback(message: Message) -> None:
 async def catch_feedback(message: Message) -> None:
     """Forward any text message to admin as feedback."""
     user = message.from_user
-    if not user or user.id == ADMIN_ID:
+    if not user or user.id in ADMIN_IDS:
         return
 
-    # Forward to admin
+    # Forward to all admins
     try:
-        await message.bot.send_message(
-            ADMIN_ID,
-            f"💬 <b>Feedback от {html.escape(user.first_name)}</b> "
-            f"(@{user.username or 'no_username'}, id:{user.id}):\n\n"
-            f"{html.escape(message.text or '')}",
-        )
+        for admin_id in ADMIN_IDS:
+            await message.bot.send_message(
+                admin_id,
+                f"💬 <b>Feedback от {html.escape(user.first_name)}</b> "
+                f"(@{user.username or 'no_username'}, id:{user.id}):\n\n"
+                f"{html.escape(message.text or '')}",
+            )
         await message.answer("Спасибо за отзыв! Мы обязательно прочитаем.")
     except Exception:
         await message.answer("Спасибо за отзыв!")
