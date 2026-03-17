@@ -20,6 +20,7 @@ body {
   --accent-light: rgba(76, 175, 80, 0.15);
   --danger: #EF4444;
   --warning: #F59E0B;
+  --accent-warm: #E8913A;
   --border: color-mix(in srgb, var(--tg-text, #000000) 12%, transparent);
   --bg-card: var(--tg-secondary, #F9FAFB);
   --radius: 12px;
