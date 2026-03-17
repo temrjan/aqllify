@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Где остановка?",
+      "answer_context": "Bekat qayerda?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Keyingi bekat qaysi?",
+      "answer_context": "Какая следующая остановка?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Chipta ___? (Сколько стоит билет?)",
+      "answer": "qancha",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери вопрос: Какой автобус идёт в центр?",
+      "words": ["boradi?", "avtobus", "markazga", "Qaysi"],
+      "answer": "Qaysi avtobus markazga boradi?",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает слово keyingi?",
+      "options": ["Предыдущий", "Следующий", "Последний", "Первый"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на улице, ищешь остановку автобуса. Рядом проходит человек.",
+      "bot_says": "(Прохожий идёт мимо)",
+      "answer_context": "Обратись вежливо и спроси: Kechirasiz, bekat qayerda?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сколько стоит билет?",
+      "answer_context": "Chipta qancha?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Metro bormi?",
+      "answer_context": "Метро есть?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ bekat qaysi? (Какая следующая остановка?)",
+      "answer": "Keyingi",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте один билет, пожалуйста",
+      "words": ["bering,", "chipta", "Bitta", "iltimos"],
+      "answer": "Bitta chipta bering, iltimos",
+      "xp": 15
+    }
+  ]
+}

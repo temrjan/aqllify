@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Наличные деньги",
+      "answer_context": "Naqd pul",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Karta bilan",
+      "answer_context": "Картой",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Qancha ___ kerak? (Сколько нужно заплатить?)",
+      "answer": "to'lash",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте чек, пожалуйста",
+      "words": ["bering,", "iltimos", "Chek"],
+      "answer": "Chek bering, iltimos",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает слово bilan?",
+      "options": ["Без", "С / при помощи", "Для", "Вместо"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине. Кассир спрашивает, как ты будешь платить. Ты хочешь заплатить картой.",
+      "bot_says": "Naqd pulmi yoki karta?",
+      "answer_context": "Скажи, что картой: Karta bilan to'layman / Karta bilan",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сдача есть",
+      "answer_context": "Qaytim bor",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: To'lash kerak",
+      "answer_context": "Нужно заплатить",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Karta ___ to'layman. (Заплачу картой.)",
+      "answer": "bilan",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери: Сколько нужно заплатить?",
+      "words": ["kerak?", "to'lash", "Qancha"],
+      "answer": "Qancha to'lash kerak?",
+      "xp": 15
+    }
+  ]
+}

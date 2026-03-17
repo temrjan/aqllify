@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: У меня болит голова",
+      "answer_context": "Boshim og'riydi",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qorin og'riydi",
+      "answer_context": "Болит живот",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ og'riydi. (У меня болит голова)",
+      "answer": "Boshim",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте лекарство, пожалуйста",
+      "words": ["iltimos", "bering,", "Dori"],
+      "answer": "Dori bering, iltimos",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Isitmam bor'?",
+      "options": ["У меня болит голова", "У меня температура", "Мне нужен рецепт", "Болит живот"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты заходишь в аптеку. У тебя болит голова.",
+      "bot_says": "Assalomu alaykum! Sizga nima kerak?",
+      "answer_context": "Опиши проблему и попроси лекарство: Boshim og'riydi. Dori bering, iltimos.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Дайте лекарство",
+      "answer_context": "Dori bering",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Retsept kerakmi?",
+      "answer_context": "Нужен рецепт?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Retsept ___? (Нужен рецепт?)",
+      "answer": "kerakmi",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: У меня температура",
+      "words": ["bor", "Isitmam"],
+      "answer": "Isitmam bor",
+      "xp": 15
+    }
+  ]
+}

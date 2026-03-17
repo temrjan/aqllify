@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я не понял",
+      "answer_context": "Tushunmadim",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Sekinroq gapiring",
+      "answer_context": "Говорите помедленнее",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Yana bir bor ___. (Скажите ещё раз)",
+      "answer": "ayting",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как попросить о помощи по-узбекски?",
+      "options": ["Tushunmadim", "Yordam bering!", "Sekinroq gapiring", "Rahmat"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Говорите помедленнее, пожалуйста",
+      "words": ["gapiring,", "Sekinroq", "iltimos"],
+      "answer": "Sekinroq gapiring, iltimos",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на улице в Ташкенте. Прохожий говорит тебе что-то быстро, и ты не понимаешь.",
+      "bot_says": "Bozorga borish uchun to'g'ri boring, keyin chapga buriling.",
+      "answer_context": "Скажи что не понял и попроси помедленнее: Tushunmadim. Sekinroq gapiring, iltimos.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Я не знаю узбекский",
+      "answer_context": "O'zbekcha bilmayman",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Yana bir bor ayting",
+      "answer_context": "Скажите ещё раз",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "O'zbekcha ___. (Я не знаю узбекский)",
+      "answer": "bilmayman",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я не знаю узбекский",
+      "words": ["bilmayman", "O'zbekcha"],
+      "answer": "O'zbekcha bilmayman",
+      "xp": 15
+    }
+  ]
+}

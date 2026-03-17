@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Поверните направо",
+      "answer_context": "O'ngga buriling",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Chapga buriling",
+      "answer_context": "Поверните налево",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Dorixona ___? (Где аптека?)",
+      "answer": "qayerda",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Идите прямо, потом поверните налево",
+      "words": ["boring,", "buriling", "chapga", "keyin", "To'g'ri"],
+      "answer": "To'g'ri boring, keyin chapga buriling",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает o'ng?",
+      "options": ["Лево", "Право", "Прямо", "Назад"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты заблудился и хочешь найти гостиницу. Рядом стоит человек.",
+      "bot_says": "(Человек стоит рядом)",
+      "answer_context": "Вежливо спроси дорогу: Kechirasiz, mehmonxona qayerda?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Это близко?",
+      "answer_context": "Yaqinmi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: To'g'ri boring",
+      "answer_context": "Идите прямо",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ buriling. (Поверните направо.)",
+      "answer": "O'ngga",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как переводится yaqin?",
+      "options": ["Далеко", "Близко", "Быстро", "Медленно"],
+      "correct": 1,
+      "xp": 10
+    }
+  ]
+}

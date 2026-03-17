@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Какой ваш номер телефона?",
+      "answer_context": "Telefon raqamingiz necha?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qo'ng'iroq qiling",
+      "answer_context": "Позвоните",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Telefon ___ necha? (Какой ваш номер телефона?)",
+      "answer": "raqamingiz",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Напишите мне' по-узбекски?",
+      "options": ["Qo'ng'iroq qiling", "Yozing menga", "Aloqa yo'q", "Rahmat"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Напишите мне",
+      "words": ["menga", "Yozing"],
+      "answer": "Yozing menga",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты познакомился с новым человеком и хочешь обменяться контактами.",
+      "bot_says": "Mening ismim Aziz. Tanishganimdan xursandman!",
+      "answer_context": "Спроси номер телефона: Telefon raqamingiz necha?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Нет связи",
+      "answer_context": "Aloqa yo'q",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: WhatsApp bor",
+      "answer_context": "Есть WhatsApp",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ yo'q. (Нет связи)",
+      "answer": "Aloqa",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Позвоните мне",
+      "words": ["qiling", "menga", "Qo'ng'iroq"],
+      "answer": "Qo'ng'iroq qiling menga",
+      "xp": 15
+    }
+  ]
+}

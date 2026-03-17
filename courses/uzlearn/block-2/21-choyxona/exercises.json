@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Дайте чай",
+      "answer_context": "Choy bering",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Palov bormi?",
+      "answer_context": "Плов есть?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Palov ___? (Плов есть?)",
+      "answer": "bormi",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте два чая, пожалуйста",
+      "words": ["iltimos", "choy", "bering,", "Ikkita"],
+      "answer": "Ikkita choy bering, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Issiq'?",
+      "options": ["Холодный", "Горячий", "Вкусный", "Большой"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в чайхане. Чойханачи (хозяин) подходит к тебе.",
+      "bot_says": "Assalomu alaykum! Nima beray?",
+      "answer_context": "Закажи чай и лепёшку: Choy va non bering, iltimos.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Хорошего отдыха",
+      "answer_context": "Yaxshi dam oling",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Non bering",
+      "answer_context": "Дайте лепёшку",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Choy ___. Ehtiyot bo'ling! (Чай горячий. Будьте осторожны!)",
+      "answer": "issiq",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Как сказать 'Дайте лепёшку'?",
+      "options": ["Choy bering", "Non bering", "Palov bormi?", "Yana bering"],
+      "correct": 1,
+      "xp": 10
+    }
+  ]
+}

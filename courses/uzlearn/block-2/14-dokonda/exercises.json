@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Хлеб есть?",
+      "answer_context": "Non bormi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Boshqa nima kerak?",
+      "answer_context": "Что ещё нужно?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Suv ___? (Вода есть?)",
+      "answer": "bormi",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает Hammasi shu?",
+      "options": ["Дайте ещё", "Это всё", "Сколько стоит?", "Пакет нужен?"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте два хлеба, пожалуйста",
+      "words": ["non", "Ikkita", "iltimos", "bering,"],
+      "answer": "Ikkita non bering, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты в магазине. Продавец спрашивает, нужно ли тебе что-то ещё. Тебе больше ничего не нужно.",
+      "bot_says": "Boshqa nima kerak?",
+      "answer_context": "Скажи, что это всё: Hammasi shu, rahmat!",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Пакет нужен?",
+      "answer_context": "Paket kerakmi?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bering, iltimos",
+      "answer_context": "Дайте, пожалуйста",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ nima kerak? (Что ещё нужно?)",
+      "answer": "Boshqa",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты зашёл в магазин и хочешь купить молоко. Спроси, есть ли оно.",
+      "bot_says": "Assalomu alaykum! Marhamat!",
+      "answer_context": "Спроси о наличии: Sut bormi? (Молоко есть?)",
+      "xp": 15
+    }
+  ]
+}

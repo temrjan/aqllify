@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Дайте меню",
+      "answer_context": "Menyu bering",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Buyurtma beraman",
+      "answer_context": "Я сделаю заказ",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "___ iltimos. (Счёт, пожалуйста)",
+      "answer": "Hisob",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте меню, пожалуйста",
+      "words": ["bering,", "Menyu", "iltimos"],
+      "answer": "Menyu bering, iltimos",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает 'Mazali'?",
+      "options": ["Дорого", "Вкусно", "Горячо", "Большой"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты сидишь в ресторане. Официант подходит к столу.",
+      "bot_says": "Assalomu alaykum! Nima buyurtma berasiz?",
+      "answer_context": "Сделай заказ: Ikkita palov bering, iltimos.",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Дайте ещё",
+      "answer_context": "Yana bering",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Yana ___ bering. (Дайте ещё один)",
+      "answer": "bitta",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Hisob iltimos",
+      "answer_context": "Счёт, пожалуйста",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Я сделаю заказ",
+      "words": ["beraman", "Buyurtma"],
+      "answer": "Buyurtma beraman",
+      "xp": 15
+    }
+  ]
+}

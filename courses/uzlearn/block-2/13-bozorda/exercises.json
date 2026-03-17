@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Сколько это стоит?",
+      "answer_context": "Bu necha so'm?",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Arzonroq bo'ladimi?",
+      "answer_context": "Можно подешевле?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bir kilo ___, iltimos. (Дайте один килограмм, пожалуйста)",
+      "answer": "bering",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Дайте два килограмма, пожалуйста",
+      "words": ["kilo", "Ikki", "iltimos", "bering,"],
+      "answer": "Ikki kilo bering, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает суффикс -roq?",
+      "options": ["Очень", "Более", "Самый", "Немного"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты на базаре, продавец назвал цену за помидоры — двадцать тысяч сум за кило. Тебе кажется дорого.",
+      "bot_says": "Yigirma ming so'm bir kilosi.",
+      "answer_context": "Скажи, что дорого, и попроси скидку: Qimmat! Arzonroq bo'ladimi?",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Хорошо, возьму",
+      "answer_context": "Yaxshi, olaman",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu pomidor ___ so'm? (Сколько стоят эти помидоры?)",
+      "answer": "necha",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qimmat!",
+      "answer_context": "Дорого!",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Сколько это стоит в сумах?",
+      "words": ["so'm?", "necha", "Bu"],
+      "answer": "Bu necha so'm?",
+      "xp": 10
+    }
+  ]
+}

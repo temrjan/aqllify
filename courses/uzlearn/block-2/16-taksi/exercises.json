@@ -1,0 +1,68 @@
+{
+  "exercises": [
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Нужно такси",
+      "answer_context": "Taksi kerak",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Bu yerda to'xtang",
+      "answer_context": "Остановите здесь",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Aeroport___ olib boring. (Отвезите до аэропорта.)",
+      "answer": "gacha",
+      "xp": 10
+    },
+    {
+      "type": "build_sentence",
+      "prompt": "Собери фразу: Сколько будет стоить?",
+      "words": ["bo'ladi?", "Qancha"],
+      "answer": "Qancha bo'ladi?",
+      "xp": 10
+    },
+    {
+      "type": "choice",
+      "prompt": "Что означает суффикс -gacha?",
+      "options": ["От", "До", "Через", "Около"],
+      "correct": 1,
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Ты сел в такси. Водитель спрашивает, куда ехать. Тебе нужно на вокзал (vokzal).",
+      "bot_says": "Qayerga?",
+      "answer_context": "Назови место с суффиксом -gacha: Vokzalgacha olib boring, iltimos",
+      "xp": 15
+    },
+    {
+      "type": "open_translate",
+      "prompt": "Переведи на узбекский: Поезжайте быстрее",
+      "answer_context": "Tezroq boring",
+      "xp": 10
+    },
+    {
+      "type": "reverse_translate",
+      "prompt": "Переведи на русский: Qancha bo'ladi?",
+      "answer_context": "Сколько будет стоить?",
+      "xp": 10
+    },
+    {
+      "type": "fill_blank",
+      "prompt": "Bu yerda ___! (Остановите здесь!)",
+      "answer": "to'xtang",
+      "xp": 10
+    },
+    {
+      "type": "dialog_reply",
+      "context": "Такси подъехало к нужному месту. Ты хочешь, чтобы водитель остановился.",
+      "bot_says": "Shu yermi?",
+      "answer_context": "Попроси остановить: Ha, bu yerda to'xtang!",
+      "xp": 15
+    }
+  ]
+}
