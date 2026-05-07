@@ -1,6 +1,7 @@
 import time
 from collections import defaultdict
 
+import structlog
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -19,6 +20,7 @@ from src.lessons.service import get_lesson, list_lessons
 from src.progress.models import UserLessonProgress
 from src.services.llm import check_answer, checkpoint_dialog
 
+logger = structlog.get_logger()
 router = APIRouter(prefix="/lessons", tags=["lessons"])
 
 # In-memory rate limiter for LLM endpoints (per user, sliding window)
@@ -93,6 +95,12 @@ async def check_student_answer(
         prompt=req.prompt,
         user_answer=req.user_answer,
         answer_context=req.answer_context,
+    )
+    logger.info(
+        "answer_checked",
+        user_id=tg_user.id,
+        type=req.exercise_type,
+        correct=result.get("correct"),
     )
     return CheckAnswerResponse(**result)
 

@@ -1,3 +1,4 @@
+import structlog
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -14,6 +15,7 @@ from src.progress.service import (
     review_card,
 )
 
+logger = structlog.get_logger()
 router = APIRouter(prefix="/progress", tags=["progress"])
 
 
@@ -54,6 +56,14 @@ async def submit_review(
     if result.xp_earned > 0:
         await add_xp(db, user["id"], result.xp_earned)
 
+    logger.info(
+        "srs_reviewed",
+        user_id=user["id"],
+        card_id=answer.card_id,
+        quality=answer.quality,
+        correct=result.correct,
+        xp_earned=result.xp_earned,
+    )
     return result
 
 
@@ -75,6 +85,14 @@ async def complete_lesson(
     # Add XP + update streak
     result = await add_xp(db, user["id"], req.xp, req.lesson_slug, req.score)
 
+    logger.info(
+        "lesson_completed",
+        user_id=user["id"],
+        slug=req.lesson_slug,
+        score=req.score,
+        xp=req.xp,
+        cards_created=cards_created,
+    )
     return {
         **result,
         "cards_created": cards_created,

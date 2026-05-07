@@ -1,3 +1,9 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
 services:
   backend:
     build: ./backend
@@ -24,6 +30,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    logging: *default-logging
 
   bot:
     build: ./backend
@@ -42,6 +49,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    logging: *default-logging
 
   frontend:
     build: ./frontend
@@ -55,6 +63,7 @@ services:
           memory: 32M
     networks:
       - proxy
+    logging: *default-logging
 
   db:
     image: postgres:17-alpine
@@ -77,6 +86,7 @@ services:
           memory: 256M
     networks:
       - internal
+    logging: *default-logging
 
 volumes:
   aqllify-db-data:
