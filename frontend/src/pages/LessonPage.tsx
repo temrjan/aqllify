@@ -91,16 +91,21 @@ export function LessonPage() {
     if (saved || saving || !block || !lessonSlug || !lesson) return;
     setSaving(true);
     const xpTotal = xpEarned + (lesson.meta?.xp_reward ?? 50);
-    const exerciseCount = lesson.exercises?.length ?? 1;
+    // score is a 0-1 ratio against the actual max XP of this lesson's exercises
+    // (exercises may have xp=10 or xp=15; assuming uniform 10 sent score>1.0 → 422)
+    const maxXp = lesson.exercises.reduce((s, ex) => s + (ex.xp ?? 10), 0);
+    const score = maxXp > 0 ? Math.min(1, xpEarned / maxXp) : 1;
     api.post('/progress/complete-lesson', {
       lesson_slug: `${block}/${lessonSlug}`,
       xp: xpTotal,
-      score: exerciseCount > 0 ? xpEarned / (exerciseCount * 10) : 1,
+      score,
     })
       .then(() => {
         try { WebApp.HapticFeedback.notificationOccurred('success'); } catch {}
       })
-      .catch(() => {})
+      .catch((err) => {
+        console.error('saveProgress failed:', err?.response?.status, err?.response?.data);
+      })
       .finally(() => {
         setSaving(false);
         setSaved(true);
