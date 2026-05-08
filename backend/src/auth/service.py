@@ -13,7 +13,7 @@ from src.config import settings
 
 def validate_init_data(
     init_data: str,
-    max_age_seconds: int = 86400,
+    max_age_seconds: int = 3600,
 ) -> TelegramUser:
     """Validate Telegram Mini App initData and extract user."""
     parsed = parse_qs(init_data)

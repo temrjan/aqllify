@@ -8,6 +8,7 @@ from src.auth.router import get_current_user
 from src.auth.schemas import TelegramUser
 from src.auth.service import get_or_create_user
 from src.database import get_db
+from src.lessons.service import get_lesson
 from src.progress.schemas import AddXpRequest, ReviewAnswer, ReviewCard, ReviewResult
 from src.progress.service import (
     add_xp,
@@ -78,6 +79,14 @@ async def complete_lesson(
 ) -> dict:
     """Complete a lesson: add XP, create SRS cards, update streak."""
     user = await get_or_create_user(db, tg_user)
+
+    # Verify the lesson actually exists before crediting XP — B5.
+    # Catches both missing files (FileNotFoundError) and unparsable
+    # frontmatter (ValueError from _parse_frontmatter).
+    try:
+        get_lesson(course, req.lesson_slug)
+    except (FileNotFoundError, ValueError) as e:
+        raise HTTPException(status_code=404, detail="lesson not found") from e
 
     # Create SRS cards from lesson phrases
     cards_created = await create_cards_from_lesson(

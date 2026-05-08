@@ -14,7 +14,7 @@
 
 | Категория | Всего | ✅ | 🟡 | ⬜ | ⏭️ |
 |-----------|-------|-----|-----|-----|-----|
-| 🔴 BLOCKING | 16 | 3 | 0 | 13 | 0 |
+| 🔴 BLOCKING | 16 | 5 | 1 | 10 | 0 |
 | 🟠 IMPORTANT — Backend Python | 12 | 1 | 0 | 11 | 0 |
 | 🟠 IMPORTANT — Frontend TS | 14 | 0 | 0 | 14 | 0 |
 | 🟠 IMPORTANT — Postgres | 8 | 0 | 0 | 8 | 0 |
@@ -24,7 +24,9 @@
 | ⚪ NIT | 5 | 0 | 0 | 5 | 0 |
 | Postgres deep (доп.) | 20 | 0 | 0 | 20 | 0 |
 | TypeScript deep (доп.) | 25 | 0 | 0 | 25 | 0 |
-| **Итого уникальных** | **~80** | **5** | **0** | **~75** | **0** |
+| **Итого уникальных** | **~80** | **7** | **1** | **~72** | **0** |
+
+**🎯 Этап 1 (security hot-patch) — закрыт.** Все 5 BLOCKING-security пунктов (B1, B2, B3, B4, B5) починены. B12 частично закрыт побочно (HMAC-тесты добавлены при фиксе B4).
 
 **Закрыто после аудита (commit `260cff3` от 2026-05-07 17:04, единственный post-audit коммит):**
 - IMPORTANT Backend: `HTTPException(...) from e` (B904) — `auth/router.py`
@@ -41,8 +43,8 @@
 - ✅ **B1** — Path traversal в `create_cards_from_lesson` — `backend/src/progress/service.py`. Закрыто 2026-05-08. `safe_path` guard + Pydantic regex на `lesson_slug` + Query regex на `course` + структурный лог `path_traversal_blocked`. 5 unit-тестов в `test_security_paths.py`.
 - ✅ **B2** — `_safe_path` prefix-check без разделителя — `backend/src/lessons/service.py`. Закрыто 2026-05-08. `str.startswith` → `is_relative_to`. Функция переименована `_safe_path` → `safe_path` (cross-module API). Регрессионный тест `test_blocks_sibling_prefix` точно reproduces оригинальный баг.
 - ✅ **B3** — LLM fallback утекает золотой ответ — `backend/src/services/llm.py`. Закрыто 2026-05-08. Удалён string-comparison fallback. На любую ошибку — лог `llm_check_failed` (только `type(e).__name__`, без `str(e)` чтобы не echo'ить request body) + bare `raise`. Роут `check_student_answer` ловит исключение и переводит в `HTTPException(503)` через `from e` (HTTPException re-raise'ится без обёртки). 3 unit-теста с sentinel `SECRET_ANSWER` + `structlog.testing.capture_logs()` (ассертит факт записи + отсутствие утечки в логе/исключении/return).
-- 🟡 **B4** — Telegram InitData HMAC — `backend/src/auth/service.py`. **Подтверждено:** `hmac.compare_digest` уже используется. **Открыто:** TTL=86400s (24h), Telegram советует 5–15 мин; нужно сократить до 3600s. _Skill-chain: `/workflow → /check → /python → /security-review → /python-review → /verify`._
-- ⬜ **B5** — `complete_lesson` не проверяет существование урока — `backend/src/progress/router.py:70+`. **Подтверждено:** в текущем коде нет вызова `get_lesson(course, req.lesson_slug)` до `add_xp`. Любой `lesson_slug` начисляет XP. _Skill-chain: `/workflow fast → /python → /python-review → /verify`._
+- ✅ **B4** — Telegram InitData HMAC — `backend/src/auth/service.py`. Закрыто 2026-05-08. TTL 86400s → 3600s (1ч; Telegram советует 5–15 мин, 1ч — компромисс с UX Mini App). `compare_digest` уже использовался. 6 unit-тестов в `test_auth.py` (валидный HMAC, истёкший auth_date, tampered hash, missing hash, modified field, default TTL regression guard).
+- ✅ **B5** — `complete_lesson` не проверяет существование урока — `backend/src/progress/router.py`. Закрыто 2026-05-08. Добавлен `get_lesson(course, req.lesson_slug)` ДО `add_xp` и `create_cards_from_lesson`. На `(FileNotFoundError, ValueError)` (битый frontmatter тоже) → `HTTPException(404, "lesson not found")`. Integration-тест отложен до **B13** (нет conftest), unit-coverage `get_lesson` уже есть в `test_lessons.py`.
 
 ### Корректность
 
@@ -58,7 +60,7 @@
 ### Tests
 
 - ⬜ **B11** — Нулевое покрытие `/complete-lesson` end-to-end — `backend/tests/`. Параметризованный тест с реальным lesson + score `[0.0, 0.5, 1.0, 1.05]`. _Зависит от **B13**._
-- ⬜ **B12** — Нет тестов на InitData HMAC — `backend/src/auth/service.py`. Tampered hash, expired auth_date, missing fields. _Зависит от **B13**._
+- 🟡 **B12** — Нет тестов на InitData HMAC — `backend/src/auth/service.py`. Частично закрыто 2026-05-08 (вместе с B4): добавлены 6 unit-тестов в `test_auth.py` для tampered hash, expired auth_date, missing hash, modified field. Не требовали B13 (pure unit, без TestClient/DB).
 - ⬜ **B13** — Нет `conftest.py` — `backend/tests/`. Нет async session fixture, нет TestClient, нет override `get_db`. **Корневая причина** дыр в покрытии. aiosqlite in-memory + TestClient + bypass для InitData. _Skill-chain: `/workflow → /check (aiosqlite vs testcontainers) → /python → /python-review`._
 
 ### Docker / Deploy
@@ -84,7 +86,7 @@
 - ⬜ `get_current_user` живёт в `auth/router.py` — должен быть в `auth/dependencies.py`.
 - ⬜ `AsyncOpenAI` создан на module-import — тесты падают без `OPENAI_API_KEY`, клиент не закрывается на shutdown. Lifespan pattern.
 - ✅ `raise HTTPException(...)` без `from e` (Ruff B904) — закрыто `260cff3` (`auth/router.py: chain with from e`). 2026-05-07.
-- ⬜ `auth_date` max 24h — слишком широкое окно реплея (см. **B4**).
+- ✅ `auth_date` max 24h — слишком широкое окно реплея — закрыто вместе с **B4** 2026-05-08.
 - ⬜ Startup health-check на `OPENAI_API_KEY` — после закрытия B3 пустой/невалидный ключ даёт 503 на каждый `/check-answer` без ранней диагностики. Известный долг, появился из-за фикса B3.
 
 ### Frontend / TypeScript
@@ -244,7 +246,8 @@
 
 | Дата | Коммит | Что закрыто |
 |------|--------|-------------|
-| 2026-05-08 | (этот коммит) | **BLOCKING B3** закрыт. Удалён leaky fallback в `services/llm.py` (возвращал `answer_context` через `feedback`/`corrected`). Логирование сужено до `type(e).__name__`. Роутер транслирует исключение в `HTTPException(503)` с узким re-raise для `HTTPException`. Новый `tests/test_llm_check.py` (3 теста, sentinel + `structlog.testing.capture_logs()`). 500/500 pytest passed. Известный долг (новые ⬜ пункты): startup health-check OpenAI key, frontend handling 503. |
+| 2026-05-08 | (этот коммит) | **BLOCKING B4 + B5** закрыты, **этап 1 завершён**. B4: TTL InitData 86400s → 3600s в `auth/service.py`. B5: `complete_lesson` теперь вызывает `get_lesson(course, slug)` до `add_xp`, ловит `FileNotFoundError`/`ValueError` → 404. Новый `test_auth.py` (6 HMAC-тестов: valid, expired, tampered, missing, modified field, TTL regression guard) — также закрывает побочно часть **B12** и связанный IMPORTANT-пункт по `auth_date max 24h`. 506/506 pytest passed. Inline security/python review: 0 blocking. |
+| 2026-05-08 | `301ef2b` | **BLOCKING B3** закрыт. Удалён leaky fallback в `services/llm.py` (возвращал `answer_context` через `feedback`/`corrected`). Логирование сужено до `type(e).__name__`. Роутер транслирует исключение в `HTTPException(503)` с узким re-raise для `HTTPException`. Новый `tests/test_llm_check.py` (3 теста, sentinel + `structlog.testing.capture_logs()`). 500/500 pytest passed. Известный долг (новые ⬜ пункты): startup health-check OpenAI key, frontend handling 503. |
 | 2026-05-08 | `18586af` | **BLOCKING B1+B2** закрыты. `safe_path` (`is_relative_to` вместо `startswith`) + guard в `create_cards_from_lesson` + Pydantic regex на `lesson_slug` + FastAPI Query regex на `course` + structlog warning `path_traversal_blocked`. Новый `tests/test_security_paths.py` (9 тестов). 497/497 pytest passed, ruff чисто, security-review 0 findings, python-review 3 suggestion (1 закрыт — лог; 2 known-debt). |
 | 2026-05-07 | `260cff3` | IMPORTANT Backend: `HTTPException ... from e` (B904) в `auth/router.py`. IMPORTANT Docker: caps json-file логов (10m × 5 per container). Дополнительно: structured logs middleware (`request_completed`, `lesson_completed`, `srs_reviewed`, `answer_checked`, `auth_failed`) — это новая функциональность, формально не из аудита, но уменьшает «слепоту» бэка. |
 | 2026-05-07 | `77e074d` | Базовая точка аудита. fix: compute lesson score against actual max XP. _Ironically critiqued in TS5 (fallback `?? 10` остался)._ |
