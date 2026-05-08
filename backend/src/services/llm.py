@@ -83,17 +83,10 @@ async def check_answer(
         }
 
     except Exception as e:
-        logger.error("llm_check_failed", error=str(e))
-        # Fallback: simple string comparison
-        is_correct = user_answer.strip().lower() == answer_context.strip().lower()
-        return {
-            "correct": is_correct,
-            "score": 1.0 if is_correct else 0.0,
-            "feedback": "Правильно!"
-            if is_correct
-            else f"Правильный ответ: {answer_context}",
-            "corrected": None if is_correct else answer_context,
-        }
+        # Log type only — error message can echo back the request body,
+        # which embeds answer_context. Caller translates to HTTP 503.
+        logger.error("llm_check_failed", error_type=type(e).__name__)
+        raise
 
 
 async def checkpoint_dialog(

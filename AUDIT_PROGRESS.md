@@ -14,7 +14,7 @@
 
 | Категория | Всего | ✅ | 🟡 | ⬜ | ⏭️ |
 |-----------|-------|-----|-----|-----|-----|
-| 🔴 BLOCKING | 16 | 2 | 0 | 14 | 0 |
+| 🔴 BLOCKING | 16 | 3 | 0 | 13 | 0 |
 | 🟠 IMPORTANT — Backend Python | 12 | 1 | 0 | 11 | 0 |
 | 🟠 IMPORTANT — Frontend TS | 14 | 0 | 0 | 14 | 0 |
 | 🟠 IMPORTANT — Postgres | 8 | 0 | 0 | 8 | 0 |
@@ -24,7 +24,7 @@
 | ⚪ NIT | 5 | 0 | 0 | 5 | 0 |
 | Postgres deep (доп.) | 20 | 0 | 0 | 20 | 0 |
 | TypeScript deep (доп.) | 25 | 0 | 0 | 25 | 0 |
-| **Итого уникальных** | **~80** | **4** | **0** | **~76** | **0** |
+| **Итого уникальных** | **~80** | **5** | **0** | **~75** | **0** |
 
 **Закрыто после аудита (commit `260cff3` от 2026-05-07 17:04, единственный post-audit коммит):**
 - IMPORTANT Backend: `HTTPException(...) from e` (B904) — `auth/router.py`
@@ -40,7 +40,7 @@
 
 - ✅ **B1** — Path traversal в `create_cards_from_lesson` — `backend/src/progress/service.py`. Закрыто 2026-05-08. `safe_path` guard + Pydantic regex на `lesson_slug` + Query regex на `course` + структурный лог `path_traversal_blocked`. 5 unit-тестов в `test_security_paths.py`.
 - ✅ **B2** — `_safe_path` prefix-check без разделителя — `backend/src/lessons/service.py`. Закрыто 2026-05-08. `str.startswith` → `is_relative_to`. Функция переименована `_safe_path` → `safe_path` (cross-module API). Регрессионный тест `test_blocks_sibling_prefix` точно reproduces оригинальный баг.
-- ⬜ **B3** — LLM fallback утекает золотой ответ — `backend/src/services/llm.py:88-99`. **Подтверждено:** при exception fallback всё ещё возвращает `feedback=f"Правильный ответ: {answer_context}"` и `corrected=answer_context`. На ошибку → 503, не раскрывать. _Skill-chain: `/workflow → /python → /security-review → /python-review → /verify`._
+- ✅ **B3** — LLM fallback утекает золотой ответ — `backend/src/services/llm.py`. Закрыто 2026-05-08. Удалён string-comparison fallback. На любую ошибку — лог `llm_check_failed` (только `type(e).__name__`, без `str(e)` чтобы не echo'ить request body) + bare `raise`. Роут `check_student_answer` ловит исключение и переводит в `HTTPException(503)` через `from e` (HTTPException re-raise'ится без обёртки). 3 unit-теста с sentinel `SECRET_ANSWER` + `structlog.testing.capture_logs()` (ассертит факт записи + отсутствие утечки в логе/исключении/return).
 - 🟡 **B4** — Telegram InitData HMAC — `backend/src/auth/service.py`. **Подтверждено:** `hmac.compare_digest` уже используется. **Открыто:** TTL=86400s (24h), Telegram советует 5–15 мин; нужно сократить до 3600s. _Skill-chain: `/workflow → /check → /python → /security-review → /python-review → /verify`._
 - ⬜ **B5** — `complete_lesson` не проверяет существование урока — `backend/src/progress/router.py:70+`. **Подтверждено:** в текущем коде нет вызова `get_lesson(course, req.lesson_slug)` до `add_xp`. Любой `lesson_slug` начисляет XP. _Skill-chain: `/workflow fast → /python → /python-review → /verify`._
 
@@ -85,6 +85,7 @@
 - ⬜ `AsyncOpenAI` создан на module-import — тесты падают без `OPENAI_API_KEY`, клиент не закрывается на shutdown. Lifespan pattern.
 - ✅ `raise HTTPException(...)` без `from e` (Ruff B904) — закрыто `260cff3` (`auth/router.py: chain with from e`). 2026-05-07.
 - ⬜ `auth_date` max 24h — слишком широкое окно реплея (см. **B4**).
+- ⬜ Startup health-check на `OPENAI_API_KEY` — после закрытия B3 пустой/невалидный ключ даёт 503 на каждый `/check-answer` без ранней диагностики. Известный долг, появился из-за фикса B3.
 
 ### Frontend / TypeScript
 
@@ -98,6 +99,7 @@
 - ⬜ Axios без типизации: `api.get(...)` вместо `api.get<LessonContent>(...)`. Блокировано до openapi-codegen.
 - ⬜ Inconsistent error handling: 6 разных стилей `.catch` в 5 файлах. Кандидат на `simplify`.
 - ⬜ `HomePage` `{lesson.score} XP` показывает 0–1 фракцию как XP — рендерит «0.5 XP», должно «50%».
+- ⬜ `LessonPage` обработка 503 от `/check-answer` — после закрытия B3 LLM ошибки приходят как 503; UI должен показать retry/error, не silent fail. Известный долг от B3.
 - ⬜ `ErrorBoundary` использует `window.location.href` reload — не сбрасывается при смене роута.
 - ⬜ `TabBar` использует `===` вместо `NavLink` — `/lesson/*` ломает подсветку.
 - ⬜ Eager-импорт всех роутов — нет `lazy()`/Suspense, big initial bundle.
@@ -242,7 +244,8 @@
 
 | Дата | Коммит | Что закрыто |
 |------|--------|-------------|
-| 2026-05-08 | (этот коммит) | **BLOCKING B1+B2** закрыты. `safe_path` (`is_relative_to` вместо `startswith`) + guard в `create_cards_from_lesson` + Pydantic regex на `lesson_slug` + FastAPI Query regex на `course` + structlog warning `path_traversal_blocked`. Новый `tests/test_security_paths.py` (9 тестов). 497/497 pytest passed, ruff чисто, security-review 0 findings, python-review 3 suggestion (1 закрыт — лог; 2 known-debt). |
+| 2026-05-08 | (этот коммит) | **BLOCKING B3** закрыт. Удалён leaky fallback в `services/llm.py` (возвращал `answer_context` через `feedback`/`corrected`). Логирование сужено до `type(e).__name__`. Роутер транслирует исключение в `HTTPException(503)` с узким re-raise для `HTTPException`. Новый `tests/test_llm_check.py` (3 теста, sentinel + `structlog.testing.capture_logs()`). 500/500 pytest passed. Известный долг (новые ⬜ пункты): startup health-check OpenAI key, frontend handling 503. |
+| 2026-05-08 | `18586af` | **BLOCKING B1+B2** закрыты. `safe_path` (`is_relative_to` вместо `startswith`) + guard в `create_cards_from_lesson` + Pydantic regex на `lesson_slug` + FastAPI Query regex на `course` + structlog warning `path_traversal_blocked`. Новый `tests/test_security_paths.py` (9 тестов). 497/497 pytest passed, ruff чисто, security-review 0 findings, python-review 3 suggestion (1 закрыт — лог; 2 known-debt). |
 | 2026-05-07 | `260cff3` | IMPORTANT Backend: `HTTPException ... from e` (B904) в `auth/router.py`. IMPORTANT Docker: caps json-file логов (10m × 5 per container). Дополнительно: structured logs middleware (`request_completed`, `lesson_completed`, `srs_reviewed`, `answer_checked`, `auth_failed`) — это новая функциональность, формально не из аудита, но уменьшает «слепоту» бэка. |
 | 2026-05-07 | `77e074d` | Базовая точка аудита. fix: compute lesson score against actual max XP. _Ironically critiqued in TS5 (fallback `?? 10` остался)._ |
 

@@ -90,12 +90,22 @@ async def check_student_answer(
 ) -> CheckAnswerResponse:
     """Check student answer using LLM."""
     _check_rate_limit(tg_user.id)
-    result = await check_answer(
-        exercise_type=req.exercise_type,
-        prompt=req.prompt,
-        user_answer=req.user_answer,
-        answer_context=req.answer_context,
-    )
+    try:
+        result = await check_answer(
+            exercise_type=req.exercise_type,
+            prompt=req.prompt,
+            user_answer=req.user_answer,
+            answer_context=req.answer_context,
+        )
+    except HTTPException:
+        # Let typed HTTP errors (e.g. future upstream-rate-limit 429) through unchanged.
+        raise
+    except Exception as e:
+        # Never leak answer_context: any LLM-side failure → opaque 503.
+        raise HTTPException(
+            status_code=503,
+            detail="LLM service temporarily unavailable",
+        ) from e
     logger.info(
         "answer_checked",
         user_id=tg_user.id,
