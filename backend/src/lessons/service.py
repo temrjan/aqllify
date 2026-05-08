@@ -18,16 +18,16 @@ from src.lessons.schemas import (
 COURSES_DIR = Path(__file__).parent.parent.parent.parent / "courses"
 
 
-def _safe_path(base: Path, *parts: str) -> Path:
+def safe_path(base: Path, *parts: str) -> Path:
     """Resolve path and verify it stays within base directory."""
     resolved = (base / Path(*parts)).resolve()
-    if not str(resolved).startswith(str(base.resolve())):
+    if not resolved.is_relative_to(base.resolve()):
         raise ValueError("Invalid path")
     return resolved
 
 
 def get_course_path(course: str) -> Path:
-    path = _safe_path(COURSES_DIR, course)
+    path = safe_path(COURSES_DIR, course)
     if not path.exists():
         raise FileNotFoundError(f"Course not found: {course}")
     return path
@@ -69,7 +69,7 @@ def list_lessons(course: str) -> list[LessonListItem]:
 def get_lesson(course: str, slug: str) -> LessonContent:
     """Load a single lesson with content and exercises."""
     course_path = get_course_path(course)
-    lesson_dir = _safe_path(course_path, slug)
+    lesson_dir = safe_path(course_path, slug)
 
     if not lesson_dir.exists():
         raise FileNotFoundError(f"Lesson not found: {slug}")

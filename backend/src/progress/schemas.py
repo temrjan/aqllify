@@ -37,6 +37,9 @@ class UserStatsResponse(BaseModel):
 
 
 class AddXpRequest(BaseModel):
-    lesson_slug: str = Field(max_length=100)
+    # Pattern blocks path-traversal at input layer; safe_path is the final
+    # guard. Allowed: lowercase letters, digits, `_`, `-`, `/`
+    # (e.g. "block-1/01-salomlashish"). `-` at end of class = literal.
+    lesson_slug: str = Field(max_length=100, pattern=r"^[a-z0-9][a-z0-9_/-]{0,99}$")
     xp: int = Field(ge=0, le=500)
     score: float | None = Field(default=None, ge=0, le=1.0)

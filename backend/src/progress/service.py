@@ -1,11 +1,15 @@
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+import structlog
 from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.lessons.service import safe_path
 from src.progress.models import SrsCard, UserLessonProgress, UserStats
 from src.progress.schemas import ReviewCard, ReviewResult
+
+logger = structlog.get_logger()
 
 COURSES_DIR = Path(__file__).parent.parent.parent.parent / "courses"
 
@@ -147,8 +151,17 @@ async def create_cards_from_lesson(
     lesson_slug: str,
 ) -> int:
     """Create SRS cards for all phrases in a lesson. Returns count created."""
-    # Load lesson phrases from lesson.md
-    lesson_path = COURSES_DIR / course / lesson_slug / "lesson.md"
+    # Load lesson phrases from lesson.md (path-traversal guarded)
+    try:
+        lesson_path = safe_path(COURSES_DIR, course, lesson_slug, "lesson.md")
+    except ValueError:
+        logger.warning(
+            "path_traversal_blocked",
+            user_id=user_id,
+            course=course,
+            lesson_slug=lesson_slug,
+        )
+        return 0
 
     cards_created = 0
     today = date.today()

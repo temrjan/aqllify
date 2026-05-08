@@ -1,5 +1,7 @@
+from typing import Annotated
+
 import structlog
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.router import get_current_user
@@ -70,7 +72,7 @@ async def submit_review(
 @router.post("/complete-lesson")
 async def complete_lesson(
     req: AddXpRequest,
-    course: str = "uzlearn",
+    course: Annotated[str, Query(pattern=r"^[a-z0-9][a-z0-9_-]{0,49}$")] = "uzlearn",
     tg_user: TelegramUser = Depends(get_current_user),
     db: AsyncSession = Depends(get_db),
 ) -> dict:
