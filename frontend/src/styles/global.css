@@ -15,6 +15,14 @@ body {
   overscroll-behavior: none;
 }
 
+button,
+input,
+textarea,
+select,
+[role="button"] {
+  touch-action: manipulation;
+}
+
 :root {
   --accent: #4CAF50;
   --accent-light: rgba(76, 175, 80, 0.15);

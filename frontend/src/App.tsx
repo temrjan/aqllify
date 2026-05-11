@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/ErrorBoundary';
 import { HomePage } from '@/pages/HomePage';
 import { LessonPage } from '@/pages/LessonPage';
@@ -7,10 +7,13 @@ import { ReviewPage } from '@/pages/ReviewPage';
 import { ProgressPage } from '@/pages/ProgressPage';
 import { TabBar } from '@/components/TabBar';
 
-export function App() {
+function Shell() {
+  const { pathname } = useLocation();
+  const hideTabBar =
+    pathname.startsWith('/lesson/') || pathname.startsWith('/checkpoint/');
+
   return (
-    <BrowserRouter>
-      <ErrorBoundary>
+    <ErrorBoundary>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/lesson/:block/:lessonSlug" element={<LessonPage />} />
@@ -18,8 +21,15 @@ export function App() {
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/progress" element={<ProgressPage />} />
       </Routes>
-      <TabBar />
-      </ErrorBoundary>
+      {!hideTabBar && <TabBar />}
+    </ErrorBoundary>
+  );
+}
+
+export function App() {
+  return (
+    <BrowserRouter>
+      <Shell />
     </BrowserRouter>
   );
 }

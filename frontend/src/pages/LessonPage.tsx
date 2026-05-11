@@ -54,6 +54,7 @@ export function LessonPage() {
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
   const [mistakes, setMistakes] = useState<Mistake[]>([]);
+  const [submitting, setSubmitting] = useState(false);
 
   // ═══ ALL useEffects at the top, before any returns ═══
 
@@ -126,6 +127,7 @@ export function LessonPage() {
     setMistakes([]);
     setSaved(false);
     setSaving(false);
+    setSubmitting(false);
   }, []);
 
   // ═══ Render ═══
@@ -195,8 +197,14 @@ export function LessonPage() {
     }
 
     const handleSubmit = async () => {
-      if (!answer.trim()) return;
+      if (!answer.trim() || submitting || feedback) return;
 
+      // Close keyboard BEFORE state changes to avoid layout-shift ghost taps
+      if (document.activeElement instanceof HTMLElement) {
+        document.activeElement.blur();
+      }
+
+      setSubmitting(true);
       try {
         const res = await api.post('/lessons/check-answer', {
           exercise_type: ex.type,
@@ -220,22 +228,21 @@ export function LessonPage() {
           }]);
         }
       } catch {
+        setCorrect(false);
         setFeedback('Ошибка проверки. Попробуй ещё раз.');
+      } finally {
+        setSubmitting(false);
       }
-
-      // Close keyboard and scroll to see button
-      if (document.activeElement instanceof HTMLElement) {
-        document.activeElement.blur();
-      }
-      setTimeout(() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }), 100);
     };
 
     const handleNext = () => {
+      if (submitting) return;
       setAnswer('');
       setFeedback(null);
       setCorrect(null);
       setSelectedWords([]);
       setAvailableWords([]);
+      setSubmitting(false);
 
       if (exerciseIndex + 1 < lesson.exercises.length) {
         setExerciseIndex((prev) => prev + 1);
@@ -246,16 +253,19 @@ export function LessonPage() {
     };
 
     const handleWordSelect = (word: string, idx: number) => {
+      if (feedback) return;
       setSelectedWords((prev) => [...prev, word]);
       setAvailableWords((prev) => prev.filter((_, i) => i !== idx));
     };
 
     const handleWordRemove = (word: string, idx: number) => {
+      if (feedback) return;
       setAvailableWords((prev) => [...prev, word]);
       setSelectedWords((prev) => prev.filter((_, i) => i !== idx));
     };
 
     const handleBuildCheck = () => {
+      if (feedback || submitting) return;
       const built = selectedWords.join(' ');
       const isCorrect = built.toLowerCase() === (ex.answer ?? '').toLowerCase();
       setCorrect(isCorrect);
@@ -271,6 +281,7 @@ export function LessonPage() {
     };
 
     const handleChoiceSelect = (optionIndex: number) => {
+      if (feedback || submitting) return;
       const isCorrect = optionIndex === ex.correct;
       setCorrect(isCorrect);
       setFeedback(isCorrect ? 'Правильно!' : `Правильный ответ: ${ex.options?.[ex.correct ?? 0]}`);
@@ -284,6 +295,36 @@ export function LessonPage() {
           prompt: ex.prompt,
           corrected: ex.options?.[ex.correct ?? 0] ?? '',
         }]);
+      }
+    };
+
+    // Unified primary button — single DOM node across "check" and "next" states
+    // to avoid mount/unmount race where touchend lands on stale target.
+    const isInputType =
+      ex.type !== 'choice' && ex.type !== 'build_sentence';
+    const canSubmit = !feedback && (
+      ex.type === 'build_sentence'
+        ? selectedWords.length > 0
+        : isInputType
+        ? answer.trim().length > 0
+        : false
+    );
+    const isLastExercise = exerciseIndex + 1 >= lesson.exercises.length;
+    const showPrimary = ex.type !== 'choice' || feedback !== null;
+    const primaryLabel = submitting
+      ? 'Проверяю...'
+      : feedback
+      ? (isLastExercise ? 'Завершить' : 'Следующее')
+      : 'Проверить';
+    const primaryDisabled = submitting || (!feedback && !canSubmit);
+    const primaryAction = () => {
+      if (submitting) return;
+      if (feedback) {
+        handleNext();
+      } else if (ex.type === 'build_sentence') {
+        handleBuildCheck();
+      } else if (isInputType) {
+        void handleSubmit();
       }
     };
 
@@ -332,7 +373,7 @@ export function LessonPage() {
                   <button
                     key={i}
                     className={styles.buildWordSelected}
-                    onClick={() => !feedback && handleWordRemove(w, i)}
+                    onClick={() => handleWordRemove(w, i)}
                     disabled={feedback !== null}
                   >
                     {w}
@@ -341,44 +382,39 @@ export function LessonPage() {
                   <span className={styles.buildPlaceholder}>Нажми на слова ниже</span>
                 )}
               </div>
-              <div className={styles.buildWords}>
-                {availableWords.map((w, i) => (
-                  <button
-                    key={i}
-                    className={styles.buildWord}
-                    onClick={() => handleWordSelect(w, i)}
-                    disabled={feedback !== null}
-                  >
-                    {w}
-                  </button>
-                ))}
-              </div>
-              {!feedback && selectedWords.length > 0 && (
-                <button className={styles.submitBtn} onClick={handleBuildCheck}>
-                  Проверить
-                </button>
+              {!feedback && (
+                <div className={styles.buildWords}>
+                  {availableWords.map((w, i) => (
+                    <button
+                      key={i}
+                      className={styles.buildWord}
+                      onClick={() => handleWordSelect(w, i)}
+                    >
+                      {w}
+                    </button>
+                  ))}
+                </div>
               )}
             </div>
-          ) : (
+          ) : !feedback ? (
             <div className={styles.inputArea}>
               <input
                 className={styles.answerInput}
                 value={answer}
                 onChange={(e) => setAnswer(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && !feedback && handleSubmit()}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.preventDefault();
+                    void handleSubmit();
+                  }
+                }}
                 placeholder="Напиши ответ..."
-                disabled={feedback !== null}
-                autoFocus
               />
-              {!feedback && (
-                <button
-                  className={styles.submitBtn}
-                  onClick={handleSubmit}
-                  disabled={!answer.trim()}
-                >
-                  Проверить
-                </button>
-              )}
+            </div>
+          ) : (
+            <div className={styles.userAnswer}>
+              <span className={styles.userAnswerLabel}>Твой ответ</span>
+              <span className={styles.userAnswerText}>{answer}</span>
             </div>
           )}
 
@@ -389,10 +425,14 @@ export function LessonPage() {
           )}
         </section>
 
-        {feedback && (
+        {showPrimary && (
           <div className={styles.footer}>
-            <button className={styles.primaryBtn} onClick={handleNext}>
-              {exerciseIndex + 1 < lesson.exercises.length ? 'Следующее' : 'Завершить'}
+            <button
+              className={styles.primaryBtn}
+              onClick={primaryAction}
+              disabled={primaryDisabled}
+            >
+              {primaryLabel}
             </button>
           </div>
         )}
