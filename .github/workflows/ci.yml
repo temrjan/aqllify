@@ -10,6 +10,21 @@ jobs:
   backend:
     name: Backend — Lint + Tests
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: aqllify_test
+          POSTGRES_PASSWORD: ci-test-only
+          POSTGRES_DB: aqllify_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U aqllify_test"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      PYTHONPATH: .
+      DATABASE_URL: postgresql+asyncpg://aqllify_test:ci-test-only@localhost:5432/aqllify_test
+      TEST_DATABASE_URL: postgresql+asyncpg://aqllify_test:ci-test-only@localhost:5432/aqllify_test
     defaults:
       run:
         working-directory: backend
@@ -32,7 +47,14 @@ jobs:
       - name: Format check
         run: ruff format --check .
 
+      - name: Prepare disposable databases
+        run: |
+          alembic upgrade head
+          PGPASSWORD=ci-test-only psql -h localhost -U aqllify_test -d aqllify_test -c 'CREATE DATABASE aqllify_migration_test'
+
       - name: Tests
+        env:
+          TEST_MIGRATION_DATABASE_URL: postgresql+asyncpg://aqllify_test:ci-test-only@localhost:5432/aqllify_migration_test
         run: pytest tests/ -v --tb=short
 
   frontend:

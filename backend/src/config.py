@@ -1,3 +1,6 @@
+from typing import Literal
+
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -21,7 +24,12 @@ class Settings(BaseSettings):
 
     # LLM
     openai_api_key: str = ""
-    llm_model: str = "gpt-4o-mini"
+    llm_model: str = "gpt-6-luna"
+    llm_reasoning_effort: Literal["none", "low", "medium", "high", "xhigh", "max"] = (
+        "medium"
+    )
+    # Completion budget includes reasoning tokens as well as visible text.
+    llm_max_completion_tokens: int = Field(default=4096, ge=1)
 
     # TTS
     tts_lang: str = "uz"

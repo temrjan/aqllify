@@ -1,0 +1,1665 @@
+{
+  "id": "russian",
+  "version": "russian-starter-1",
+  "title": "Rus tili, hayotdagi suhbatlar",
+  "description": "O‘zbekcha tushuntirishlar. Kundalik vaziyatlar. O‘z sur’atingizda mashq qiling.",
+  "alphabet": [
+    {
+      "title": "Tanish shakllar",
+      "task": "А, К, М, О, Т: tanish harflardan boshlang. Ruscha so‘zlarni kirill yozuvida o‘qing."
+    },
+    {
+      "title": "Shakli tanish, tovushi boshqa",
+      "task": "В — v, Н — n, Р — r, С — s, У — u, Х — x. Masalan: «нос» — burun."
+    },
+    {
+      "title": "Yangi belgilar",
+      "task": "Ж — j (jurnal), Ш — sh, Ч — ch, Ц — ts. Ё ko‘pincha «yo» kabi eshitiladi."
+    },
+    {
+      "title": "Eshitib o‘rganing",
+      "task": "Ы, Щ va yumshoqlik belgisini audio bilan mashq qiling. Lotincha yordam ruscha talaffuzni to‘liq ifodalamaydi."
+    }
+  ],
+  "levels": [
+    {
+      "id": "beginner",
+      "title": "Boshlang‘ich",
+      "description": "Kundalik suhbat uchun birinchi qadamlar.",
+      "available": true,
+      "entry": [
+        "Noldan boshlashingiz mumkin.",
+        "Kirill yozuvi bo‘yicha yordam darslar bilan birga beriladi."
+      ],
+      "units": [
+        {
+          "title": "Tanishuv va aniqlashtirish",
+          "task": "Ism so‘rash, qaytarishni va sekinroq gapirishni iltimos qilish."
+        },
+        {
+          "title": "Vaqt va joy",
+          "task": "Uchrashuv vaqtini kelishish, manzilni topish."
+        },
+        {
+          "title": "Kundalik tanlovlar",
+          "task": "Xarid, buyurtma va xizmatga yozilish."
+        },
+        {
+          "title": "Erkinroq muloqot",
+          "task": "Reja, yordam, vazifa va tushunmovchilik haqida gapirish."
+        }
+      ],
+      "completion": [
+        "Yangi misollarda qisqa savolni tushunib, mos javob bera olasiz.",
+        "Vaqt, son va manzilni aniqlashtira olasiz.",
+        "Tayyor matnsiz o‘zingiz haqida aytib, suhbatni davom ettirish uchun savol berasiz.",
+        "Bu yo‘l — boshlang‘ich amaliyot; to‘liq til darajasi sertifikati emas."
+      ]
+    },
+    {
+      "id": "intermediate",
+      "title": "O‘rta",
+      "description": "Fikrni bog‘lab aytish va suhbatni davom ettirish.",
+      "available": false,
+      "entry": [
+        "Oddiy kundalik savollarni tushunasiz va javob bera olasiz.",
+        "Tushunmagan joyingizni so‘rab aniqlashtirasiz."
+      ],
+      "units": [
+        {
+          "title": "Voqeani hikoya qilish",
+          "task": "Kecha nima bo‘lganini ketma-ket ayting va keyingi savollarga javob bering."
+        },
+        {
+          "title": "Muammo va yechim",
+          "task": "Vaziyatni tushuntiring, bir nechta yechimni solishtiring."
+        },
+        {
+          "title": "Fikr va sabab",
+          "task": "Taklifga munosabat bildiring va sababini tushuntiring."
+        },
+        {
+          "title": "Suhbatni davom ettirish",
+          "task": "Qayta so‘rang, boshqa so‘zlar bilan tushuntiring va umumiy xulosa qiling."
+        }
+      ],
+      "completion": [
+        "Tanish mavzuda bir necha bog‘langan gap bilan hikoya qilasiz.",
+        "Fikringizni sabab va misol bilan tushuntirasiz.",
+        "Suhbatdoshning kutilmagan savoliga javob berib, tushunmovchilikni hal qilasiz.",
+        "Bu vazifalarni yangi misollarda tayyor matnsiz bajarsangiz, yuqori bosqichga o‘tishingiz mumkin."
+      ]
+    },
+    {
+      "id": "advanced",
+      "title": "Yuqori",
+      "description": "Nozik ma’no, dalil va vaziyatga mos uslub.",
+      "available": false,
+      "entry": [
+        "Fikringizni izchil bayon qilib, suhbatni davom ettira olasiz.",
+        "Tanish mavzudagi matn va nutqning asosiy mazmunini tushunasiz."
+      ],
+      "units": [
+        {
+          "title": "Dalil va qarshi fikr",
+          "task": "Bir qarorni asoslang va muloyim qarshi fikr bildiring."
+        },
+        {
+          "title": "Ma’no nozikliklari",
+          "task": "Gapdagi kinoya, ishonch va ehtiyotkorlikni farqlang."
+        },
+        {
+          "title": "Uslubni tanlash",
+          "task": "Bir xabarni do‘stingizga va rasmiy tashkilotga moslab yozing."
+        },
+        {
+          "title": "Murakkab kelishuv",
+          "task": "Bir necha shartni muhokama qilib, kelishuvni aniq umumlashtiring."
+        }
+      ],
+      "completion": [
+        "Murakkab masalani tuzilgan dalillar bilan muhokama qilasiz.",
+        "So‘z va uslubni suhbatdosh hamda vaziyatga mos tanlaysiz.",
+        "Uzunroq matndagi asosiy fikr, dalil va muallif munosabatini ajratasiz.",
+        "Notanish vaziyatdagi natijani o‘qituvchi bilan baholash tavsiya etiladi; bu sahifa sertifikat bermaydi."
+      ]
+    }
+  ],
+  "placement": [
+    {
+      "id": "read-one",
+      "kind": "choice",
+      "skill": "reading",
+      "prompt": "«Вход справа». Kirish qayerda?",
+      "options": [
+        "Orqada",
+        "Chapda",
+        "O‘ngda"
+      ],
+      "accepted": [
+        "O‘ngda"
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": null,
+      "transcript": null
+    },
+    {
+      "id": "read-two",
+      "kind": "choice",
+      "skill": "reading",
+      "prompt": "«Несмотря на дождь, встреча состоится». Nima bo‘ladi?",
+      "options": [
+        "Uchrashuv bo‘ladi",
+        "Uchrashuv bekor qilinadi",
+        "Yomg‘ir to‘xtagan"
+      ],
+      "accepted": [
+        "Uchrashuv bo‘ladi"
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": null,
+      "transcript": null
+    },
+    {
+      "id": "listen-one",
+      "kind": "choice",
+      "skill": "listening",
+      "prompt": "Tinglang. Uchrashuv soat nechada?",
+      "options": [
+        "Olti",
+        "Uch",
+        "Yetti"
+      ],
+      "accepted": [
+        "Olti"
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": "bb7af469d3cc13e4.mp3",
+      "transcript": "Давайте встретимся в шесть."
+    },
+    {
+      "id": "listen-two",
+      "kind": "choice",
+      "skill": "listening",
+      "prompt": "Tinglang. Suhbatdosh nima taklif qilyapti?",
+      "options": [
+        "Qarorni keyinroq qabul qilish",
+        "Rejani butunlay bekor qilish",
+        "Darhol ketish"
+      ],
+      "accepted": [
+        "Qarorni keyinroq qabul qilish"
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": "6c7f9b4eb1a6f311.mp3",
+      "transcript": "Предлагаю не торопиться с решением и вернуться к этому вопросу завтра."
+    },
+    {
+      "id": "response-one",
+      "kind": "choice",
+      "skill": "response",
+      "prompt": "«Вы не могли бы повторить адрес?» Mos javobni tanlang.",
+      "options": [
+        "Конечно, улица Мира, дом пять.",
+        "Меня зовут Анна.",
+        "Вчера было холодно."
+      ],
+      "accepted": [
+        "Конечно, улица Мира, дом пять."
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": null,
+      "transcript": null
+    },
+    {
+      "id": "response-two",
+      "kind": "choice",
+      "skill": "response",
+      "prompt": "Taklifga muloyim qarshi fikr bildiring.",
+      "options": [
+        "Я понимаю вашу позицию, однако вижу другое решение.",
+        "Вы ничего не понимаете.",
+        "Мне всё равно."
+      ],
+      "accepted": [
+        "Я понимаю вашу позицию, однако вижу другое решение."
+      ],
+      "explanation": "Bu qisqa yo‘naltiruvchi tekshiruv.",
+      "audio": null,
+      "transcript": null
+    }
+  ],
+  "lessons": [
+    {
+      "id": "introductions",
+      "order": 1,
+      "title": "Tanishuv",
+      "goal": "O‘zingizni tanishtiring va suhbatdoshingizning ismini so‘rang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Здравствуйте!",
+          "uzbek": "Salom!",
+          "audio": "92d6a4ecc0932cf0.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Меня зовут Азиза.",
+          "uzbek": "Mening ismim Aziza.",
+          "audio": "472c55a317252dc1.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Как вас зовут?",
+          "uzbek": "Ismingiz nima?",
+          "audio": "5a3f8ad7fc2b9a74.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Очень приятно.",
+          "uzbek": "Tanishganimdan xursandman.",
+          "audio": "0389d076c9edfaca.mp3"
+        }
+      ],
+      "explanation": "«Меня зовут…» dan keyin ismingizni ayting. «Вы / вас» — hurmat shakli. Yaqin tanish bilan «Как тебя зовут?» deyish mumkin.",
+      "dialogue": [
+        {
+          "speaker": "Азиза",
+          "russian": "Здравствуйте! Меня зовут Азиза.",
+          "uzbek": "Salom! Mening ismim Aziza."
+        },
+        {
+          "speaker": "Илья",
+          "russian": "Здравствуйте! Я Илья.",
+          "uzbek": "Salom! Men Ilyaman."
+        },
+        {
+          "speaker": "Азиза",
+          "russian": "Очень приятно.",
+          "uzbek": "Tanishganimdan xursandman."
+        },
+        {
+          "speaker": "Илья",
+          "russian": "Мне тоже.",
+          "uzbek": "Men ham xursandman."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Здравствуйте!» nimani anglatadi?",
+          "options": [
+            "Mening ismim Aziza.",
+            "Ismingiz nima?",
+            "Salom!"
+          ],
+          "accepted": [
+            "Salom!"
+          ],
+          "explanation": "Bu ibora: Salom!"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "«Как вас зовут?» savoliga mos javobni tanlang.",
+          "options": [
+            "Сколько стоит?",
+            "Меня зовут Азиза.",
+            "До завтра."
+          ],
+          "accepted": [
+            "Меня зовут Азиза."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Меня ___ Азиза».",
+          "accepted": [
+            "зовут"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Ismingiz nima?»",
+          "accepted": [
+            "Как вас зовут?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Как вас зовут?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Kitob klubida yangi odam bilan tanishdingiz. Uning ismini qanday so‘raysiz?",
+          "options": [
+            "Как вас зовут?",
+            "Где остановка?",
+            "Который час?"
+          ],
+          "accepted": [
+            "Как вас зовут?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: O‘zingizni tanishtiring va suhbatdoshingizning ismini so‘rang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "clarification",
+      "order": 2,
+      "title": "Tushunmaganda so‘rash",
+      "goal": "Tushunmagan joyingizni aniqlashtiring va takrorlashni so‘rang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Повторите, пожалуйста.",
+          "uzbek": "Iltimos, takrorlang.",
+          "audio": "3d96656d621de03d.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Говорите, пожалуйста, медленнее.",
+          "uzbek": "Iltimos, sekinroq gapiring.",
+          "audio": "00d081378d3a31b3.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Что значит это слово?",
+          "uzbek": "Bu so‘z nimani anglatadi?",
+          "audio": "c110d7001ec1f4b8.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Я не понимаю.",
+          "uzbek": "Men tushunmayapman.",
+          "audio": "c685654cade7e6e4.mp3"
+        }
+      ],
+      "explanation": "«Пожалуйста» iltimosni muloyim qiladi. «Медленнее» — sekinroq. Tushunmaganingizni aytish suhbatni davom ettirishga yordam beradi.",
+      "dialogue": [
+        {
+          "speaker": "Анна",
+          "russian": "Встречаемся у входа.",
+          "uzbek": "Kirish joyida uchrashamiz."
+        },
+        {
+          "speaker": "Дилшод",
+          "russian": "Что значит это слово: «вход»?",
+          "uzbek": "«Вход» so‘zi nimani anglatadi?"
+        },
+        {
+          "speaker": "Анна",
+          "russian": "Это место, где заходят в здание.",
+          "uzbek": "Bu binoga kiriladigan joy."
+        },
+        {
+          "speaker": "Дилшод",
+          "russian": "Теперь понятно, спасибо.",
+          "uzbek": "Endi tushunarli, rahmat."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Повторите, пожалуйста.» nimani anglatadi?",
+          "options": [
+            "Iltimos, takrorlang.",
+            "Bu so‘z nimani anglatadi?",
+            "Iltimos, sekinroq gapiring."
+          ],
+          "accepted": [
+            "Iltimos, takrorlang."
+          ],
+          "explanation": "Bu ibora: Iltimos, takrorlang."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Suhbatdosh juda tez gapiryapti. Qaysi javob yordam beradi?",
+          "options": [
+            "Мне удобно в шесть.",
+            "Говорите, пожалуйста, медленнее.",
+            "Очень приятно."
+          ],
+          "accepted": [
+            "Говорите, пожалуйста, медленнее."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Повторите, ___».",
+          "accepted": [
+            "пожалуйста"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Bu so‘z nimani anglatadi?»",
+          "accepted": [
+            "Что значит это слово?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Что значит это слово?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Telefonda oxirgi gapni eshitmadingiz. Nima deysiz?",
+          "options": [
+            "Повторите, пожалуйста.",
+            "До встречи.",
+            "Я согласен."
+          ],
+          "accepted": [
+            "Повторите, пожалуйста."
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Tushunmagan joyingizni aniqlashtiring va takrorlashni so‘rang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "meetings",
+      "order": 3,
+      "title": "Uchrashuvni kelishish",
+      "goal": "Uchrashuv vaqtini taklif qiling va o‘zgartirishni so‘rang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Давайте встретимся завтра.",
+          "uzbek": "Keling, ertaga uchrashamiz.",
+          "audio": "29bcc0da1c39befb.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Во сколько?",
+          "uzbek": "Soat nechada?",
+          "audio": "2fe8a86cedb175af.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Мне удобно в шесть.",
+          "uzbek": "Menga soat oltida qulay.",
+          "audio": "265cd185b5a29479.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Можно перенести встречу?",
+          "uzbek": "Uchrashuvni boshqa vaqtga ko‘chirish mumkinmi?",
+          "audio": "da09b6afda4ff4d3.mp3"
+        }
+      ],
+      "explanation": "«В шесть» — soat oltida. «Мне удобно…» sizga qulay vaqtni bildiradi. «Давайте…» birgalikdagi taklif uchun ishlatiladi.",
+      "dialogue": [
+        {
+          "speaker": "Малика",
+          "russian": "Давайте встретимся завтра.",
+          "uzbek": "Keling, ertaga uchrashamiz."
+        },
+        {
+          "speaker": "Олег",
+          "russian": "Во сколько?",
+          "uzbek": "Soat nechada?"
+        },
+        {
+          "speaker": "Малика",
+          "russian": "Мне удобно в шесть.",
+          "uzbek": "Menga soat oltida qulay."
+        },
+        {
+          "speaker": "Олег",
+          "russian": "Хорошо, до завтра!",
+          "uzbek": "Yaxshi, ertagacha!"
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Давайте встретимся завтра.» nimani anglatadi?",
+          "options": [
+            "Menga soat oltida qulay.",
+            "Soat nechada?",
+            "Keling, ertaga uchrashamiz."
+          ],
+          "accepted": [
+            "Keling, ertaga uchrashamiz."
+          ],
+          "explanation": "Bu ibora: Keling, ertaga uchrashamiz."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "«Во сколько встретимся?» savoliga javob bering.",
+          "options": [
+            "Это мой друг.",
+            "Мне удобно в шесть.",
+            "Мне чай, пожалуйста."
+          ],
+          "accepted": [
+            "Мне удобно в шесть."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Мне удобно ___ шесть».",
+          "accepted": [
+            "в"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Menga soat oltida qulay.»",
+          "accepted": [
+            "Мне удобно в шесть."
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Мне удобно в шесть."
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Uchrashuv uchda, lekin siz beshda bo‘shaysiz. Mos taklifni tanlang.",
+          "options": [
+            "Можно встретиться в пять?",
+            "До встречи в три!",
+            "Сейчас три часа."
+          ],
+          "accepted": [
+            "Можно встретиться в пять?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Uchrashuv vaqtini taklif qiling va o‘zgartirishni so‘rang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "numbers-time",
+      "order": 4,
+      "title": "Vaqt va sonlar",
+      "goal": "Vaqtni, narxni va kerakli sonni aniq tushuning.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Сейчас девять часов.",
+          "uzbek": "Hozir soat to‘qqiz.",
+          "audio": "e2e02abfcb241b8b.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Встреча в половине десятого.",
+          "uzbek": "Uchrashuv soat to‘qqiz yarimda.",
+          "audio": "560774c5685592d4.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Сколько это стоит?",
+          "uzbek": "Bu qancha turadi?",
+          "audio": "5e2b06c58d4b8c40.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Мне нужно два билета.",
+          "uzbek": "Menga ikkita chipta kerak.",
+          "audio": "22126a9107ee4613.mp3"
+        }
+      ],
+      "explanation": "«Половина десятого» — 9:30, 10:30 emas. Vaqt yoki sonni tushunmasangiz, qayta aytib tasdiqlang: «Два билета, правильно?»",
+      "dialogue": [
+        {
+          "speaker": "Саида",
+          "russian": "Сколько стоит билет?",
+          "uzbek": "Chipta qancha turadi?"
+        },
+        {
+          "speaker": "Лев",
+          "russian": "Двести рублей.",
+          "uzbek": "Ikki yuz rubl."
+        },
+        {
+          "speaker": "Саида",
+          "russian": "Мне нужно два билета.",
+          "uzbek": "Menga ikkita chipta kerak."
+        },
+        {
+          "speaker": "Лев",
+          "russian": "Всего четыреста рублей.",
+          "uzbek": "Jami to‘rt yuz rubl."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Сейчас девять часов.» nimani anglatadi?",
+          "options": [
+            "Bu qancha turadi?",
+            "Hozir soat to‘qqiz.",
+            "Uchrashuv soat to‘qqiz yarimda."
+          ],
+          "accepted": [
+            "Hozir soat to‘qqiz."
+          ],
+          "explanation": "Bu ibora: Hozir soat to‘qqiz."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "«В половине десятого» qaysi vaqt?",
+          "options": [
+            "09:00",
+            "10:30",
+            "09:30"
+          ],
+          "accepted": [
+            "09:30"
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Сейчас девять ___».",
+          "accepted": [
+            "часов"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Bu qancha turadi?»",
+          "accepted": [
+            "Сколько это стоит?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Сколько это стоит?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "«Встреча в четверг в семь» deyishdi. Qaysi tasdiq to‘g‘ri?",
+          "options": [
+            "В четверг в семь, правильно?",
+            "В четверг в шесть, правильно?",
+            "В пятницу в семь, правильно?"
+          ],
+          "accepted": [
+            "В четверг в семь, правильно?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Vaqtni, narxni va kerakli sonni aniq tushuning.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "directions",
+      "order": 5,
+      "title": "Yo‘lni topish",
+      "goal": "Manzilni so‘rang va yo‘nalishni aniqlashtiring.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Как пройти к библиотеке?",
+          "uzbek": "Kutubxonaga qanday borsa bo‘ladi?",
+          "audio": "61e74204ecbfd541.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Идите прямо.",
+          "uzbek": "To‘g‘riga boring.",
+          "audio": "b57fa9a707a14a20.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Поверните налево.",
+          "uzbek": "Chapga buriling.",
+          "audio": "975d62c8723c290d.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Это далеко?",
+          "uzbek": "Bu uzoqmi?",
+          "audio": "f89e9db6e0e58d9d.mp3"
+        }
+      ],
+      "explanation": "«К библиотеке» — kutubxona tomon. «Налево» — chapga, «направо» — o‘ngga. Bu ikki so‘zni adashtirmaslik uchun yo‘nalishni takrorlab tasdiqlang.",
+      "dialogue": [
+        {
+          "speaker": "Камола",
+          "russian": "Как пройти к библиотеке?",
+          "uzbek": "Kutubxonaga qanday borsa bo‘ladi?"
+        },
+        {
+          "speaker": "Мария",
+          "russian": "Идите прямо, потом налево.",
+          "uzbek": "To‘g‘riga boring, keyin chapga."
+        },
+        {
+          "speaker": "Камола",
+          "russian": "После кафе налево?",
+          "uzbek": "Kafedan keyin chapgami?"
+        },
+        {
+          "speaker": "Мария",
+          "russian": "Да, всё верно.",
+          "uzbek": "Ha, to‘g‘ri."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Как пройти к библиотеке?» nimani anglatadi?",
+          "options": [
+            "Kutubxonaga qanday borsa bo‘ladi?",
+            "To‘g‘riga boring.",
+            "Chapga buriling."
+          ],
+          "accepted": [
+            "Kutubxonaga qanday borsa bo‘ladi?"
+          ],
+          "explanation": "Bu ibora: Kutubxonaga qanday borsa bo‘ladi?"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "«Идите прямо, потом направо». Avval nima qilasiz?",
+          "options": [
+            "Поворачиваю налево.",
+            "Иду прямо.",
+            "Остаюсь здесь."
+          ],
+          "accepted": [
+            "Иду прямо."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Поверните ___» — chapga buriling.",
+          "accepted": [
+            "налево"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Chapga buriling.»",
+          "accepted": [
+            "Поверните налево."
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Поверните налево."
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Dorixonani qidiryapsiz. Qaysi savol mos?",
+          "options": [
+            "Сколько стоит аптека?",
+            "Когда вы приехали?",
+            "Как пройти к аптеке?"
+          ],
+          "accepted": [
+            "Как пройти к аптеке?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Manzilni so‘rang va yo‘nalishni aniqlashtiring.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "shopping",
+      "order": 6,
+      "title": "Xarid va tanlov",
+      "goal": "Mahsulot haqida so‘rang va boshqa variantni tanlang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Можно посмотреть?",
+          "uzbek": "Ko‘rsam bo‘ladimi?",
+          "audio": "1a9436c5dec9c07c.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Есть другой размер?",
+          "uzbek": "Boshqa o‘lchami bormi?",
+          "audio": "b3ec3b7b921b3601.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Я возьму этот.",
+          "uzbek": "Men bunisini olaman.",
+          "audio": "f90fb6159624aed6.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Можно оплатить картой?",
+          "uzbek": "Karta bilan to‘lash mumkinmi?",
+          "audio": "e967babbc5c53a8b.mp3"
+        }
+      ],
+      "explanation": "«Этот» erkak jinsidagi ot bilan keladi: «этот свитер». «Эта» — «эта книга», «это» — «это платье». Narsani ko‘rsatib ham aniqlashtirish mumkin.",
+      "dialogue": [
+        {
+          "speaker": "Нилуфар",
+          "russian": "Есть другой размер?",
+          "uzbek": "Boshqa o‘lchami bormi?"
+        },
+        {
+          "speaker": "Алексей",
+          "russian": "Да, вот поменьше.",
+          "uzbek": "Ha, mana kichikrog‘i."
+        },
+        {
+          "speaker": "Нилуфар",
+          "russian": "Я возьму этот. Можно оплатить картой?",
+          "uzbek": "Men bunisini olaman. Karta bilan to‘lash mumkinmi?"
+        },
+        {
+          "speaker": "Алексей",
+          "russian": "Да, конечно.",
+          "uzbek": "Ha, albatta."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Можно посмотреть?» nimani anglatadi?",
+          "options": [
+            "Men bunisini olaman.",
+            "Ko‘rsam bo‘ladimi?",
+            "Boshqa o‘lchami bormi?"
+          ],
+          "accepted": [
+            "Ko‘rsam bo‘ladimi?"
+          ],
+          "explanation": "Bu ibora: Ko‘rsam bo‘ladimi?"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Kiyim katta ekan. Nima so‘raysiz?",
+          "options": [
+            "Во сколько встреча?",
+            "Как вас зовут?",
+            "Есть другой размер?"
+          ],
+          "accepted": [
+            "Есть другой размер?"
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Можно оплатить ___?» — karta bilan.",
+          "accepted": [
+            "картой"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Men bunisini olaman.»",
+          "accepted": [
+            "Я возьму этот.",
+            "Я возьму вот этот."
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Я возьму этот."
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Daftarning ko‘k rangi kerak. Mos savolni tanlang.",
+          "options": [
+            "Есть синий блокнот?",
+            "Который час?",
+            "Где синий автобус?"
+          ],
+          "accepted": [
+            "Есть синий блокнот?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Mahsulot haqida so‘rang va boshqa variantni tanlang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "food",
+      "order": 7,
+      "title": "Taom va istaklar",
+      "goal": "Buyurtma bering va xohishingizni tushuntiring.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Мне чай, пожалуйста.",
+          "uzbek": "Menga choy, iltimos.",
+          "audio": "e08f326a0b1fff7f.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Без сахара, пожалуйста.",
+          "uzbek": "Shakarsiz, iltimos.",
+          "audio": "60437c6f2e91dfbb.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Можно меню?",
+          "uzbek": "Menyuni bersangiz.",
+          "audio": "e718724052677de1.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Счёт, пожалуйста.",
+          "uzbek": "Hisobni bersangiz.",
+          "audio": "a11aeb7295146f52.mp3"
+        }
+      ],
+      "explanation": "«Без» biror narsasiz degani: «без сахара», «без молока». «С молоком» — sut bilan. «Без» va «с» ma’noni o‘zgartiradi.",
+      "dialogue": [
+        {
+          "speaker": "Фаррух",
+          "russian": "Мне чай, пожалуйста.",
+          "uzbek": "Menga choy, iltimos."
+        },
+        {
+          "speaker": "Ирина",
+          "russian": "С сахаром?",
+          "uzbek": "Shakar bilanmi?"
+        },
+        {
+          "speaker": "Фаррух",
+          "russian": "Без сахара, пожалуйста.",
+          "uzbek": "Shakarsiz, iltimos."
+        },
+        {
+          "speaker": "Ирина",
+          "russian": "Хорошо.",
+          "uzbek": "Yaxshi."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Мне чай, пожалуйста.» nimani anglatadi?",
+          "options": [
+            "Shakarsiz, iltimos.",
+            "Menga choy, iltimos.",
+            "Menyuni bersangiz."
+          ],
+          "accepted": [
+            "Menga choy, iltimos."
+          ],
+          "explanation": "Bu ibora: Menga choy, iltimos."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Shakar istamaysiz. Qaysi javob mos?",
+          "options": [
+            "Ещё сахара, пожалуйста.",
+            "С сахаром, пожалуйста.",
+            "Без сахара, пожалуйста."
+          ],
+          "accepted": [
+            "Без сахара, пожалуйста."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «___ сахара, пожалуйста». — shakarsiz.",
+          "accepted": [
+            "без"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Menyuni bersangiz.»",
+          "accepted": [
+            "Можно меню?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Можно меню?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Qahvani sut bilan xohlaysiz. Qaysi buyurtma to‘g‘ri?",
+          "options": [
+            "Кофе с молоком, пожалуйста.",
+            "Кофе без молока, пожалуйста.",
+            "Только молоко, пожалуйста."
+          ],
+          "accepted": [
+            "Кофе с молоком, пожалуйста."
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Buyurtma bering va xohishingizni tushuntiring.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "appointments",
+      "order": 8,
+      "title": "Oldindan yozilish",
+      "goal": "Xizmatga yoziling va vaqtni tasdiqlang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Можно записаться на завтра?",
+          "uzbek": "Ertaga yozilish mumkinmi?",
+          "audio": "0a43c5889e36713f.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Есть свободное время утром?",
+          "uzbek": "Ertalab bo‘sh vaqt bormi?",
+          "audio": "16f90e8c8163dba0.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Мне подходит это время.",
+          "uzbek": "Bu vaqt menga mos.",
+          "audio": "725e7ef91fcff22c.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Повторите адрес, пожалуйста.",
+          "uzbek": "Manzilni takrorlang, iltimos.",
+          "audio": "cf2409f09a8efa6f.mp3"
+        }
+      ],
+      "explanation": "«Записаться» — xizmat yoki uchrashuv uchun oldindan yozilish. «На завтра» — ertangi kunga; «утром» — ertalab. Vaqt va manzilni alohida tasdiqlang.",
+      "dialogue": [
+        {
+          "speaker": "Зарина",
+          "russian": "Можно записаться на завтра?",
+          "uzbek": "Ertaga yozilish mumkinmi?"
+        },
+        {
+          "speaker": "Павел",
+          "russian": "Есть время в одиннадцать.",
+          "uzbek": "Soat o‘n birda vaqt bor."
+        },
+        {
+          "speaker": "Зарина",
+          "russian": "Мне подходит это время.",
+          "uzbek": "Bu vaqt menga mos."
+        },
+        {
+          "speaker": "Павел",
+          "russian": "Хорошо, ждём вас завтра в одиннадцать.",
+          "uzbek": "Yaxshi, ertaga soat o‘n birda kutamiz."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Можно записаться на завтра?» nimani anglatadi?",
+          "options": [
+            "Ertalab bo‘sh vaqt bormi?",
+            "Bu vaqt menga mos.",
+            "Ertaga yozilish mumkinmi?"
+          ],
+          "accepted": [
+            "Ertaga yozilish mumkinmi?"
+          ],
+          "explanation": "Bu ibora: Ertaga yozilish mumkinmi?"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Taklif qilingan vaqt sizga qulay. Nima deysiz?",
+          "options": [
+            "Мне подходит это время.",
+            "Я не понимаю это слово.",
+            "Мне нужно два билета."
+          ],
+          "accepted": [
+            "Мне подходит это время."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Можно записаться ___ завтра?»",
+          "accepted": [
+            "на"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Bu vaqt menga mos.»",
+          "accepted": [
+            "Мне подходит это время.",
+            "Это время мне подходит."
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Мне подходит это время."
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Sizga ertalab emas, kechqurun qulay. Mos savolni tanlang.",
+          "options": [
+            "Утро — это вечер?",
+            "А вечером есть время?",
+            "Можно два меню?"
+          ],
+          "accepted": [
+            "А вечером есть время?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Xizmatga yoziling va vaqtni tasdiqlang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "home-help",
+      "order": 9,
+      "title": "Muammoni tushuntirish",
+      "goal": "Uyda yuz bergan oddiy muammoni tushuntiring va yordam so‘rang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "У меня не работает интернет.",
+          "uzbek": "Menda internet ishlamayapti.",
+          "audio": "0c647b04339cd201.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Можете помочь?",
+          "uzbek": "Yordam bera olasizmi?",
+          "audio": "83034c743286d9d4.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Когда можно прийти?",
+          "uzbek": "Qachon kelish mumkin?",
+          "audio": "7c3dd3f25a613f31.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Спасибо за помощь.",
+          "uzbek": "Yordam uchun rahmat.",
+          "audio": "628b3643c0173778.mp3"
+        }
+      ],
+      "explanation": "«У меня…» o‘zingizdagi holatni tushuntiradi. «Не работает» — ishlamayapti. «Не» ni tushirib qoldirsangiz, ma’no teskarisiga o‘zgaradi.",
+      "dialogue": [
+        {
+          "speaker": "Рустам",
+          "russian": "У меня не работает интернет.",
+          "uzbek": "Menda internet ishlamayapti."
+        },
+        {
+          "speaker": "Елена",
+          "russian": "Давно?",
+          "uzbek": "Anchadan berimi?"
+        },
+        {
+          "speaker": "Рустам",
+          "russian": "С утра. Можете помочь?",
+          "uzbek": "Ertalabdan beri. Yordam bera olasizmi?"
+        },
+        {
+          "speaker": "Елена",
+          "russian": "Да, давайте проверим.",
+          "uzbek": "Ha, keling, tekshiramiz."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«У меня не работает интернет.» nimani anglatadi?",
+          "options": [
+            "Yordam bera olasizmi?",
+            "Qachon kelish mumkin?",
+            "Menda internet ishlamayapti."
+          ],
+          "accepted": [
+            "Menda internet ishlamayapti."
+          ],
+          "explanation": "Bu ibora: Menda internet ishlamayapti."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Internet ishlamayapti. Qaysi gap to‘g‘ri?",
+          "options": [
+            "Мне нужен чай.",
+            "Интернет работает.",
+            "Интернет не работает."
+          ],
+          "accepted": [
+            "Интернет не работает."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Спасибо ___ помощь».",
+          "accepted": [
+            "за"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Qachon kelish mumkin?»",
+          "accepted": [
+            "Когда можно прийти?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Когда можно прийти?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Chiroq yonmayapti. Muammoni qanday aytasiz?",
+          "options": [
+            "Свет работает.",
+            "Не работает свет.",
+            "Мне удобно в шесть."
+          ],
+          "accepted": [
+            "Не работает свет."
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Uyda yuz bergan oddiy muammoni tushuntiring va yordam so‘rang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "plans",
+      "order": 10,
+      "title": "Rejalar va qiziqishlar",
+      "goal": "Qiziqishlaringizni ayting va birga reja tuzing.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Что вы любите делать?",
+          "uzbek": "Nima qilishni yoqtirasiz?",
+          "audio": "8238b7155ae1c8f8.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Я люблю читать.",
+          "uzbek": "Men o‘qishni yaxshi ko‘raman.",
+          "audio": "268c058b22e2a78d.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Какие у вас планы?",
+          "uzbek": "Qanday rejalaringiz bor?",
+          "audio": "1890efff730d0cda.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Давайте пойдём в парк.",
+          "uzbek": "Keling, parkka boramiz.",
+          "audio": "ecfd2d471b97e7ca.mp3"
+        }
+      ],
+      "explanation": "«Люблю» dan keyin harakatning boshlang‘ich shakli keladi: «читать», «гулять». «Давайте пойдём…» — birga borishni taklif qilish.",
+      "dialogue": [
+        {
+          "speaker": "Мадина",
+          "russian": "Какие у вас планы на выходные?",
+          "uzbek": "Dam olish kunlariga qanday rejalaringiz bor?"
+        },
+        {
+          "speaker": "Денис",
+          "russian": "Хочу погулять.",
+          "uzbek": "Sayr qilmoqchiman."
+        },
+        {
+          "speaker": "Мадина",
+          "russian": "Давайте пойдём в парк.",
+          "uzbek": "Keling, parkka boramiz."
+        },
+        {
+          "speaker": "Денис",
+          "russian": "С удовольствием!",
+          "uzbek": "Jon deb!"
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Что вы любите делать?» nimani anglatadi?",
+          "options": [
+            "Men o‘qishni yaxshi ko‘raman.",
+            "Qanday rejalaringiz bor?",
+            "Nima qilishni yoqtirasiz?"
+          ],
+          "accepted": [
+            "Nima qilishni yoqtirasiz?"
+          ],
+          "explanation": "Bu ibora: Nima qilishni yoqtirasiz?"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "«Что вы любите делать?» savoliga mos javobni tanlang.",
+          "options": [
+            "Я люблю читать.",
+            "Это стоит сто рублей.",
+            "Поверните налево."
+          ],
+          "accepted": [
+            "Я люблю читать."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Я ___ читать».",
+          "accepted": [
+            "люблю"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Qanday rejalaringiz bor?»",
+          "accepted": [
+            "Какие у вас планы?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Какие у вас планы?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Do‘stingiz film ko‘rishni xohlaydi. Mos taklifni tanlang.",
+          "options": [
+            "Давайте пойдём в кино.",
+            "Давайте купим два билета на автобус.",
+            "Давайте спросим размер."
+          ],
+          "accepted": [
+            "Давайте пойдём в кино."
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Qiziqishlaringizni ayting va birga reja tuzing.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "clarify-task",
+      "order": 11,
+      "title": "Vazifani aniqlashtirish",
+      "goal": "O‘qish yoki hamkorlikdagi vazifani va muddatni aniqlashtiring.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Что нужно сделать?",
+          "uzbek": "Nima qilish kerak?",
+          "audio": "b50ca6f3f6dbe840.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "До какого времени?",
+          "uzbek": "Qaysi vaqtgacha?",
+          "audio": "69be68c0311a57f6.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Покажите пример, пожалуйста.",
+          "uzbek": "Namuna ko‘rsating, iltimos.",
+          "audio": "614a99c4c3fb6e4b.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Правильно ли я понимаю?",
+          "uzbek": "Men to‘g‘ri tushunyapmanmi?",
+          "audio": "f0c9d575951f2fcf.mp3"
+        }
+      ],
+      "explanation": "«Нужно» — kerak. «До» muddat chegarasini bildiradi: «до пятницы» — jumagacha. Savol berish orqali vazifani va muddatni alohida aniqlang.",
+      "dialogue": [
+        {
+          "speaker": "Севара",
+          "russian": "Что нужно сделать?",
+          "uzbek": "Nima qilish kerak?"
+        },
+        {
+          "speaker": "Антон",
+          "russian": "Прочитайте текст и ответьте на вопросы.",
+          "uzbek": "Matnni o‘qing va savollarga javob bering."
+        },
+        {
+          "speaker": "Севара",
+          "russian": "До какого времени?",
+          "uzbek": "Qaysi vaqtgacha?"
+        },
+        {
+          "speaker": "Антон",
+          "russian": "До завтра. Если непонятно, спросите.",
+          "uzbek": "Ertagacha. Tushunarsiz bo‘lsa, so‘rang."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Что нужно сделать?» nimani anglatadi?",
+          "options": [
+            "Qaysi vaqtgacha?",
+            "Namuna ko‘rsating, iltimos.",
+            "Nima qilish kerak?"
+          ],
+          "accepted": [
+            "Nima qilish kerak?"
+          ],
+          "explanation": "Bu ibora: Nima qilish kerak?"
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Muddatni bilmoqchisiz. Qaysi savol mos?",
+          "options": [
+            "Сколько билетов?",
+            "Какого цвета?",
+            "До какого времени?"
+          ],
+          "accepted": [
+            "До какого времени?"
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Покажите ___, пожалуйста». — namuna.",
+          "accepted": [
+            "пример"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Namuna ko‘rsating, iltimos.»",
+          "accepted": [
+            "Покажите пример, пожалуйста."
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Покажите пример, пожалуйста."
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Guruh bilan taqdimot tayyorlayapsiz. O‘zingizning vazifangizni bilmoqchisiz.",
+          "options": [
+            "Где можно купить чай?",
+            "Как пройти к парку?",
+            "Что мне нужно подготовить?"
+          ],
+          "accepted": [
+            "Что мне нужно подготовить?"
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: O‘qish yoki hamkorlikdagi vazifani va muddatni aniqlashtiring.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    },
+    {
+      "id": "misunderstanding",
+      "order": 12,
+      "title": "Tushunmovchilikni hal qilish",
+      "goal": "Muloyimlik bilan aniqlik kiriting va kelishuvni tasdiqlang.",
+      "phrases": [
+        {
+          "id": "p1",
+          "russian": "Извините, я имел в виду другое.",
+          "uzbek": "Kechirasiz, men boshqa narsani nazarda tutgandim.",
+          "audio": "2767cbdbf4a359db.mp3"
+        },
+        {
+          "id": "p2",
+          "russian": "Давайте уточним.",
+          "uzbek": "Keling, aniqlashtiramiz.",
+          "audio": "37f8eed4568d2d9a.mp3"
+        },
+        {
+          "id": "p3",
+          "russian": "Вы имеете в виду завтра?",
+          "uzbek": "Ertagani nazarda tutyapsizmi?",
+          "audio": "5bb99e16a92e7453.mp3"
+        },
+        {
+          "id": "p4",
+          "russian": "Теперь всё понятно.",
+          "uzbek": "Endi hammasi tushunarli.",
+          "audio": "680b4caf7c132d48.mp3"
+        }
+      ],
+      "explanation": "O‘tgan zamonda erkak «я имел в виду», ayol «я имела в виду» deydi. Aniq savol bilan tekshiring: «Завтра, а не сегодня?» — ertaga, bugun emasmi?",
+      "dialogue": [
+        {
+          "speaker": "Лола",
+          "russian": "Вы имеете в виду завтра?",
+          "uzbek": "Ertagani nazarda tutyapsizmi?"
+        },
+        {
+          "speaker": "Сергей",
+          "russian": "Нет, сегодня вечером.",
+          "uzbek": "Yo‘q, bugun kechqurun."
+        },
+        {
+          "speaker": "Лола",
+          "russian": "Давайте уточним: сегодня в семь?",
+          "uzbek": "Keling, aniqlashtiramiz: bugun soat yettidami?"
+        },
+        {
+          "speaker": "Сергей",
+          "russian": "Да. Теперь всё понятно.",
+          "uzbek": "Ha. Endi hammasi tushunarli."
+        }
+      ],
+      "exercises": [
+        {
+          "id": "meaning",
+          "kind": "choice",
+          "prompt": "«Извините, я имел в виду другое.» nimani anglatadi?",
+          "options": [
+            "Keling, aniqlashtiramiz.",
+            "Ertagani nazarda tutyapsizmi?",
+            "Kechirasiz, men boshqa narsani nazarda tutgandim."
+          ],
+          "accepted": [
+            "Kechirasiz, men boshqa narsani nazarda tutgandim."
+          ],
+          "explanation": "Bu ibora: Kechirasiz, men boshqa narsani nazarda tutgandim."
+        },
+        {
+          "id": "reply",
+          "kind": "choice",
+          "prompt": "Gap noaniq bo‘lib qoldi. Qaysi ibora mos?",
+          "options": [
+            "Без сахара, пожалуйста.",
+            "Давайте уточним.",
+            "Я возьму этот."
+          ],
+          "accepted": [
+            "Давайте уточним."
+          ],
+          "explanation": "Javob suhbatdagi savol va vaziyatga mos bo‘lishi kerak."
+        },
+        {
+          "id": "complete",
+          "kind": "text",
+          "prompt": "Bo‘sh joyni to‘ldiring: «Теперь всё ___».",
+          "accepted": [
+            "понятно"
+          ],
+          "explanation": "Namunadagi tuzilishni eslang. Faqat tushirib qoldirilgan qismni yozing."
+        },
+        {
+          "id": "recall",
+          "kind": "text",
+          "prompt": "Darsdagi ruscha iborani yozing: «Ertagani nazarda tutyapsizmi?»",
+          "accepted": [
+            "Вы имеете в виду завтра?",
+            "Вы имеете в виду завтрашний день?"
+          ],
+          "explanation": "Bu mashqda darsdagi iborani eslaymiz: Вы имеете в виду завтра?"
+        },
+        {
+          "id": "transfer",
+          "kind": "choice",
+          "prompt": "Siz juma dedingiz, suhbatdosh esa payshanba deb tushundi. Qanday aniqlashtirasiz?",
+          "options": [
+            "В любой день, всё равно.",
+            "В четверг, не в пятницу.",
+            "В пятницу, не в четверг."
+          ],
+          "accepted": [
+            "В пятницу, не в четверг."
+          ],
+          "explanation": "Yangi vaziyatda ham maqsadga mos javobni tanlang.",
+          "transfer": true
+        }
+      ],
+      "scenario": "Practise this everyday situation in simple Russian: Muloyimlik bilan aniqlik kiriting va kelishuvni tasdiqlang.. Use varied names and details. Do not assume a profession. Start with one natural question; allow clarification and a change of details."
+    }
+  ]
+}

@@ -4,12 +4,12 @@ from logging.config import fileConfig
 from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
-
 from src.config import settings
 from src.database import Base
+from src.learning.models import LearningAttempt, LearningProgress, LearningReview  # noqa: F401
 
 # Import all models so Alembic sees them
-from src.progress.models import User, UserStats, UserLessonProgress, SrsCard  # noqa: F401
+from src.progress.models import SrsCard, User, UserLessonProgress, UserStats  # noqa: F401
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.database_url)

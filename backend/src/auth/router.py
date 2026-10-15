@@ -1,9 +1,11 @@
+from typing import Annotated
+
 import structlog
 from fastapi import APIRouter, Depends, Header, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.auth.schemas import TelegramUser
-from src.auth.service import validate_init_data, get_or_create_user
+from src.auth.service import get_or_create_user, validate_init_data
 from src.database import get_db
 
 logger = structlog.get_logger()
@@ -23,8 +25,8 @@ async def get_current_user(
 
 @router.post("/login")
 async def login(
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ) -> dict:
     """Validate initData, create user if needed, return profile."""
     user = await get_or_create_user(db, tg_user)

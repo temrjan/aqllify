@@ -1,13 +1,15 @@
 import json
 
 import structlog
-from openai import AsyncOpenAI
+from openai import APIError, AsyncOpenAI
 
 from src.config import settings
 
 logger = structlog.get_logger()
 
-client = AsyncOpenAI(api_key=settings.openai_api_key)
+client = (
+    AsyncOpenAI(api_key=settings.openai_api_key) if settings.openai_api_key else None
+)
 
 SYSTEM_PROMPT_CHECK = """You are an Uzbek language tutor checking student answers.
 The student is learning Uzbek from scratch (Russian-speaking).
@@ -48,6 +50,8 @@ async def check_answer(
 ) -> dict:
     """Check student's answer using LLM. Returns {correct, score, feedback, corrected}."""
     try:
+        if client is None:
+            raise RuntimeError("Language model is not configured")
         response = await client.chat.completions.create(
             model=settings.llm_model,
             messages=[
@@ -63,8 +67,8 @@ async def check_answer(
                     ),
                 },
             ],
-            temperature=0.1,
-            max_tokens=200,
+            reasoning_effort=settings.llm_reasoning_effort,
+            max_completion_tokens=settings.llm_max_completion_tokens,
         )
 
         content = response.choices[0].message.content or "{}"
@@ -110,14 +114,16 @@ async def checkpoint_dialog(
     ]
 
     try:
+        if client is None:
+            raise RuntimeError("Language model is not configured")
         response = await client.chat.completions.create(
             model=settings.llm_model,
             messages=messages,
-            temperature=0.7,
-            max_tokens=150,
+            reasoning_effort=settings.llm_reasoning_effort,
+            max_completion_tokens=settings.llm_max_completion_tokens,
         )
         return response.choices[0].message.content or ""
 
-    except Exception as e:
-        logger.error("llm_dialog_failed", error=str(e))
+    except (APIError, ValueError, IndexError, RuntimeError) as e:
+        logger.error("llm_dialog_failed", error_type=type(e).__name__)
         return "Kechirasiz, xatolik yuz berdi. (Извините, произошла ошибка.)"

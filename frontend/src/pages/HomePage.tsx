@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { api } from '@/shared/api';
 import styles from './HomePage.module.css';
 
@@ -67,6 +67,7 @@ export function HomePage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.title}>Уроки</h1>
+        <Link to="/">Rus tili — o‘zbekcha tushuntirishlar →</Link>
       </header>
 
       {Array.from(blocks.entries()).map(([blockNum, blockLessons]) => (

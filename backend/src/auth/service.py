@@ -1,7 +1,7 @@
 import hashlib
 import hmac
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from urllib.parse import parse_qs, unquote
 
 from sqlalchemy import select
@@ -50,7 +50,7 @@ def validate_init_data(
 
     # Check auth_date
     auth_date = int(parsed.get("auth_date", ["0"])[0])
-    current_time = int(datetime.now(tz=timezone.utc).timestamp())
+    current_time = int(datetime.now(tz=UTC).timestamp())
 
     if current_time - auth_date > max_age_seconds:
         raise ValueError("Init data expired")

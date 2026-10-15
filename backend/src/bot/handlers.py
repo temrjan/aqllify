@@ -2,16 +2,17 @@ import html
 import time
 
 import structlog
-from aiogram import Router, F
+from aiogram import F, Router
+from aiogram.exceptions import TelegramAPIError
 from aiogram.filters import CommandStart
 from aiogram.types import (
-    Message,
-    InlineKeyboardMarkup,
-    InlineKeyboardButton,
     CallbackQuery,
-    WebAppInfo,
-    ReplyKeyboardMarkup,
+    InlineKeyboardButton,
+    InlineKeyboardMarkup,
     KeyboardButton,
+    Message,
+    ReplyKeyboardMarkup,
+    WebAppInfo,
 )
 from sqlalchemy import func, select, update
 
@@ -40,7 +41,7 @@ DAILY_GOALS = {
 
 @router.message(CommandStart())
 async def cmd_start(message: Message) -> None:
-    """Welcome message + daily goal selection."""
+    """Offer the Russian path and retain an explicit legacy-course entry."""
     user = message.from_user
     if not user:
         return
@@ -50,18 +51,24 @@ async def cmd_start(message: Message) -> None:
     keyboard = InlineKeyboardMarkup(
         inline_keyboard=[
             [
-                InlineKeyboardButton(text="🌱 5 мин", callback_data="goal_5"),
-                InlineKeyboardButton(text="🌿 10 мин", callback_data="goal_10"),
-                InlineKeyboardButton(text="🌳 15 мин", callback_data="goal_15"),
+                InlineKeyboardButton(
+                    text="Rus tilini o‘rganish", web_app=WebAppInfo(url=webapp_url())
+                ),
+            ],
+            [
+                InlineKeyboardButton(
+                    text="Учить узбекский", web_app=WebAppInfo(url=webapp_url("/uzbek"))
+                ),
             ],
         ]
     )
 
     await message.answer(
-        f"🇺🇿 <b>Salom, {html.escape(user.first_name)}!</b>\n\n"
-        f"Я — <b>Aqllify</b>, твой помощник в изучении узбекского языка.\n"
-        f"5 минут в день — и через месяц заговоришь.\n\n"
-        f"Выбери цель на день:",
+        f"<b>Salom, {html.escape(user.first_name)}!</b>\n\n"
+        "<b>Aqllify</b> bilan rus tilini kundalik vaziyatlarda mashq qiling.\n"
+        "O‘zbekcha tushuntirishlar, qisqa suhbatlar va o‘z sur’atingizda darslar.\n\n"
+        "Boshlang‘ich, o‘rta va yuqori bosqich dasturlari bilan tanishing.\n"
+        "Hozir boshlang‘ich darslar mavjud.",
         reply_markup=keyboard,
     )
 
@@ -91,7 +98,7 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
             [
                 InlineKeyboardButton(
                     text="📖 Начать первый урок",
-                    web_app=WebAppInfo(url=webapp_url()),
+                    web_app=WebAppInfo(url=webapp_url("/uzbek")),
                 )
             ],
         ]
@@ -185,7 +192,7 @@ async def cmd_stats(message: Message) -> None:
         )
 
         await message.answer(
-            f"📊 <b>Aqllify — Статистика</b>\n\n"
+            f"📊 <b>Aqllify — Статистика курса узбекского</b>\n\n"
             f"👥 Всего пользователей: <b>{total_users}</b>\n"
             f"🆕 Новых сегодня: <b>{today_users}</b>\n"
             f"📱 Активных сегодня: <b>{active_today}</b>\n"
@@ -200,15 +207,15 @@ async def cmd_stats(message: Message) -> None:
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="📊 Мой прогресс",
-                    web_app=WebAppInfo(url=webapp_url("/progress")),
+                    text="Rus tili natijalari",
+                    web_app=WebAppInfo(url=webapp_url("/learn/progress")),
                 )
             ],
         ]
     )
 
     await message.answer(
-        "Жми кнопку, чтобы увидеть свой прогресс:",
+        "Rus tili bo‘yicha natijalaringizni ko‘ring:",
         reply_markup=keyboard,
     )
 
@@ -220,7 +227,7 @@ async def cmd_lesson(message: Message) -> None:
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="📖 Открыть урок",
+                    text="Darslarni ochish",
                     web_app=WebAppInfo(url=webapp_url()),
                 )
             ],
@@ -228,7 +235,7 @@ async def cmd_lesson(message: Message) -> None:
     )
 
     await message.answer(
-        "Жми кнопку для урока:",
+        "Darslarni ochish uchun tugmani bosing:",
         reply_markup=keyboard,
     )
 
@@ -240,15 +247,15 @@ async def cmd_review(message: Message) -> None:
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text="🧠 Повторить слова",
-                    web_app=WebAppInfo(url=webapp_url("/review")),
+                    text="Iboralarni takrorlash",
+                    web_app=WebAppInfo(url=webapp_url("/learn/review")),
                 )
             ],
         ]
     )
 
     await message.answer(
-        "Время повторить слова!",
+        "Ruscha iboralarni yana bir bor eslaymiz:",
         reply_markup=keyboard,
     )
 
@@ -266,7 +273,7 @@ async def cmd_feedback(message: Message) -> None:
 @router.message(F.reply_to_message)
 async def forward_feedback(message: Message) -> None:
     """Forward replied messages to admin (for feedback flow)."""
-    pass  # Skip replies to avoid confusion
+    # Skip replies to avoid confusion
 
 
 @router.message(~F.text.startswith("/"))
@@ -286,5 +293,6 @@ async def catch_feedback(message: Message) -> None:
                 f"{html.escape(message.text or '')}",
             )
         await message.answer("Спасибо за отзыв! Мы обязательно прочитаем.")
-    except Exception:
+    except TelegramAPIError as exc:
+        logger.warning("telegram_feedback_failed", error_type=type(exc).__name__)
         await message.answer("Спасибо за отзыв!")

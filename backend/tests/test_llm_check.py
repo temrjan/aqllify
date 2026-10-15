@@ -6,9 +6,8 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
 import pytest
-from structlog.testing import capture_logs
-
 from src.services.llm import check_answer
+from structlog.testing import capture_logs
 
 # Sentinel must not appear in any exception text, log record, or return value
 # when the LLM call fails. This is the core invariant of the B3 fix.
@@ -47,17 +46,21 @@ class TestCheckAnswerLeakage:
 
     def test_propagates_on_openai_failure_without_leaking(self, mock_openai) -> None:
         mock_openai.side_effect = RuntimeError("openai down")
-        with capture_logs() as cap_logs:
-            with pytest.raises(RuntimeError) as exc_info:
-                asyncio.run(check_answer("open_translate", "Q", "wrong", SECRET_ANSWER))
+        with (
+            capture_logs() as cap_logs,
+            pytest.raises(RuntimeError) as exc_info,
+        ):
+            asyncio.run(check_answer("open_translate", "Q", "wrong", SECRET_ANSWER))
         assert SECRET_ANSWER not in str(exc_info.value)
         _assert_logged_failure_without_leak(cap_logs)
 
     def test_propagates_on_json_decode_error_without_leaking(self, mock_openai) -> None:
         mock_openai.return_value = _fake_response("not-valid-json{")
-        with capture_logs() as cap_logs:
-            with pytest.raises(json.JSONDecodeError) as exc_info:
-                asyncio.run(check_answer("open_translate", "Q", "wrong", SECRET_ANSWER))
+        with (
+            capture_logs() as cap_logs,
+            pytest.raises(json.JSONDecodeError) as exc_info,
+        ):
+            asyncio.run(check_answer("open_translate", "Q", "wrong", SECRET_ANSWER))
         assert SECRET_ANSWER not in str(exc_info.value)
         _assert_logged_failure_without_leak(cap_logs)
 

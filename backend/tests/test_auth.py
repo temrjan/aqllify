@@ -7,7 +7,6 @@ import time
 from urllib.parse import urlencode
 
 import pytest
-
 from src.auth.service import validate_init_data
 from src.config import settings
 

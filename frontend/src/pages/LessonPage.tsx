@@ -476,7 +476,7 @@ export function LessonPage() {
               Попробовать ещё раз
             </button>
           )}
-          <button className={styles.primaryBtn} onClick={() => navigate('/')} disabled={saving}>
+          <button className={styles.primaryBtn} onClick={() => navigate('/uzbek')} disabled={saving}>
             {saving ? 'Сохранение...' : 'На главную'}
           </button>
         </div>
