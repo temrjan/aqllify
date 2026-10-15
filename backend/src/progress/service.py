@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 from pathlib import Path
 
 import structlog
@@ -294,7 +294,7 @@ async def add_xp(
         if progress:
             progress.score = max(progress.score or 0, score or 0)
             progress.xp_earned = max(progress.xp_earned, xp)
-            progress.completed_at = datetime.now(tz=timezone.utc)
+            progress.completed_at = datetime.now(tz=UTC)
         else:
             db.add(
                 UserLessonProgress(
@@ -303,7 +303,7 @@ async def add_xp(
                     completed=True,
                     score=score,
                     xp_earned=xp,
-                    completed_at=datetime.now(tz=timezone.utc),
+                    completed_at=datetime.now(tz=UTC),
                 )
             )
 

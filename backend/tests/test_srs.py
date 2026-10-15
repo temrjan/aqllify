@@ -1,6 +1,6 @@
 """Tests for SM-2 spaced repetition algorithm."""
 
-from src.progress.service import sm2_calculate, get_title_for_xp, get_next_title_info
+from src.progress.service import get_next_title_info, get_title_for_xp, sm2_calculate
 
 
 class TestSm2Algorithm:
@@ -14,19 +14,19 @@ class TestSm2Algorithm:
         assert ease >= 2.5
 
     def test_correct_second_time(self) -> None:
-        ease, interval = sm2_calculate(
+        _ease, interval = sm2_calculate(
             quality=4, ease_factor=2.5, interval_days=1, correct_count=1
         )
         assert interval == 3
 
     def test_correct_third_time(self) -> None:
-        ease, interval = sm2_calculate(
+        _ease, interval = sm2_calculate(
             quality=4, ease_factor=2.5, interval_days=3, correct_count=2
         )
         assert interval == round(3 * 2.5)  # ~8 days
 
     def test_incorrect_resets_interval(self) -> None:
-        ease, interval = sm2_calculate(
+        _ease, interval = sm2_calculate(
             quality=1, ease_factor=2.5, interval_days=14, correct_count=5
         )
         assert interval == 1  # Reset to 1 day

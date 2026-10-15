@@ -2,7 +2,7 @@
 
 import pytest
 
-from src.lessons.service import list_lessons, get_lesson
+from src.lessons.service import get_lesson, list_lessons
 
 COURSE = "uzlearn"
 

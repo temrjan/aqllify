@@ -173,7 +173,7 @@ export function CheckpointPage() {
           <p className={styles.doneXp}>+{XP_REWARD} XP</p>
           <button
             className={styles.primaryBtn}
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/uzbek')}
             disabled={saving}
           >
             {saving ? 'Сохранение...' : 'На главную'}

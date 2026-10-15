@@ -1,7 +1,7 @@
 import logging
 import time
-from contextlib import asynccontextmanager
 from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 
 import structlog
 from fastapi import FastAPI, Request
@@ -9,9 +9,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 from src.auth.router import router as auth_router
+from src.config import settings
+from src.learning.router import router as learning_router
 from src.lessons.router import router as lessons_router
 from src.progress.router import router as progress_router
-from src.config import settings
 
 # Configure structlog: JSON in prod (machine-parseable), pretty console in dev.
 structlog.configure(
@@ -83,6 +84,7 @@ async def log_requests(request: Request, call_next) -> Response:
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(lessons_router, prefix="/api/v1")
 app.include_router(progress_router, prefix="/api/v1")
+app.include_router(learning_router, prefix="/api/v1")
 
 
 @app.get("/health")

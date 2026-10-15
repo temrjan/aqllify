@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from sqlalchemy import (
     BigInteger,
@@ -26,7 +26,7 @@ class User(Base):
     daily_goal_minutes: Mapped[int] = mapped_column(Integer, default=10)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        default=lambda: datetime.now(tz=timezone.utc),
+        default=lambda: datetime.now(tz=UTC),
     )
 
     stats: Mapped["UserStats"] = relationship(back_populates="user", uselist=False)

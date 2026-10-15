@@ -1,6 +1,7 @@
 import structlog
 from aiogram import Bot
-from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
+from aiogram.exceptions import TelegramAPIError
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup, WebAppInfo
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from sqlalchemy import select
 
@@ -67,7 +68,7 @@ async def send_morning_lesson(bot: Bot) -> None:
             [
                 InlineKeyboardButton(
                     text="📖 Начать урок",
-                    web_app=WebAppInfo(url=webapp_url()),
+                    web_app=WebAppInfo(url=webapp_url("/uzbek")),
                 )
             ],
         ]
@@ -83,8 +84,8 @@ async def send_morning_lesson(bot: Bot) -> None:
                 reply_markup=keyboard,
             )
             sent += 1
-        except Exception:
-            pass
+        except TelegramAPIError as exc:
+            logger.warning("telegram_delivery_failed", error_type=type(exc).__name__)
 
     logger.info("morning_lesson_sent", count=sent)
 
@@ -113,8 +114,8 @@ async def send_afternoon_review(bot: Bot) -> None:
                 reply_markup=keyboard,
             )
             sent += 1
-        except Exception:
-            pass
+        except TelegramAPIError as exc:
+            logger.warning("telegram_delivery_failed", error_type=type(exc).__name__)
 
     logger.info("afternoon_review_sent", count=sent)
 
@@ -145,7 +146,7 @@ async def send_evening_reminder(bot: Bot) -> None:
                     [
                         InlineKeyboardButton(
                             text="📖 Пройти урок",
-                            web_app=WebAppInfo(url=webapp_url()),
+                            web_app=WebAppInfo(url=webapp_url("/uzbek")),
                         )
                     ],
                 ]
@@ -165,7 +166,9 @@ async def send_evening_reminder(bot: Bot) -> None:
                         "Вечерний квиз ждёт! 🌙\n3 минуты — и день засчитан.",
                         reply_markup=keyboard,
                     )
-            except Exception:
-                pass
+            except TelegramAPIError as exc:
+                logger.warning(
+                    "telegram_delivery_failed", error_type=type(exc).__name__
+                )
 
     logger.info("evening_reminder_sent")

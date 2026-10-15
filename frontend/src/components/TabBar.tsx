@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styles from './TabBar.module.css';
 
 const TABS = [
-  { path: '/', label: 'Уроки', icon: 'lesson' },
+  { path: '/uzbek', label: 'Уроки', icon: 'lesson' },
   { path: '/review', label: 'Повтор', icon: 'review' },
   { path: '/progress', label: 'Прогресс', icon: 'progress' },
 ] as const;

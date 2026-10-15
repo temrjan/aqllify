@@ -24,8 +24,8 @@ router = APIRouter(prefix="/progress", tags=["progress"])
 
 @router.get("/stats")
 async def stats(
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ) -> dict:
     """Get user stats: XP, title, streak, words, lessons."""
     user = await get_or_create_user(db, tg_user)
@@ -34,8 +34,8 @@ async def stats(
 
 @router.get("/review")
 async def get_review_cards(
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ) -> list[ReviewCard]:
     """Get SRS cards due for review today."""
     user = await get_or_create_user(db, tg_user)
@@ -45,8 +45,8 @@ async def get_review_cards(
 @router.post("/review")
 async def submit_review(
     answer: ReviewAnswer,
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ) -> ReviewResult:
     """Submit a review answer, update SRS intervals."""
     user = await get_or_create_user(db, tg_user)
@@ -73,9 +73,9 @@ async def submit_review(
 @router.post("/complete-lesson")
 async def complete_lesson(
     req: AddXpRequest,
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
     course: Annotated[str, Query(pattern=r"^[a-z0-9][a-z0-9_-]{0,49}$")] = "uzlearn",
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
 ) -> dict:
     """Complete a lesson: add XP, create SRS cards, update streak."""
     user = await get_or_create_user(db, tg_user)

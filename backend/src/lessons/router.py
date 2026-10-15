@@ -1,5 +1,6 @@
 import time
 from collections import defaultdict
+from typing import Annotated
 
 import structlog
 from fastapi import APIRouter, Depends, HTTPException
@@ -41,8 +42,8 @@ def _check_rate_limit(user_id: int) -> None:
 @router.get("/{course}")
 async def get_lessons_list(
     course: str,
-    tg_user: TelegramUser = Depends(get_current_user),
-    db: AsyncSession = Depends(get_db),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
+    db: Annotated[AsyncSession, Depends(get_db)],
 ) -> list[LessonListItem]:
     """List all lessons for a course, with user completion status."""
     try:
@@ -73,7 +74,7 @@ async def get_lesson_content(
     course: str,
     block_slug: str,
     lesson_slug: str,
-    _user: TelegramUser = Depends(get_current_user),
+    _user: Annotated[TelegramUser, Depends(get_current_user)],
 ) -> LessonContent:
     """Get a single lesson with content and exercises."""
     slug = f"{block_slug}/{lesson_slug}"
@@ -86,7 +87,7 @@ async def get_lesson_content(
 @router.post("/check-answer")
 async def check_student_answer(
     req: CheckAnswerRequest,
-    tg_user: TelegramUser = Depends(get_current_user),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
 ) -> CheckAnswerResponse:
     """Check student answer using LLM."""
     _check_rate_limit(tg_user.id)
@@ -118,7 +119,7 @@ async def check_student_answer(
 @router.post("/checkpoint-dialog")
 async def checkpoint_chat(
     req: CheckpointMessage,
-    tg_user: TelegramUser = Depends(get_current_user),
+    tg_user: Annotated[TelegramUser, Depends(get_current_user)],
 ) -> dict:
     """AI conversation for checkpoint role-play."""
     _check_rate_limit(tg_user.id)
