@@ -6,8 +6,9 @@ from types import SimpleNamespace
 from unittest.mock import AsyncMock, patch
 
 import pytest
-from src.services.llm import check_answer
 from structlog.testing import capture_logs
+
+from src.services.llm import check_answer
 
 # Sentinel must not appear in any exception text, log record, or return value
 # when the LLM call fails. This is the core invariant of the B3 fix.

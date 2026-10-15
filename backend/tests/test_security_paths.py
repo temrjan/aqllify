@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 from pydantic import ValidationError
+
 from src.lessons.service import COURSES_DIR, safe_path
 from src.progress.schemas import AddXpRequest
 

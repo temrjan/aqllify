@@ -9,6 +9,7 @@ from urllib.parse import urlencode
 
 import httpx
 from sqlalchemy import text
+
 from src.config import settings
 from src.database import engine
 from src.learning.content import get_course

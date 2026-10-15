@@ -1,6 +1,7 @@
 """Content validation tests — catch broken lessons before deploy."""
 
 import pytest
+
 from src.lessons.service import get_lesson, list_lessons
 
 COURSE = "uzlearn"

@@ -8,10 +8,11 @@ import pytest
 from fastapi import HTTPException
 from openai import AsyncOpenAI
 from pydantic import ValidationError
+from structlog.testing import capture_logs
+
 from src.learning import ai
 from src.learning.schemas import ChatInput
 from src.services import llm
-from structlog.testing import capture_logs
 
 
 def test_sdk_contract_and_failures(monkeypatch):

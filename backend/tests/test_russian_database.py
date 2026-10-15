@@ -18,6 +18,7 @@ import httpx
 import pytest
 from sqlalchemy import func, select, update
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+
 from src.config import settings
 from src.database import get_db
 from src.learning import service

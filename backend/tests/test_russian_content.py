@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 from fastapi import HTTPException
+
 from src.learning.content import get_course, get_lesson, is_correct, placement_result
 from src.learning.schemas import PlacementInput
 
