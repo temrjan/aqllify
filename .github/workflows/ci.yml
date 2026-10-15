@@ -6,13 +6,16 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   backend:
     name: Backend — Lint + Tests
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:16-alpine
+        image: postgres:17-alpine
         env:
           POSTGRES_USER: aqllify_test
           POSTGRES_PASSWORD: ci-test-only
@@ -44,6 +47,9 @@ jobs:
       - name: Lint
         run: ruff check .
 
+      - name: Deployment script syntax
+        run: bash -n ../ops/ci-entrypoint.sh ../ops/deploy.sh
+
       - name: Format check
         run: ruff format --check .
 
@@ -72,7 +78,7 @@ jobs:
           node-version: "22"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Type check
         run: npx tsc --noEmit
@@ -85,21 +91,25 @@ jobs:
     needs: [backend, frontend]
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    concurrency:
+      group: aqllify-production
+      cancel-in-progress: false
 
     steps:
-      - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          script: |
-            cd /opt/aqllify
-            git pull origin main
-            docker compose build
-            docker compose up -d
-            docker compose exec -T backend alembic upgrade head
-            sleep 5
-            docker compose ps
-            docker compose exec -T backend python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
+      - name: Deploy tested revision to devbox
+        env:
+          SERVER_HOST: ${{ secrets.SERVER_HOST }}
+          SERVER_USER: ${{ secrets.SERVER_USER }}
+          SERVER_PORT: ${{ secrets.SERVER_PORT }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.SSH_KNOWN_HOSTS }}
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/aqllify_deploy
+          chmod 600 ~/.ssh/aqllify_deploy
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          ssh -o BatchMode=yes -o IdentitiesOnly=yes \
+            -o StrictHostKeyChecking=yes -o ConnectTimeout=15 \
+            -i ~/.ssh/aqllify_deploy -p "$SERVER_PORT" \
+            "$SERVER_USER@$SERVER_HOST" "deploy $GITHUB_SHA"

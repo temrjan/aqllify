@@ -79,7 +79,7 @@ The conversation limiter is per user and per process, suitable for the current s
 
 ## Deployment
 
-The existing GitHub workflow deploys after a successful push to `main`. Local implementation and tests do not publish a release. Live Telegram behavior, model availability/quality and deployment health need verification in the release environment.
+The GitHub workflow deploys the exact tested `main` commit to the existing devbox installation after both checks pass. [Production deployment](ops/README.md) describes the server paths, dedicated SSH access, backups, migration order and release checks. The tracked Compose file matches that installation; its edge and landing remain separately managed. Local implementation and tests do not publish a release. Live Telegram behavior, model availability/quality and deployment health need verification in the release environment.
 
 ## License
 

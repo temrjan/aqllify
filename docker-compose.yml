@@ -4,6 +4,8 @@ x-logging: &default-logging
     max-size: "10m"
     max-file: "5"
 
+name: aqllify
+
 services:
   backend:
     build: ./backend
@@ -22,11 +24,12 @@ services:
       resources:
         limits:
           memory: 256M
+    ports:
+      - '127.0.0.1:18000:8000'
     volumes:
       - ./courses:/courses:ro
     networks:
       - internal
-      - proxy
     depends_on:
       db:
         condition: service_healthy
@@ -40,10 +43,12 @@ services:
     command: ["python", "-m", "src.bot"]
     security_opt:
       - no-new-privileges:true
+    profiles:
+      - bot
     deploy:
       resources:
         limits:
-          memory: 128M
+          memory: 256M
     networks:
       - internal
     depends_on:
@@ -61,8 +66,35 @@ services:
       resources:
         limits:
           memory: 32M
+    ports:
+      - '127.0.0.1:18001:80'
     networks:
-      - proxy
+      - internal
+    logging: *default-logging
+
+  landing:
+    image: caddy:2-alpine
+    container_name: aqllify-landing
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - /home/devbox/aqllify-landing/site:/srv:ro
+      - /home/devbox/aqllify-landing/caddy-config/Caddyfile:/etc/caddy/Caddyfile:ro
+    ports:
+      - '127.0.0.1:18002:80'
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:80/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+    networks:
+      - internal
     logging: *default-logging
 
   db:
@@ -94,5 +126,3 @@ volumes:
 networks:
   internal:
     driver: bridge
-  proxy:
-    external: true

@@ -14,7 +14,7 @@ Backend (FastAPI) = API: auth, SRS engine, LLM proxy, progress
 ## Стек
 - **Backend:** Python 3.12, FastAPI, aiogram 3, PostgreSQL, APScheduler, anthropic/openai, gTTS
 - **Frontend:** React 19, TypeScript, Vite, @twa-dev/sdk, Zustand, CSS Modules
-- **Deploy:** Docker на 7demo
+- **Deploy:** Docker on devbox, `/home/devbox/aqllify-app`; see `ops/README.md`.
 
 ## Pipeline
 ```
