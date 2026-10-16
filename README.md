@@ -11,7 +11,7 @@ A Telegram Mini App for Uzbek-speaking adults learning practical Russian, with U
 - **Review:** recall a phrase, reveal the example and self-rate. Reviews grant no XP; intervals are 1, 3, 7 and 14 days, or 10 minutes for another practice.
 - **Optional conversation:** short Russian exchanges with Uzbek feedback. GPT-6 Luna with medium reasoning is the default. Conversation does not determine grades or rewards, and the deterministic course works without an API key.
 
-The previous Russian-to-Uzbek course remains at `/uzbek`. Its progress and reminders remain separate from the Russian course. Existing lesson, review and progress URLs still work.
+The previous Russian-to-Uzbek course lives under `/uz`, the Uzbek-to-Russian course under `/ru`, and `/` hosts the course selector. Legacy lesson, review and progress URLs redirect to their current equivalents.
 
 ## Development
 

@@ -48,6 +48,8 @@ async def main():
             await route.fulfill(status=502, json={"detail": "test unavailable"})
 
         await page.route("**/learning/progress", fail_fetch, times=2)
+        # `/` hosts the direction selector; a stored direction redirects to the course.
+        await context.add_init_script("localStorage.setItem('direction', 'ru')")
         await page.goto("http://127.0.0.1:5179/")
         await expect(page.get_by_role("alert")).to_be_visible()
         await page.unroute("**/learning/progress", fail_fetch)
@@ -75,7 +77,7 @@ async def main():
             page.get_by_text("To‘liq darslar tayyorlanmoqda.", exact=False)
         ).to_be_visible()
         await page.get_by_role("button", name="Boshlang‘ich mashqlarga qaytish").click()
-        await page.locator('a[href="/learn/lesson/introductions"]').click()
+        await page.locator('a[href="/ru/lesson/introductions"]').click()
         audio = page.locator("audio").first
 
         async def fail_audio(route):
@@ -186,17 +188,18 @@ async def main():
         await page.get_by_role("button", name="Ruschasini ko‘rish").click()
         await page.get_by_role("button", name="Esladim", exact=True).click()
         await expect(page.get_by_text("3 TA IBORA", exact=True)).to_be_visible()
-        await page.get_by_role("link", name="Natijalar", exact=True).click()
+        await page.get_by_role("button", name="Natijalar", exact=True).click()
         await expect(page.get_by_text("40", exact=True)).to_be_visible()
         assert await page.evaluate(
             "document.documentElement.scrollWidth <= window.innerWidth"
         )
         await page.goto("http://127.0.0.1:5179/uzbek")
+        await expect(page).to_have_url("http://127.0.0.1:5179/uz")
         await page.get_by_role(
             "button", name="1 Salomlashish (Приветствия)", exact=True
         ).click()
         await expect(page).to_have_url(
-            "http://127.0.0.1:5179/lesson/block-1/01-salomlashish"
+            "http://127.0.0.1:5179/uz/lesson/block-1/01-salomlashish"
         )
         await page.goto("http://127.0.0.1:5179/")
         await expect(
