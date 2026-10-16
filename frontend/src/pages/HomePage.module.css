@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: var(--tg-bg, #ffffff);
+  background: var(--tg-bg);
   padding-bottom: 80px;
 }
 
@@ -107,7 +107,7 @@
   height: 28px;
   border-radius: 50%;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 14px;
   font-weight: 700;
   flex-shrink: 0;
@@ -130,8 +130,8 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--tg-hint, #999);
-  color: var(--tg-bg, #fff);
+  background: var(--tg-hint);
+  color: var(--tg-bg);
   font-size: 14px;
   font-weight: 700;
   flex-shrink: 0;
@@ -152,7 +152,7 @@
   height: 36px;
   border-radius: 50%;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 16px;
   font-weight: 700;
   flex-shrink: 0;

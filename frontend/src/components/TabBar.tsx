@@ -1,14 +1,27 @@
 import { useNavigate, useLocation } from 'react-router-dom';
+import { directionFromPath } from '@/shared/direction';
+import type { Direction } from '@/shared/direction';
 import styles from './TabBar.module.css';
 
-const TABS = [
-  { path: '/uzbek', label: 'Уроки', icon: 'lesson' },
-  { path: '/review', label: 'Повтор', icon: 'review' },
-  { path: '/progress', label: 'Прогресс', icon: 'progress' },
-] as const;
+type IconName = 'lesson' | 'review' | 'progress' | 'courses';
 
-function TabIcon({ icon, active }: { icon: string; active: boolean }) {
-  const color = active ? 'var(--accent)' : 'var(--tg-hint, #9CA3AF)';
+const TABS: Record<Direction, readonly { path: string; label: string; icon: IconName }[]> = {
+  ru: [
+    { path: '/ru', label: 'Darslar', icon: 'lesson' },
+    { path: '/ru/review', label: 'Takrorlash', icon: 'review' },
+    { path: '/ru/progress', label: 'Natijalar', icon: 'progress' },
+    { path: '/', label: 'Kurslar', icon: 'courses' },
+  ],
+  uz: [
+    { path: '/uz', label: 'Уроки', icon: 'lesson' },
+    { path: '/uz/review', label: 'Повтор', icon: 'review' },
+    { path: '/uz/progress', label: 'Прогресс', icon: 'progress' },
+    { path: '/', label: 'Курсы', icon: 'courses' },
+  ],
+};
+
+function TabIcon({ icon, active }: { icon: IconName; active: boolean }) {
+  const color = active ? 'var(--accent)' : 'var(--tg-hint)';
 
   switch (icon) {
     case 'lesson':
@@ -35,6 +48,15 @@ function TabIcon({ icon, active }: { icon: string; active: boolean }) {
           <line x1="6" y1="20" x2="6" y2="14" />
         </svg>
       );
+    case 'courses':
+      return (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="3" width="7" height="7" rx="1.5" />
+          <rect x="14" y="3" width="7" height="7" rx="1.5" />
+          <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          <rect x="14" y="14" width="7" height="7" rx="1.5" />
+        </svg>
+      );
     default:
       return null;
   }
@@ -43,10 +65,13 @@ function TabIcon({ icon, active }: { icon: string; active: boolean }) {
 export function TabBar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const direction = directionFromPath(location.pathname);
+
+  if (!direction) return null;
 
   return (
     <nav className={styles.tabBar}>
-      {TABS.map((tab) => {
+      {TABS[direction].map((tab) => {
         const active = location.pathname === tab.path;
         return (
           <button

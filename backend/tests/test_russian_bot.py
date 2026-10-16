@@ -19,10 +19,10 @@ def test_new_course_buttons_and_honest_copy():
         assert "Hozir boshlang‘ich darslar mavjud" in call.args[0]
         assert "&lt;Test&gt;" in call.args[0]
         buttons = call.kwargs["reply_markup"].inline_keyboard
-        assert [urlsplit(row[0].web_app.url).path for row in buttons] == ["", "/uzbek"]
+        assert [urlsplit(row[0].web_app.url).path for row in buttons] == ["", "/uz"]
         for command, path in (
             (handlers.cmd_lesson, ""),
-            (handlers.cmd_review, "/learn/review"),
+            (handlers.cmd_review, "/ru/review"),
         ):
             await command(message)
             button = message.answer.call_args.kwargs["reply_markup"].inline_keyboard[0][

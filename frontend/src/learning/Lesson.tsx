@@ -121,7 +121,7 @@ export function RussianLesson() {
         <h2>{completion.completed ? 'Dars bajarildi' : 'Mashq natijasi saqlandi'}</h2>
         <p>Bu urinish: {Math.round(completion.score * 100)}% · Kurs bo‘yicha jami: {completion.total_xp} XP</p>
         <p>{completion.completed ? 'Iboralar takrorlashga qo‘shildi. Bu natija til darajasi sertifikati emas.' : 'Darsni bajarish uchun kamida 80% kerak. Misollarni ko‘rib, yana urinib ko‘ring.'}</p>
-        <div className={styles.actions}><button className={styles.secondary} disabled={busy} onClick={() => void start(true)}>Yana mashq qilish</button><Link to="/learn/review">Iboralarni takrorlash →</Link></div>
+        <div className={styles.actions}><button className={styles.secondary} disabled={busy} onClick={() => void start(true)}>Yana mashq qilish</button><Link to="/ru/review">Iboralarni takrorlash →</Link></div>
       </section>
       {attempt && Object.entries(attempt.answers).filter(([, item]) => !item.correct).map(([id, item]) => <section className={styles.panel} key={id}>
         <h3>{lesson.exercises.find((ex) => ex.id === id)?.prompt}</h3><p lang="ru">Sizning javobingiz: {item.answer}</p><p lang="ru">Namuna: {item.corrected}</p><p>{item.feedback}</p>

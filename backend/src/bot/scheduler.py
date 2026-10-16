@@ -68,7 +68,7 @@ async def send_morning_lesson(bot: Bot) -> None:
             [
                 InlineKeyboardButton(
                     text="📖 Начать урок",
-                    web_app=WebAppInfo(url=webapp_url("/uzbek")),
+                    web_app=WebAppInfo(url=webapp_url("/uz")),
                 )
             ],
         ]
@@ -99,7 +99,7 @@ async def send_afternoon_review(bot: Bot) -> None:
             [
                 InlineKeyboardButton(
                     text="🧠 Повторить",
-                    web_app=WebAppInfo(url=webapp_url("/review")),
+                    web_app=WebAppInfo(url=webapp_url("/uz/review")),
                 )
             ],
         ]
@@ -146,7 +146,7 @@ async def send_evening_reminder(bot: Bot) -> None:
                     [
                         InlineKeyboardButton(
                             text="📖 Пройти урок",
-                            web_app=WebAppInfo(url=webapp_url("/uzbek")),
+                            web_app=WebAppInfo(url=webapp_url("/uz")),
                         )
                     ],
                 ]

@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: var(--tg-bg, #ffffff);
+  background: var(--tg-bg);
   padding-bottom: calc(24px + env(safe-area-inset-bottom));
 }
 
@@ -179,7 +179,7 @@
   border: none;
   border-radius: var(--radius);
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -292,7 +292,7 @@
 
 .choiceWrong {
   border-color: var(--danger);
-  background: rgba(239, 68, 68, 0.1);
+  background: color-mix(in srgb, var(--danger) 10%, transparent);
 }
 
 /* Feedback */
@@ -306,12 +306,12 @@
 
 .feedbackCorrect {
   background: var(--accent-light);
-  color: #22C55E;
+  color: var(--accent);
 }
 
 .feedbackWrong {
-  background: rgba(239, 68, 68, 0.15);
-  color: #F87171;
+  background: color-mix(in srgb, var(--danger) 15%, transparent);
+  color: var(--danger);
 }
 
 /* Footer (inline, in document flow — no fixed positioning to avoid TabBar overlap) */
@@ -326,7 +326,7 @@
   border: none;
   border-radius: var(--radius);
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;

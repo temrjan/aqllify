@@ -150,9 +150,4 @@ export function errorMessage(error: unknown): string {
   return 'Yuklash yoki saqlash amalga oshmadi. Javobingiz yo‘qolmadi. Qayta urinib ko‘ring.';
 }
 
-export function readLocal(key: string): string | null {
-  try { return localStorage.getItem(key); } catch { return null; }
-}
-export function writeLocal(key: string, value: string): void {
-  try { localStorage.setItem(key, value); } catch { /* Storage is optional; server state remains authoritative. */ }
-}
+export { readLocal, writeLocal } from '@/shared/storage';

@@ -1,0 +1,17 @@
+:root {
+  --accent: #246854;
+  --accent-strong: #377567;
+  --accent-focus: #257a6a;
+  --accent-dark: #1B4D3E;
+  --accent-light: color-mix(in srgb, var(--accent) 15%, transparent);
+  --danger: #b25648;
+  --warning: #F59E0B;
+  --accent-warm: #E8913A;
+  --notice: #b28b48;
+  --on-accent: #ffffff;
+  --on-accent-dim: rgba(255, 255, 255, 0.7);
+  --border: color-mix(in srgb, var(--tg-text, #000000) 12%, transparent);
+  --bg-card: var(--tg-secondary, #F9FAFB);
+  --radius: 12px;
+  --radius-sm: 8px;
+}

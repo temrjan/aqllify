@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { api } from '@/shared/api';
 import styles from './HomePage.module.css';
 
@@ -58,7 +58,7 @@ export function HomePage() {
     // slug format: "block-1/01-salomlashish" → split into block and lessonSlug
     const parts = lesson.slug.split('/');
     if (parts.length === 2) {
-      const prefix = isCheckpoint(lesson) ? '/checkpoint' : '/lesson';
+      const prefix = isCheckpoint(lesson) ? '/uz/checkpoint' : '/uz/lesson';
       navigate(`${prefix}/${parts[0]}/${parts[1]}`);
     }
   };
@@ -67,7 +67,6 @@ export function HomePage() {
     <div className={styles.page}>
       <header className={styles.header}>
         <h1 className={styles.title}>Уроки</h1>
-        <Link to="/">Rus tili — o‘zbekcha tushuntirishlar →</Link>
       </header>
 
       {Array.from(blocks.entries()).map(([blockNum, blockLessons]) => (

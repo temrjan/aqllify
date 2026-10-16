@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { mediaUrl } from './api';
 import styles from './learning.module.css';
 
@@ -20,15 +20,7 @@ export function Audio({ name, label }: { name: string; label: string }) {
   </div>;
 }
 
-export function LearningNav() {
-  return <nav className={styles.nav} aria-label="Rus tili bo‘limlari">
-    <NavLink to="/" end>Darslar</NavLink>
-    <NavLink to="/learn/review">Takrorlash</NavLink>
-    <NavLink to="/learn/progress">Natijalar</NavLink>
-  </nav>;
-}
-
-export function BackLink() { return <Link className={styles.back} to="/">← Darslarga</Link>; }
+export function BackLink() { return <Link className={styles.back} to="/ru">← Darslarga</Link>; }
 
 export function ErrorNotice({ message, retry }: { message: string; retry?: () => void }) {
   return <div className={styles.error} role="alert"><p>{message}</p>

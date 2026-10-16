@@ -57,7 +57,7 @@ async def cmd_start(message: Message) -> None:
             ],
             [
                 InlineKeyboardButton(
-                    text="Учить узбекский", web_app=WebAppInfo(url=webapp_url("/uzbek"))
+                    text="Учить узбекский", web_app=WebAppInfo(url=webapp_url("/uz"))
                 ),
             ],
         ]
@@ -98,7 +98,7 @@ async def set_daily_goal(callback: CallbackQuery) -> None:
             [
                 InlineKeyboardButton(
                     text="📖 Начать первый урок",
-                    web_app=WebAppInfo(url=webapp_url("/uzbek")),
+                    web_app=WebAppInfo(url=webapp_url("/uz")),
                 )
             ],
         ]
@@ -208,7 +208,7 @@ async def cmd_stats(message: Message) -> None:
             [
                 InlineKeyboardButton(
                     text="Rus tili natijalari",
-                    web_app=WebAppInfo(url=webapp_url("/learn/progress")),
+                    web_app=WebAppInfo(url=webapp_url("/ru/progress")),
                 )
             ],
         ]
@@ -248,7 +248,7 @@ async def cmd_review(message: Message) -> None:
             [
                 InlineKeyboardButton(
                     text="Iboralarni takrorlash",
-                    web_app=WebAppInfo(url=webapp_url("/learn/review")),
+                    web_app=WebAppInfo(url=webapp_url("/ru/review")),
                 )
             ],
         ]

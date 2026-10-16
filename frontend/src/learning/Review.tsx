@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { errorMessage, learning } from './api';
 import type { ReviewCard } from './api';
-import { Audio, BackLink, ErrorNotice, LearningNav } from './common';
+import { Audio, ErrorNotice } from './common';
 import styles from './learning.module.css';
 
 export function RussianReview() {
@@ -26,7 +26,7 @@ export function RussianReview() {
     catch (e) { setError(errorMessage(e)); }
     finally { guard.current = false; setBusy(false); }
   }
-  return <main className={styles.page}><BackLink /><header className={styles.lessonHeader}><h1>Iboralarni eslaymiz</h1><p>Avval ruschasini o‘zingiz ayting, keyin namunani oching. Bu o‘zingiz baholaydigan mashq, bilim darajasi testi emas.</p></header>
+  return <main className={styles.page}><header className={styles.lessonHeader}><h1>Iboralarni eslaymiz</h1><p>Avval ruschasini o‘zingiz ayting, keyin namunani oching. Bu o‘zingiz baholaydigan mashq, bilim darajasi testi emas.</p></header>
     {error && <ErrorNotice message={error} retry={() => setReload((r) => r + 1)} />}
     {!cards && !error && <p role="status">Yuklanmoqda…</p>}
     {card ? <section className={styles.panel}>
@@ -36,7 +36,6 @@ export function RussianReview() {
         <div className={styles.actions}><button className={styles.secondary} disabled={busy} onClick={() => void rate('again')}>Yana mashq qilaman</button>
           <button className={styles.primary} disabled={busy} onClick={() => void rate('remembered')}>Esladim</button></div>
       </>}
-    </section> : cards && !error && <section className={styles.panel}><h2>Hozircha navbat bo‘sh</h2><p>Keyingi takrorlash vaqti kelganda iboralar yana chiqadi. Yangi darsni tugatsangiz, uning iboralari ham qo‘shiladi.</p><Link to="/">Darslarni ko‘rish →</Link></section>}
-    <LearningNav />
+    </section> : cards && !error && <section className={styles.panel}><h2>Hozircha navbat bo‘sh</h2><p>Keyingi takrorlash vaqti kelganda iboralar yana chiqadi. Yangi darsni tugatsangiz, uning iboralari ham qo‘shiladi.</p><Link to="/ru">Darslarni ko‘rish →</Link></section>}
   </main>;
 }

@@ -38,8 +38,8 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: var(--accent, #4CAF50);
-  color: #ffffff;
+  background: var(--accent);
+  color: var(--on-accent);
   font-size: 24px;
   font-weight: 700;
 }
@@ -60,10 +60,10 @@
 .titleCard {
   margin: 0 16px;
   padding: 24px;
-  background: linear-gradient(135deg, var(--accent), #2E7D32);
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
   border-radius: 16px;
   text-align: center;
-  color: #ffffff;
+  color: var(--on-accent);
 }
 
 .titleEmoji {
@@ -88,14 +88,14 @@
 
 .xpBar {
   height: 6px;
-  background: rgba(255, 255, 255, 0.3);
+  background: color-mix(in srgb, var(--on-accent) 30%, transparent);
   border-radius: 3px;
   overflow: hidden;
 }
 
 .xpFill {
   height: 100%;
-  background: #ffffff;
+  background: var(--on-accent);
   border-radius: 3px;
   transition: width 0.5s ease;
 }

@@ -30,8 +30,8 @@ export class ErrorBoundary extends Component<Props, State> {
         <div style={{
           padding: '24px',
           textAlign: 'center',
-          color: 'var(--tg-text, #000)',
-          background: 'var(--tg-bg, #fff)',
+          color: 'var(--tg-text)',
+          background: 'var(--tg-bg)',
           minHeight: '60vh',
           display: 'flex',
           flexDirection: 'column',
@@ -41,7 +41,7 @@ export class ErrorBoundary extends Component<Props, State> {
         }}>
           <div style={{ fontSize: '48px' }}>{'⚠️'}</div>
           <h2>Произошла ошибка</h2>
-          <p style={{ fontSize: '13px', color: 'var(--tg-hint, #999)', maxWidth: '300px', wordBreak: 'break-word' }}>
+          <p style={{ fontSize: '13px', color: 'var(--tg-hint)', maxWidth: '300px', wordBreak: 'break-word' }}>
             {this.state.error}
           </p>
           <button
@@ -52,8 +52,8 @@ export class ErrorBoundary extends Component<Props, State> {
             style={{
               marginTop: '12px',
               padding: '12px 24px',
-              background: 'var(--accent, #4CAF50)',
-              color: '#fff',
+              background: 'var(--accent)',
+              color: 'var(--on-accent)',
               border: 'none',
               borderRadius: '12px',
               fontSize: '16px',

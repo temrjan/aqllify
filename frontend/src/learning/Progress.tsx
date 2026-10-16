@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { errorMessage, learning } from './api';
 import type { Course, Progress } from './api';
-import { BackLink, ErrorNotice, LearningNav } from './common';
+import { ErrorNotice } from './common';
 import styles from './learning.module.css';
 
 export function RussianProgress() {
@@ -16,7 +16,7 @@ export function RussianProgress() {
       .catch((e: unknown) => { if (!controller.signal.aborted) setError(errorMessage(e)); });
     return () => controller.abort();
   }, [reload]);
-  return <main className={styles.page}><BackLink /><header className={styles.lessonHeader}><h1>Rus tili bo‘yicha natijalar</h1><p>Bajarilgan mashqlarni kuzating. Bu raqamlar erkin gapirish darajasi yoki sertifikat emas.</p></header>
+  return <main className={styles.page}><header className={styles.lessonHeader}><h1>Rus tili bo‘yicha natijalar</h1><p>Bajarilgan mashqlarni kuzating. Bu raqamlar erkin gapirish darajasi yoki sertifikat emas.</p></header>
     {error && <ErrorNotice message={error} retry={() => setReload((r) => r + 1)} />}
     {!data && !error && <p role="status">Yuklanmoqda…</p>}
     {data && <><div className={styles.stats}>
@@ -26,10 +26,9 @@ export function RussianProgress() {
     </div><section className={styles.panel}><h2>Amaliy ko‘nikmalar</h2>
       {data.course.lessons.map((lesson) => {
         const saved = data.progress.lessons.find((item) => item.lesson_id === lesson.id);
-        return <div className={styles.unit} key={lesson.id}><Link to={`/learn/lesson/${lesson.id}`}>{lesson.title}</Link><p>{lesson.goal}</p>
+        return <div className={styles.unit} key={lesson.id}><Link to={`/ru/lesson/${lesson.id}`}>{lesson.title}</Link><p>{lesson.goal}</p>
           <small>{saved ? `Eng yaxshi natija: ${Math.round(saved.best_score * 100)}% · ${saved.completed ? 'bajarilgan' : 'mashq qilingan'}` : 'Hali mashq qilinmagan'}</small></div>;
       })}
     </section></>}
-    <LearningNav />
   </main>;
 }

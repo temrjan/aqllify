@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background: var(--tg-bg, #ffffff);
+  background: var(--tg-bg);
   padding-bottom: 80px;
   display: flex;
   flex-direction: column;
@@ -141,7 +141,7 @@
 .messageUser {
   align-self: flex-end;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   border-bottom-right-radius: 4px;
 }
 
@@ -153,7 +153,7 @@
 }
 
 .messageUser .messageTranslation {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--on-accent-dim);
 }
 
 .typingIndicator {
@@ -241,7 +241,7 @@
   border: none;
   border-radius: 50%;
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,7 +294,7 @@
   border: none;
   border-radius: var(--radius);
   background: var(--accent);
-  color: #ffffff;
+  color: var(--on-accent);
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;

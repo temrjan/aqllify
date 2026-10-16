@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { errorMessage, learning, readLocal, writeLocal } from './api';
 import type { Course, LevelId, PlacementResult, Progress } from './api';
-import { Audio, ErrorNotice, LearningNav } from './common';
+import { Audio, ErrorNotice } from './common';
 import styles from './learning.module.css';
 
 export function RussianHome() {
@@ -42,7 +42,6 @@ export function RussianHome() {
 
   if (!course || !progress) return <main className={styles.page}>
     {error ? <ErrorNotice message={error} retry={() => setRevision((r) => r + 1)} /> : <p role="status">Yuklanmoqda…</p>}
-    <Link to="/uzbek">Узбекский для русскоговорящих</Link>
   </main>;
   const selected = course.levels.find((item) => item.id === level);
   return <main className={styles.page}>
@@ -90,13 +89,11 @@ export function RussianHome() {
       </details>
       <div className={styles.lessonList}>{course.lessons.map((lesson) => {
         const saved = progress.lessons.find((item) => item.lesson_id === lesson.id);
-        return <Link to={`/learn/lesson/${lesson.id}`} className={styles.lesson} key={lesson.id}>
+        return <Link to={`/ru/lesson/${lesson.id}`} className={styles.lesson} key={lesson.id}>
           <span className={styles.order}>{String(lesson.order).padStart(2, '0')}</span><span><h3>{lesson.title}</h3><p>{lesson.goal}</p>
             {saved && <small>{saved.completed ? 'Bajarilgan' : 'Mashq qilingan'} · eng yaxshi natija {Math.round(saved.best_score * 100)}%</small>}</span><span aria-hidden="true">→</span>
         </Link>;
       })}</div>
     </>}
-    <p className={styles.legacy}><Link to="/uzbek">Узбекский для русскоговорящих →</Link></p>
-    <LearningNav />
   </main>;
 }
