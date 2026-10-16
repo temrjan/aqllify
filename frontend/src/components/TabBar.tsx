@@ -10,13 +10,13 @@ const TABS: Record<Direction, readonly { path: string; label: string; icon: Icon
     { path: '/ru', label: 'Darslar', icon: 'lesson' },
     { path: '/ru/review', label: 'Takrorlash', icon: 'review' },
     { path: '/ru/progress', label: 'Natijalar', icon: 'progress' },
-    { path: '/', label: 'Kurslar', icon: 'courses' },
+    { path: '/?reset=1', label: 'Kurslar', icon: 'courses' },
   ],
   uz: [
     { path: '/uz', label: 'Уроки', icon: 'lesson' },
     { path: '/uz/review', label: 'Повтор', icon: 'review' },
     { path: '/uz/progress', label: 'Прогресс', icon: 'progress' },
-    { path: '/', label: 'Курсы', icon: 'courses' },
+    { path: '/?reset=1', label: 'Курсы', icon: 'courses' },
   ],
 };
 

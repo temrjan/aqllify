@@ -1,11 +1,18 @@
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import type { Direction } from '@/shared/direction';
-import { readLocal, writeLocal } from '@/shared/storage';
+import { readLocal, removeLocal, writeLocal } from '@/shared/storage';
 import styles from './DirectionPage.module.css';
 
 export function DirectionPage() {
   const navigate = useNavigate();
-  const saved = readLocal('direction');
+  const [params] = useSearchParams();
+  const reset = params.get('reset') === '1';
+  const saved = reset ? null : readLocal('direction');
+
+  useEffect(() => {
+    if (reset) removeLocal('direction');
+  }, [reset]);
 
   if (saved === 'ru') return <Navigate to="/ru" replace />;
   if (saved === 'uz') return <Navigate to="/uz" replace />;
